@@ -1,9 +1,13 @@
 using System;
 using UnityEngine;
+using EPOOutline;
+
 public class Node : MonoBehaviour
 {
     public (int, int) pos;
     public string coordinates;
+    public Outlinable outline;
+
 
     private void Awake()
     {
@@ -11,5 +15,7 @@ public class Node : MonoBehaviour
         string[] nb = gameObject.name.Split(separators, StringSplitOptions.RemoveEmptyEntries);
         pos = (Int32.Parse(nb[0]), Int32.Parse(nb[1]));
         coordinates = pos.ToString();
+
+        outline.enabled = false;
     }
 }
