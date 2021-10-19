@@ -1,56 +1,129 @@
-﻿{
-    "files.exclude":
-    {
-        "**/.DS_Store":true,
-        "**/.git":true,
-        "**/.gitignore":true,
-        "**/.gitmodules":true,
-        "**/*.booproj":true,
-        "**/*.pidb":true,
-        "**/*.suo":true,
-        "**/*.user":true,
-        "**/*.userprefs":true,
-        "**/*.unityproj":true,
-        "**/*.dll":true,
-        "**/*.exe":true,
-        "**/*.pdf":true,
-        "**/*.mid":true,
-        "**/*.midi":true,
-        "**/*.wav":true,
-        "**/*.gif":true,
-        "**/*.ico":true,
-        "**/*.jpg":true,
-        "**/*.jpeg":true,
-        "**/*.png":true,
-        "**/*.psd":true,
-        "**/*.tga":true,
-        "**/*.tif":true,
-        "**/*.tiff":true,
-        "**/*.3ds":true,
-        "**/*.3DS":true,
-        "**/*.fbx":true,
-        "**/*.FBX":true,
-        "**/*.lxo":true,
-        "**/*.LXO":true,
-        "**/*.ma":true,
-        "**/*.MA":true,
-        "**/*.obj":true,
-        "**/*.OBJ":true,
-        "**/*.asset":true,
-        "**/*.cubemap":true,
-        "**/*.flare":true,
-        "**/*.mat":true,
-        "**/*.meta":true,
-        "**/*.prefab":true,
-        "**/*.unity":true,
-        "build/":true,
-        "Build/":true,
-        "Library/":true,
-        "library/":true,
-        "obj/":true,
-        "Obj/":true,
-        "ProjectSettings/":true,
-        "temp/":true,
-        "Temp/":true
+{
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.gitignore": true,
+        "**/.gitmodules": true,
+        "**/*.booproj": true,
+        "**/*.pidb": true,
+        "**/*.suo": true,
+        "**/*.user": true,
+        "**/*.userprefs": true,
+        "**/*.unityproj": true,
+        "**/*.dll": true,
+        "**/*.exe": true,
+        "**/*.pdf": true,
+        "**/*.mid": true,
+        "**/*.midi": true,
+        "**/*.wav": true,
+        "**/*.gif": true,
+        "**/*.ico": true,
+        "**/*.jpg": true,
+        "**/*.jpeg": true,
+        "**/*.png": true,
+        "**/*.psd": true,
+        "**/*.tga": true,
+        "**/*.tif": true,
+        "**/*.tiff": true,
+        "**/*.3ds": true,
+        "**/*.3DS": true,
+        "**/*.fbx": true,
+        "**/*.FBX": true,
+        "**/*.lxo": true,
+        "**/*.LXO": true,
+        "**/*.ma": true,
+        "**/*.MA": true,
+        "**/*.obj": true,
+        "**/*.OBJ": true,
+        "**/*.asset": true,
+        "**/*.cubemap": true,
+        "**/*.flare": true,
+        "**/*.mat": true,
+        "**/*.meta": true,
+        "**/*.prefab": true,
+        "**/*.unity": true,
+        "build/": true,
+        "Build/": true,
+        "Library/": true,
+        "library/": true,
+        "obj/": true,
+        "Obj/": true,
+        "ProjectSettings/": true,
+        "temp/": true,
+        "Temp/": true
+    },
+        "editor.tokenColorCustomizations": {
+            "textMateRules": [
+                {
+                    // Regular text
+                    "scope": "source.notes",
+                    "settings": {
+                        "foreground": "#ebebeb"
+                    }
+                },
+                {
+                    // Headings
+                    "scope": "markup.heading.notes",
+                    "settings": {
+                        "foreground": "#93ceff"
+                    }
+                },
+                {
+                    // TODO items that are DONE
+                    "scope": "markup.changed.notes",
+                    "settings": {
+                        "foreground": "#00c42a"
+                    }
+                },
+                {
+                    // TODO items that have been CANCELED
+                    "scope": "markup.canceled.notes",
+                    "settings": {
+                        "foreground": "#ffc72c"
+                    }
+                },
+                {
+                    // Arrows and Tags
+                    "scope": "variable.language.notes",
+                    "settings": {
+                        "foreground": "#eeff00"
+                    }
+                },
+                {
+                    // Language Name (text inside square brackets)
+                    "scope": "markup.bold.notes",
+                    "settings": {
+                        "foreground": "#48d448"
+                    }
+                },
+                {
+                    // Emphasis
+                    "scope": "keyword.other.notes",
+                    "settings": {
+                        "foreground": "#569cd6ff"
+                    }
+                },
+                {
+                    // Open & Closed Parentheses
+                    "scope": "keyword.operator.notes",
+                    "settings": {
+                        "foreground": "#add14a"
+                    }
+                },
+                {
+                    // Exclamation Mark
+                    "scope": "invalid.deprecated.notes",
+                    "settings": {
+                        "foreground": "#f44747ff"
+                    }
+                },
+                {
+                    // Commented Text
+                    "scope": "comment.notes",
+                    "settings": {
+                        "foreground": "#5eff14"
+                    }
+                },
+            ]
+        }
     }
-}
