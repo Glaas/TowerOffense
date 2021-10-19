@@ -1,6 +1,9 @@
 [√] Having a grid system and store cells somewhere to access
 [ ] Grid-based pathfinding to find tower
 
+
+[!]  online feature : events system like weather or stuff
+
 https://assetstore.unity.com/packages/tools/ai/sap2d-beta-109184
 https://docs.google.com/document/d/19EHWHNtg6IVCvH8amks_r92F4WkGCKlTTMcD0CvYYrQ/edit#bookmark=id.25szmj7yiet8
 
@@ -12,3 +15,13 @@ https://youtu.be/nhiFx28e7JY?list=PLFt_AvWsXl0cq5Umv3pMC9SPnKjfp9eGW
 
 https://youtu.be/waEsGu--9P8
 
+
+
+
+you said towers are fixed and live forever : isnt that counter intuitive with a smol grid
+
+you said that tower will only attack when wonbies already started attacking ; that is very harsh for the player, punishing them more 
+
+contradictions ; you said towers can be damaged but they live forever 
+
+walls could be a thing if implemented properly
