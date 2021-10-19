@@ -12,10 +12,11 @@ public class Node : MonoBehaviour
     private void Awake()
     {
         char[] separators = new char[] { ',', ' ' };
-        string[] nb = gameObject.name.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-        pos = (Int32.Parse(nb[0]), Int32.Parse(nb[1]));
-        coordinates = pos.ToString();
+        //string[] nb = gameObject.name.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        //pos = (Int32.Parse(nb[0]), Int32.Parse(nb[1]));
+        //coordinates = pos.ToString();
 
+        outline = GetComponent<Outlinable>();
         outline.enabled = false;
     }
 }
