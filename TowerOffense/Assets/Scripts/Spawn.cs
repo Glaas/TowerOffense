@@ -13,7 +13,6 @@ public class Spawn : MonoBehaviour
         grid.gridObject = new GameObject[grid.worldWidth, grid.worldHeight];
         if (GameObject.Find("hol"))
         {
-            Debug.Log("Console cleared manually");
             DestroyWorld();
             Debug.Log("You forgot to destroy the old world buddy, but dw i gotchu");
 
@@ -26,6 +25,7 @@ public class Spawn : MonoBehaviour
             for (int z = 0; z < grid.worldHeight; z++)
             {
                 GameObject block = GameObject.Instantiate(grid.blockPrefab, Vector3.zero, grid.blockPrefab.transform.rotation) as GameObject;
+                block.GetComponent<Node>().pos = (x, z);
                 block.name = $"{x}, {z}";
                 grid.gridObject[x, z] = block;
                 block.transform.SetParent(hol.transform);

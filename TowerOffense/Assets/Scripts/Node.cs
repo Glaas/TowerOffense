@@ -32,4 +32,10 @@ public class Node : MonoBehaviour
         transform.DOMoveY(transform.localPosition.y + -3f, .4f);
 
     }
+    private void OnMouseOver() {
+        outline.enabled = true;
+    }
+     private void OnMouseExit() {
+        outline.enabled = false;
+    }
 }

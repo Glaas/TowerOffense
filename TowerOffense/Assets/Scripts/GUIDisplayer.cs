@@ -7,9 +7,7 @@ public class GUIDisplayer : MonoBehaviour
 {
     public InfoBox infoBox;
     public Spawn spawn;
-    enum PATTERNS { CROSS = 1, HORIZONTAL_LINE = 2, VERTICAL_LINE = 3 };
-    PATTERNS pattern = PATTERNS.CROSS;
-    int i = 1;
+    
 
 
     void OnEnable()
@@ -39,17 +37,16 @@ public class GUIDisplayer : MonoBehaviour
         }
         if (infoBox.selectMode == InfoBox.SELECT_MODE.MULTIPLE)
         {
-            var values = Enum.GetValues(typeof(PATTERNS));
+            var values = Enum.GetValues(typeof(InfoBox.PATTERNS));
 
-            if (GUI.Button(new Rect(25, 160, 300, 50), "Change Selection Mode : " + pattern))
+            if (GUI.Button(new Rect(25, 160, 300, 50), "Change Selection Mode : " + infoBox.pattern))
             {
-                i++;
-                pattern = (PATTERNS)i;
-                if (i >= values.Length)
+                infoBox.i++;
+                infoBox.pattern = (InfoBox.PATTERNS)infoBox.i;
+                if (infoBox.i >= values.Length)
                 {
-                    i = 0;
+                    infoBox.i = 0;
                 }
-                print(i);
             }
 
         }
