@@ -4,16 +4,44 @@ using UnityEngine;
 
 public class InfoBox : MonoBehaviour
 {
+    public enum SELECT_MODE
+    {
+        SINGLE, MULTIPLE
+    }
+
+    public SELECT_MODE selectMode = SELECT_MODE.SINGLE;
     Camera cam;
     public GameObject oldTarget;
     public GameObject currentTarget;
+    public Node nodeSelected;
+
 
     private void Awake()
     {
         cam = GameObject.Find("MainCamera").GetComponent<Camera>();
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        SelectNode(nodeSelected);
+    }
+    public void SelectNode(Node target)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            target = currentTarget.GetComponent<Node>();
+
+            if (currentTarget.GetComponent<Node>().selected == false)
+            {
+                currentTarget.GetComponent<Node>().OnSelect();
+            }
+            else if (currentTarget.GetComponent<Node>().selected == true)
+            {
+                currentTarget.GetComponent<Node>().OnDeselect();
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         RaycastHit hit;
@@ -48,6 +76,13 @@ public class InfoBox : MonoBehaviour
     string res = string.Empty;
     private void OnGUI()
     {
-        GUI.Label(new Rect(50, 100, 500, 200), "Object : " + res);
+        GUI.Label(new Rect(50, 50, 500, 200), "Object : " + res);
+
+        if (GUI.Button(new Rect(20, 100, 250, 40), "Change Selection Mode : " + selectMode))
+        {
+            selectMode = selectMode == SELECT_MODE.SINGLE ? SELECT_MODE.MULTIPLE : SELECT_MODE.SINGLE;
+
+
+        }
     }
 }

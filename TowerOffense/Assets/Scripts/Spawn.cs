@@ -2,22 +2,17 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
+    private Grid grid;
 
-    public GameObject block1;
-
-    public GameObject[,] blocks;
-
-    public int worldWidth = 10;
-    public int worldHeight = 10;
     public int scale = 1;
 
     [ContextMenu("CreateWorld")]
     public void CreateWorld()
     {
-        blocks = new GameObject[worldWidth, worldHeight];
+        grid = GetComponent<Grid>();
+        grid.gridObject = new GameObject[grid.worldWidth, grid.worldHeight];
         if (GameObject.Find("hol"))
         {
-            ClearLog();
             Debug.Log("Console cleared manually");
             DestroyWorld();
             Debug.Log("You forgot to destroy the old world buddy, but dw i gotchu");
@@ -26,34 +21,34 @@ public class Spawn : MonoBehaviour
 
         var hol = new GameObject("hol");
 
-        for (int x = 0; x < worldWidth; x++)
+        for (int x = 0; x < grid.worldWidth; x++)
         {
-            for (int z = 0; z < worldHeight; z++)
+            for (int z = 0; z < grid.worldHeight; z++)
             {
-                GameObject block = GameObject.Instantiate(block1, Vector3.zero, block1.transform.rotation) as GameObject;
+                GameObject block = GameObject.Instantiate(grid.blockPrefab, Vector3.zero, grid.blockPrefab.transform.rotation) as GameObject;
                 block.name = $"{x}, {z}";
-                blocks[x, z] = block;
+                grid.gridObject[x, z] = block;
                 block.transform.SetParent(hol.transform);
                 block.transform.localScale = new Vector3(scale, scale, scale);
                 block.transform.localPosition = new Vector3(x * scale, 0, z * scale);
             }
-            hol.transform.position = new Vector3(-worldWidth - scale, 0, -worldHeight - scale);
+            hol.transform.position = new Vector3(-grid.worldWidth - scale, 0, -grid.worldHeight - scale);
         }
-        foreach (GameObject block in blocks) Debug.Log(block);
 
     }
     [ContextMenu("CreateWorld")]
     public void DestroyWorld()
     {
-        blocks = new GameObject[worldWidth, worldHeight];
+        grid.gridObject = new GameObject[grid.worldWidth, grid.worldHeight];
         var hol = GameObject.Find("hol");
         DestroyImmediate(hol);
     }
-    public void ClearLog() //you can copy/paste this code to the bottom of your script
+
+    private void OnGUI()
     {
-        var assembly = System.Reflection.Assembly.GetAssembly(typeof(UnityEditor.Editor));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
+        if (GUI.Button(new Rect(20, 40, 125, 50), "Generate world"))
+        {
+            CreateWorld();
+        }
     }
 }
