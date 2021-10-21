@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
-    private Grid grid;
+    private PlayGrid grid;
 
     public int scale = 1;
 
     [ContextMenu("CreateWorld")]
     public void CreateWorld()
     {
-        grid = GetComponent<Grid>();
+        grid = GetComponent<PlayGrid>();
         grid.gridObject = new GameObject[grid.worldWidth, grid.worldHeight];
         if (GameObject.Find("hol"))
         {
@@ -42,13 +42,5 @@ public class Spawn : MonoBehaviour
         grid.gridObject = new GameObject[grid.worldWidth, grid.worldHeight];
         var hol = GameObject.Find("hol");
         DestroyImmediate(hol);
-    }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(20, 40, 125, 50), "Generate world"))
-        {
-            CreateWorld();
-        }
     }
 }

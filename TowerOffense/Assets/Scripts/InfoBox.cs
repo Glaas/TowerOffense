@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EPOOutline;
 
 public class InfoBox : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class InfoBox : MonoBehaviour
         SINGLE, MULTIPLE
     }
 
+    private Camera cam;
     public SELECT_MODE selectMode = SELECT_MODE.SINGLE;
-    Camera cam;
     public GameObject oldTarget;
     public GameObject currentTarget;
     public Node nodeSelected;
+    public Node[] nodeGrpSelected;
+    public string res = string.Empty;
 
 
     private void Awake()
@@ -23,26 +26,20 @@ public class InfoBox : MonoBehaviour
 
     void Update()
     {
-        SelectNode(nodeSelected);
+        HighlightTarget();
+
     }
-    public void SelectNode(Node target)
+    public void SelectNode()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            target = currentTarget.GetComponent<Node>();
-
-            if (currentTarget.GetComponent<Node>().selected == false)
-            {
-                currentTarget.GetComponent<Node>().OnSelect();
-            }
-            else if (currentTarget.GetComponent<Node>().selected == true)
-            {
-                currentTarget.GetComponent<Node>().OnDeselect();
-            }
+            //  target = currentTarget.GetComponent<Node>();
+            //  //If non selected, select. If selected, un-select.
+            //  if (currentTarget.GetComponent<Node>().selected == false) currentTarget.GetComponent<Node>().OnSelect();
+            // else if (currentTarget.GetComponent<Node>().selected == true) currentTarget.GetComponent<Node>().OnDeselect();
         }
     }
-
-    void FixedUpdate()
+    void RegisterTarget()
     {
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -53,36 +50,25 @@ public class InfoBox : MonoBehaviour
             {
                 return;
             }
-
             currentTarget = hit.transform.gameObject;
-            currentTarget.gameObject.GetComponent<Node>().outline.enabled = true;
-
-            if (oldTarget == null)
-            {
-                oldTarget = currentTarget;
-            }
-            if (currentTarget != oldTarget)
-            {
-                oldTarget.gameObject.GetComponent<Node>().outline.enabled = false;
-            }
-
-            oldTarget = currentTarget;
-
-            res = currentTarget.gameObject.name;
-
-            // Do something with the object that was hit by the raycast.
         }
+        else currentTarget = null;
     }
-    string res = string.Empty;
-    private void OnGUI()
+
+    void FixedUpdate()
     {
-        GUI.Label(new Rect(50, 50, 500, 200), "Object : " + res);
+        RegisterTarget();
+    }
+    void HighlightTarget()
+    {
+        if (currentTarget == null || !currentTarget.GetComponent<Outlinable>()) return; //Don't highlight if target is non-existent or non-highlightable
 
-        if (GUI.Button(new Rect(20, 100, 250, 40), "Change Selection Mode : " + selectMode))
-        {
-            selectMode = selectMode == SELECT_MODE.SINGLE ? SELECT_MODE.MULTIPLE : SELECT_MODE.SINGLE;
+        currentTarget.gameObject.GetComponent<Outlinable>().enabled = true; //Outline current selection
 
+        if (oldTarget == null) oldTarget = currentTarget; //Error catcher to prevent nullRef
 
-        }
+        if (currentTarget != oldTarget) oldTarget.gameObject.GetComponent<Outlinable>().enabled = false; //Using delta to UN-highlight previous selection
+
+        oldTarget = currentTarget;//Giving the delta enough information to work with
     }
 }
