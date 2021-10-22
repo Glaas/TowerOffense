@@ -8,34 +8,83 @@ public class Node : MonoBehaviour
     public (int, int) pos;
     public string coordinates;
     public Outlinable outline;
+    public PlayGrid playgrid;
+    public Selection selection;
     public bool selected = false;
 
     private void Awake()
     {
-        char[] separators = new char[] { ',', ' ' };
-        //string[] nb = gameObject.name.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-        //pos = (Int32.Parse(nb[0]), Int32.Parse(nb[1]));
-        //coordinates = pos.ToString();
-
         outline = GetComponent<Outlinable>();
+        selection = FindObjectOfType<Selection>();
+        playgrid = FindObjectOfType<PlayGrid>();
         outline.enabled = false;
     }
 
-    public void OnSelect()
+    public void Select(bool isSelected)
     {
-        selected = true;
-        transform.DOMoveY(transform.localPosition.y + 3f, .4f);
+        if (!selected)
+        {
+            transform.DOMoveY(transform.localPosition.y + 3f, .4f);
+            selected = true;
+        }
+        else
+        {
+            transform.DOMoveY(transform.localPosition.y + -3f, .4f);
+            selected = false;
+        }
     }
-    public void OnDeselect()
-    {
-        selected = false;
-        transform.DOMoveY(transform.localPosition.y + -3f, .4f);
 
+    private void OnMouseOver()
+    {
+        if (selection.selectMode == Selection.SELECT_MODE.SINGLE)
+        {
+            outline.enabled = true;
+        }
+        else if (selection.selectMode == Selection.SELECT_MODE.MULTIPLE)
+        {
+            switch (selection.pattern)
+            {
+                case Selection.PATTERNS.CROSS:
+                    var grp = GridHelpers.WestAndCenterAndEast(this);
+                    foreach (var node in grp)
+                    {
+                        playgrid.gridObject[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = true;
+                    }
+                    break;
+                case Selection.PATTERNS.HORIZONTAL_LINE:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }//TODO group those two monstrosities in one to avoid code duplication
+    //TODO fix the outOfBounds error when highlighting something on the edges
+    //TODO Implement the rest of the patterns
+    private void OnMouseExit()
+    {
+        if (selection.selectMode == Selection.SELECT_MODE.SINGLE)
+        {
+            outline.enabled = false;
+        }
+        else if (selection.selectMode == Selection.SELECT_MODE.MULTIPLE)
+        {
+            switch (selection.pattern)
+            {
+                case Selection.PATTERNS.CROSS:
+                    var grp = GridHelpers.WestAndCenterAndEast(this);
+                    foreach (var node in grp)
+                    {
+                        playgrid.gridObject[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = false;
+                    }
+                    break;
+                case Selection.PATTERNS.HORIZONTAL_LINE:
+                    break;
+                default:
+                    break;
+            }
+
+        }
     }
-    private void OnMouseOver() {
-        outline.enabled = true;
-    }
-     private void OnMouseExit() {
-        outline.enabled = false;
-    }
+    void OnMouseUp() => Select(selected);
 }
