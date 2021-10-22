@@ -10,7 +10,7 @@ public class Spawn : MonoBehaviour
     public void CreateWorld()
     {
         grid = GetComponent<PlayGrid>();
-        grid.gridObject = new GameObject[grid.worldWidth, grid.worldHeight];
+        grid.gridObject = new GameObject[PlayGrid.worldWidth, PlayGrid.worldHeight];
         if (GameObject.Find("hol"))
         {
             DestroyWorld();
@@ -20,9 +20,9 @@ public class Spawn : MonoBehaviour
 
         var hol = new GameObject("hol");
 
-        for (int x = 0; x < grid.worldWidth; x++)
+        for (int x = 0; x < PlayGrid.worldWidth; x++)
         {
-            for (int z = 0; z < grid.worldHeight; z++)
+            for (int z = 0; z < PlayGrid.worldHeight; z++)
             {
                 GameObject block = GameObject.Instantiate(grid.blockPrefab, Vector3.zero, grid.blockPrefab.transform.rotation) as GameObject;
                 block.GetComponent<Node>().pos = (x, z);
@@ -32,14 +32,14 @@ public class Spawn : MonoBehaviour
                 block.transform.localScale = new Vector3(scale, scale, scale);
                 block.transform.localPosition = new Vector3(x * scale, 0, z * scale);
             }
-            hol.transform.position = new Vector3(-grid.worldWidth - scale, 0, -grid.worldHeight - scale);
+            hol.transform.position = new Vector3(-PlayGrid.worldWidth - scale, 0, -PlayGrid.worldHeight - scale);
         }
 
     }
     [ContextMenu("CreateWorld")]
     public void DestroyWorld()
     {
-        grid.gridObject = new GameObject[grid.worldWidth, grid.worldHeight];
+        grid.gridObject = new GameObject[PlayGrid.worldWidth, PlayGrid.worldHeight];
         var hol = GameObject.Find("hol");
         DestroyImmediate(hol);
     }

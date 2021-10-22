@@ -5,7 +5,7 @@ using UnityEngine;
 public class Selection : MonoBehaviour
 {
     public enum SELECT_MODE { SINGLE, MULTIPLE }
-    public enum PATTERNS { CROSS = 1, HORIZONTAL_LINE = 2, VERTICAL_LINE = 3 };
+    public enum PATTERNS { HORIZONTAL_LINE = 1, VERTICAL_LINE = 2, CROSS = 3, SQUARE = 4 };
     public SELECT_MODE selectMode = SELECT_MODE.SINGLE;
     public PATTERNS pattern = PATTERNS.CROSS;
     public Node nodeSelected;
