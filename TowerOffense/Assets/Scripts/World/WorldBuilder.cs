@@ -9,6 +9,11 @@ public class WorldBuilder : MonoBehaviour
     public int worldWidth = 25;
     public int worldHeight = 15;
     string gridParentName = "GridParent";
+
+    public Material frontierMaterial;
+    public Material selectionMaterial;
+    public Material neighborMaterial;
+    public Material ;
    // string  = "GridParent";
 
     public void GenerateGrid()
@@ -39,7 +44,7 @@ public class WorldBuilder : MonoBehaviour
         {
             var n = GameObject.Instantiate(edgePrefab, subVector + new Vector3(0, 0, 0), Quaternion.identity, GridParent.transform);
             Vector2 res = (edge.cellA + edge.cellB) / 2;
-            n.transform.localPosition = new Vector3(res.x, 1, res.y);
+            n.transform.localPosition = new Vector3(res.x, .45f, res.y);
             n.name = $"{edge.cellA} - {edge.cellB}";
         }
     }

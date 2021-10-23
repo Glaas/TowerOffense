@@ -12,7 +12,6 @@ public class Node : MonoBehaviour
 
     public (int, int) pos;
     public Vector3 posInWorld;
-    public string coordinates;
     public bool selected = false;
 
     private void Awake()
