@@ -9,13 +9,23 @@ public class PlayGrid
         worldWidth = _worldWidth;
         worldHeight = _worldHeight;
         nodeGrid = new GameObject[worldWidth, worldHeight];
-
+        nodesObjectsInGrid = new List<Node>();
+        edges = new HashSet<Edge>();
     }
 
     public GameObject[,] nodeGrid;
-    public Edge[] edges;
+    public List<Node> nodesObjectsInGrid;
+    public HashSet<Edge> edges;
     public int worldWidth;
     public int worldHeight;
+
+    public void InitializeNodesComponentsInGrid()
+    {
+        foreach (GameObject item in nodeGrid)
+        {
+            nodesObjectsInGrid.Add(item.GetComponent<Node>());
+        }
+    }
 
     public (int, int) North((int, int) x) { return ClampToGrid((x.Item1, x.Item2 + 1)); }
     public (int, int) East((int, int) x) { return ClampToGrid((x.Item1 + 1, x.Item2)); }
@@ -103,17 +113,38 @@ public class PlayGrid
     bool CheckIfValid((int, int) x) { if (x.Item1 < 0 || x.Item2 < 0 || x.Item1 > worldWidth - 1 || x.Item2 > worldHeight - 1) return false; else return true; }
 
 
-    // static bool AverageCells(((int, int), (int, int)) x)
-    // {
-    //
-    // }
-    //TODO generate the link between two cells
+    public void GenerateEdge()
+    {
+
+        foreach (Node node in nodesObjectsInGrid)
+        {
+            (int, int)[] nodesToTry = new (int, int)[] { North(node.pos), East(node.pos), South(node.pos), West(node.pos) };
+            foreach ((int, int) item in nodesToTry)
+            {
+                if (CheckIfValid(item))
+                {
+                    if (node.pos == item)
+                    {
+                        continue;
+                    }
+                    Edge edge = new Edge(new Vector2(node.pos.Item1, node.pos.Item2), new Vector2(item.Item1, item.Item2), 0);
+                    edges.Add(edge);
+                }
+            }
+        }
+
+    }
 }
 
 public struct Edge
 {
-    ((int, int), (int, int)) position;
-    // bool isWalkable = true;
+    public Vector2 cellA, cellB;
     int weight;
+    public Edge(Vector2 a, Vector2 b, int weight)
+    {
+        cellA = a;
+        cellB = b;
+        this.weight = weight;
+    }
 }
 
