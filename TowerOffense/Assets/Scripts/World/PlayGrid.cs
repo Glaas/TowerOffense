@@ -123,10 +123,8 @@ public class PlayGrid
             {
                 if (CheckIfValid(item))
                 {
-                    if (node.pos == item)
-                    {
-                        continue;
-                    }
+                    if (node.pos == item) continue;
+
                     Edge edge = new Edge(new Vector2(node.pos.Item1, node.pos.Item2), new Vector2(item.Item1, item.Item2), 0);
                     edges.Add(edge);
                 }
