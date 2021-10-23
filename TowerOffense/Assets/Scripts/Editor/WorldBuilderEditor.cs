@@ -1,14 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Spawn))]
-public class SpawnEditor : Editor
+[CustomEditor(typeof(WorldBuilder))]
+public class WorldBuilderEditor : Editor
 {
-
-
     public override void OnInspectorGUI()
     {
-        var t = (target as Spawn);
+        var t = (target as WorldBuilder);
 
         base.OnInspectorGUI();
 
@@ -16,11 +14,7 @@ public class SpawnEditor : Editor
 
         if (GUILayout.Button("Create world"))
         {
-            t.CreateWorld();
-        }
-        if (GUILayout.Button("Destroy world"))
-        {
-            t.DestroyWorld();
+            t.GenerateGrid();
         }
         GUILayout.EndHorizontal();
     }

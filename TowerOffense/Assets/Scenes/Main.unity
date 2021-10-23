@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoBox: {fileID: 0}
   selectionClass: {fileID: 0}
-  spawn: {fileID: 0}
+  worldBuilder: {fileID: 0}
 --- !u!4 &133856283
 Transform:
   m_ObjectHideFlags: 0
@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 149813431}
   - component: {fileID: 149813430}
   - component: {fileID: 149813432}
+  - component: {fileID: 149813433}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -300,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2390b86cb3be6848a372225c78afa8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 0}
   scale: 3
 --- !u!4 &149813431
 Transform:
@@ -328,9 +330,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 8645300165130420785, guid: 1a911e4300b082644bd3db358875427c, type: 3}
-  worldWidth: 20
-  worldHeight: 10
-  griiiid: 
+--- !u!114 &149813433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149813429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b5bbf840da7a148a08ecb4a3d0c634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
 --- !u!1 &207678014
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,9 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectMode: 0
   pattern: 1
-  nodeSelected: {fileID: 0}
   i: 1
-  playGrid: {fileID: 0}
 --- !u!1 &1914184468
 GameObject:
   m_ObjectHideFlags: 0

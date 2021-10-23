@@ -5,19 +5,25 @@ using DG.Tweening;
 
 public class Node : MonoBehaviour
 {
-    public (int, int) pos;
-    public string coordinates;
     public Outlinable outline;
+    public WorldBuilder worldBuilder;
     public PlayGrid playgrid;
     public Selection selection;
+
+    public (int, int) pos;
+    public Vector3 posInWorld;
+    public string coordinates;
     public bool selected = false;
 
     private void Awake()
     {
+        posInWorld = transform.position;
         outline = GetComponent<Outlinable>();
         selection = FindObjectOfType<Selection>();
-        playgrid = FindObjectOfType<PlayGrid>();
+        worldBuilder = FindObjectOfType<WorldBuilder>();
+        playgrid = worldBuilder.grid;
         outline.enabled = false;
+        posInWorld = transform.position;
     }
 
     private void OnMouseOver()
@@ -34,12 +40,12 @@ public class Node : MonoBehaviour
     {
         if (!selected)
         {
-            transform.DOMoveY(transform.localPosition.y + 3f, .4f);
+            transform.DOMoveY(transform.localPosition.y + 1f, .2f);
             selected = true;
         }
         else
         {
-            transform.DOMoveY(transform.localPosition.y + -3f, .4f);
+            transform.DOMoveY(transform.localPosition.y + -1f, .2f);
             selected = false;
         }
     }
@@ -54,22 +60,21 @@ public class Node : MonoBehaviour
             (int, int)[] posArr;
             switch (selection.pattern)
             {
-
                 case Selection.PATTERNS.HORIZONTAL_LINE:
-                    posArr = PlayGrid.HorizontalLine(pos);
-                    foreach (var node in posArr) playgrid.gridObject[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    posArr = playgrid.HorizontalLine(pos);
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
                     break;
                 case Selection.PATTERNS.VERTICAL_LINE:
-                    posArr = PlayGrid.VerticalLine(pos);
-                    foreach (var node in posArr) playgrid.gridObject[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    posArr = playgrid.VerticalLine(pos);
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
                     break;
                 case Selection.PATTERNS.CROSS:
-                    posArr = PlayGrid.Cross(pos);
-                    foreach (var node in posArr) playgrid.gridObject[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    posArr = playgrid.Cross(pos);
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
                     break;
                 case Selection.PATTERNS.SQUARE:
-                    posArr = PlayGrid.Square(pos);
-                    foreach (var node in posArr) playgrid.gridObject[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    posArr = playgrid.Square(pos);
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
                     break;
                 default: throw new NotImplementedException();
             }
