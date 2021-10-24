@@ -2,17 +2,30 @@ using System;
 using UnityEngine;
 using EPOOutline;
 using DG.Tweening;
+using UnityEngine.AI;
+using System.Collections;
 
 public class Node : MonoBehaviour
 {
+    public NavMeshSurface navmeshSurface;
     public Outlinable outline;
     public WorldBuilder worldBuilder;
     public PlayGrid playgrid;
     public Selection selection;
 
+    public bool isWalkable { set => StartCoroutine(nameof(RebuildNavMesh)); }
+
+    public int gCost, hCost;
+    public int fCost { get { return gCost + hCost; } }
+
     public (int, int) pos;
     public Vector3 posInWorld;
     public bool selected = false;
+
+    Node(Vector3 _posInWorld)
+    {
+        posInWorld = _posInWorld;
+    }
 
     private void Awake()
     {
@@ -20,9 +33,11 @@ public class Node : MonoBehaviour
         outline = GetComponent<Outlinable>();
         selection = FindObjectOfType<Selection>();
         worldBuilder = FindObjectOfType<WorldBuilder>();
+        navmeshSurface = FindObjectOfType<NavMeshSurface>();
         playgrid = worldBuilder.grid;
         outline.enabled = false;
         posInWorld = transform.position;
+        isWalkable = true;
     }
 
     private void OnMouseOver()
@@ -39,14 +54,26 @@ public class Node : MonoBehaviour
     {
         if (!selected)
         {
-            transform.DOMoveY(transform.localPosition.y + 1f, .2f);
+            transform.DOMoveY(transform.position.y + 2f, .2f);
             selected = true;
+            gameObject.AddComponent<NavMeshObstacle>();
+            GetComponent<NavMeshObstacle>().carving = true;
         }
         else
         {
-            transform.DOMoveY(transform.localPosition.y + -1f, .2f);
+            transform.DOMoveY(transform.position.y + -2f, .2f);
             selected = false;
+            Destroy(gameObject.GetComponent<NavMeshObstacle>());
         }
+
+        StartCoroutine(nameof(RebuildNavMesh));
+    }
+    IEnumerator RebuildNavMesh()
+    {
+        yield return new WaitForSeconds(0.7f);
+        navmeshSurface.RemoveData();
+        navmeshSurface.BuildNavMesh();
+
     }
     void Highlighting(bool isOutlined)
     {
