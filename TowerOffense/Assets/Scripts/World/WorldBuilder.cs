@@ -39,7 +39,7 @@ public class WorldBuilder : MonoBehaviour
         tower.transform.SetParent(GridParent.transform);
         GridParent.transform.localScale *= 3;
         grid.InitializeNodesComponentsInGrid();
-        grid.GenerateEdge();
+        //grid.GenerateEdge();
 
 
         // foreach (var edge in grid.edges)
