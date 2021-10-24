@@ -13,7 +13,7 @@ public class Node : MonoBehaviour
     public PlayGrid playgrid;
     public Selection selection;
 
-    public bool isWalkable { set => StartCoroutine(nameof(RebuildNavMesh)); }
+    // public bool isWalkable { set => StartCoroutine(nameof(RebuildNavMesh)); }
 
     public int gCost, hCost;
     public int fCost { get { return gCost + hCost; } }
@@ -33,11 +33,11 @@ public class Node : MonoBehaviour
         outline = GetComponent<Outlinable>();
         selection = FindObjectOfType<Selection>();
         worldBuilder = FindObjectOfType<WorldBuilder>();
-        navmeshSurface = FindObjectOfType<NavMeshSurface>();
+        navmeshSurface = GameObject.Find("NavMesh").GetComponent<NavMeshSurface>();
         playgrid = worldBuilder.grid;
         outline.enabled = false;
         posInWorld = transform.position;
-        isWalkable = true;
+        // isWalkable = true;
     }
 
     private void OnMouseOver()
