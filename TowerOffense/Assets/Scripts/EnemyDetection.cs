@@ -9,6 +9,10 @@ public class EnemyDetection : MonoBehaviour
     private Transform towerTransform;
     public GameObject enemyClosestToTower;
 
+    public GameObject bulletPrefab;
+
+    public float bulletSpeed = 5;
+
     private void Awake()
     {
         enemiesDetected = new List<Collider>();
@@ -18,6 +22,7 @@ public class EnemyDetection : MonoBehaviour
     {
         if (!other.CompareTag("Enemy")) return;
         enemiesDetected.Add(other);
+        Shoot();
     }
     private void OnTriggerExit(Collider other)
     {
@@ -32,6 +37,7 @@ public class EnemyDetection : MonoBehaviour
     private void Update()
     {
         ComputeCurrentTarget();
+
     }
 
     void ComputeCurrentTarget()
@@ -52,6 +58,17 @@ public class EnemyDetection : MonoBehaviour
         {
             enemyClosestToTower = null;
             currentTarget = null;
+            StopCoroutine(nameof(Shoot));
         }
     }
+
+    public void Shoot()
+    {
+//        var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
+        // yield return new WaitForSeconds(1);
+        // StartCoroutine(nameof(Shoot));
+    }
+
+
+    //TODO make turret shoot enemy
 }

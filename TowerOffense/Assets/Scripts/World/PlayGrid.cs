@@ -36,7 +36,6 @@ public class PlayGrid
     public (int, int) SouthWest((int, int) x) { return ClampToGrid((x.Item1 - 1, x.Item2 - 1)); }
     public (int, int) NorthWest((int, int) x) { return ClampToGrid((x.Item1 - 1, x.Item2 + 1)); }
 
-    //TODO on grid generation, check if all neighbours exist or are outside of the grid, and if they exist, create an edge at this location
 
     public (int, int)[] HorizontalLine((int, int) x)
     {

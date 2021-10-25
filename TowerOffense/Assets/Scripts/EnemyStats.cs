@@ -13,7 +13,7 @@ public class EnemyStats : MonoBehaviour
     {
         controller = GetComponent<Controller>();
         name = possibleNames[Random.Range(0, possibleNames.Length)];
-        
+
     }
     void Start()
     {
@@ -25,4 +25,10 @@ public class EnemyStats : MonoBehaviour
     }
 
     void InitHealth() => currentHealth = maxHealth;
+
+    public void TakeDamage(int dmgAmount)
+    {
+        currentHealth -= dmgAmount;
+        if (currentHealth <= 0) Destroy(gameObject);
+    }
 }
