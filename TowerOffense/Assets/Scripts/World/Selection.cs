@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using EPOOutline;
 
 public class Selection : MonoBehaviour
 {
@@ -27,12 +28,21 @@ public class Selection : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftControl))
         {
             CyclePatterns();
+            ResetOutlines();
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
             CycleModes(selectMode);
+            ResetOutlines();
 
         }
 
+    }
+    void ResetOutlines()
+    {
+        foreach (var outline in FindObjectsOfType<Outlinable>())
+        {
+            outline.enabled = false;
+        }
     }
 }

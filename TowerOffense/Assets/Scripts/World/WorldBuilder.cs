@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WorldBuilder : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class WorldBuilder : MonoBehaviour
     public int worldHeight = 15;
     string gridParentName = "GridParent";
 
+
+    private void Start()
+    {
+        GenerateGrid();
+        FindObjectOfType<NavMeshSurface>().BuildNavMesh();
+    }
 
     public void GenerateGrid()
     {
@@ -39,8 +46,8 @@ public class WorldBuilder : MonoBehaviour
         tower.transform.SetParent(GridParent.transform);
         GridParent.transform.localScale *= 3;
         grid.InitializeNodesComponentsInGrid();
-       
-       
+
+
     }
 
 }

@@ -54,14 +54,15 @@ public class DebugDisplay : MonoBehaviour
         }
         else if (selection.selectMode == Selection.SELECT_MODE.MULTIPLE)
         {
-            s = selection.pattern.ToString();
-            s += "\n(Press LCTRL+TAB to switch)\n";
+            s += $"Selection pattern : {selection.pattern}" +
+            "\n(Press LCTRL + TAB to switch)\n";
         }
 
         worldData =
+            $"Cell selected : {(infoBox.currentTarget != null ? infoBox.currentTarget.GetComponentInChildren<Node>().pos.ToString() : string.Empty)}\n" +
             $"Selection mode : {selection.selectMode}\n" +
             "(Press TAB to switch)\n" +
-            $"Selection pattern : {s}\n ";
+            $"{s}\n ";
         RText.text = stats;
         GText.text = worldData;
     }

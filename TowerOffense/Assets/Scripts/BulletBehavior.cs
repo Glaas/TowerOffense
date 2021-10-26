@@ -6,12 +6,12 @@ public class BulletBehavior : MonoBehaviour
 {
     public EnemyDetection shooter;
     public Transform target;
+    [Range(0.0f, 1.0f)]
     public float speed = 100f;
     void OnEnable()
     {
         DetectShooter();
         target = FindObjectOfType<Controller>().transform;
-        DetectTarget();
     }
     void DetectShooter()
     {
@@ -27,8 +27,7 @@ public class BulletBehavior : MonoBehaviour
     }
     private void Update()
     {
-        Vector3.MoveTowards(target.transform.position-transform.position, target.transform.position,speed);
-
+        transform.position += (target.transform.position - transform.position) * .5f;
     }
     void DetectTarget()
     {

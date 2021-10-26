@@ -78,23 +78,20 @@ public class Node : MonoBehaviour
             switch (selection.pattern)
             {
                 case Selection.PATTERNS.HORIZONTAL_LINE:
-                    var i = playgrid;
                     posArr = playgrid.HorizontalLine(pos);
-
-
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
                     break;
                 case Selection.PATTERNS.VERTICAL_LINE:
                     posArr = playgrid.VerticalLine(pos);
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
                     break;
                 case Selection.PATTERNS.CROSS:
                     posArr = playgrid.Cross(pos);
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
                     break;
                 case Selection.PATTERNS.SQUARE:
                     posArr = playgrid.Square(pos);
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
+                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
                     break;
                 default: throw new NotImplementedException();
             }
