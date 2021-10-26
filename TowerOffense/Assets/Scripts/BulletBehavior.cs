@@ -8,10 +8,11 @@ public class BulletBehavior : MonoBehaviour
     public Transform target;
     [Range(0.0f, 1.0f)]
     public float speed = 100f;
+
+    public GameObject explosionPrefab;
     void OnEnable()
     {
         DetectShooter();
-        target = FindObjectOfType<Controller>().transform;
     }
     void DetectShooter()
     {
@@ -27,10 +28,18 @@ public class BulletBehavior : MonoBehaviour
     }
     private void Update()
     {
-        transform.position += (target.transform.position - transform.position) * .5f;
+        if (target == null) return;
+
+        //transform.position += (target.transform.position - transform.position) * .1f;
+        transform.Translate(Vector3.Normalize(target.position - transform.position) * speed);
+
+        if (Vector3.Distance(target.transform.position, transform.position) < .2f)
+        {
+            Instantiate(explosionPrefab, target.transform.position, Quaternion.identity);
+            Destroy(target.gameObject);
+            Destroy(gameObject);
+            //TODO make a proper destroy function that has consequences
+        }
     }
-    void DetectTarget()
-    {
-        //target = shooter.currentTarget.transform;
-    }
+
 }

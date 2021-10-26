@@ -96,3 +96,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: {fileID: 0}
   target: {fileID: 0}
+  speed: 0.5
+  explosionPrefab: {fileID: 731975484264008846, guid: 7f394129d9cfbaa46b5974eb08178fe7, type: 3}

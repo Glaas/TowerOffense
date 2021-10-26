@@ -10,6 +10,7 @@ public class EnemyDetection : MonoBehaviour
     public GameObject enemyClosestToTower;
 
     public GameObject bulletPrefab;
+    public float detectionRadius = 8f;
 
     public float bulletSpeed = 5;
 
@@ -18,30 +19,48 @@ public class EnemyDetection : MonoBehaviour
         enemiesDetected = new List<Collider>();
         towerTransform = GameObject.Find("Tower").transform;
     }
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (!other.CompareTag("Enemy")) return;
-        enemiesDetected.Add(other);
-        Shoot();
+        StartCoroutine(nameof(Shoot));
+
     }
-    private void OnTriggerExit(Collider other)
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (!other.CompareTag("Enemy")) return;
+    //     enemiesDetected.Add(other);
+    // }
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (!other.CompareTag("Enemy")) return;
+    //     enemiesDetected.Remove(other);
+    //     if (other == currentTarget.GetComponent<Collider>())
+    //     {
+    //         currentTarget = null;
+    //         enemyClosestToTower = null;
+    //     }
+    // }
+
+    public List<Collider> enemyDetectedcols;
+    void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("Enemy")) return;
-        enemiesDetected.Remove(other);
-        if (other == currentTarget.GetComponent<Collider>())
+        enemiesDetected = new List<Collider>();
+        foreach (var item in Physics.OverlapSphere(transform.position, 5))
         {
-            currentTarget = null;
-            enemyClosestToTower = null;
+            if (item.GetComponent<Controller>())
+            {
+                enemiesDetected.Add(item);
+
+            }
         }
-    }
-    private void Update()
-    {
         ComputeCurrentTarget();
-
     }
-
     void ComputeCurrentTarget()
     {
+        //  enemiesDetected = new List<Collider>();
+        //  foreach (var item in Physics.OverlapSphere(transfom.position, 5))
+        //   {
+        //       
+        //  }
         if (enemiesDetected.Count > 0)
         {
             if (enemyClosestToTower == null) enemyClosestToTower = enemiesDetected[0].gameObject;
@@ -58,17 +77,27 @@ public class EnemyDetection : MonoBehaviour
         {
             enemyClosestToTower = null;
             currentTarget = null;
-            StopCoroutine(nameof(Shoot));
         }
     }
 
-    public void Shoot()
+    IEnumerator Shoot()
     {
-//        var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
-        // yield return new WaitForSeconds(1);
-        // StartCoroutine(nameof(Shoot));
+        if (currentTarget == null)
+        {
+        }
+        else
+        {
+            var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
+            b.GetComponent<BulletBehavior>().target = currentTarget.transform;
+        }
+        yield return new WaitForSeconds(.4f);
+        StartCoroutine(nameof(Shoot));
     }
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
 
     //TODO make turret shoot enemy
 }

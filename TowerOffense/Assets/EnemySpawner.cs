@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
    public GameObject enemyPrefab;
    public Transform enemyParent;
+   public float spawnDelay;
 
    private void Awake() {
        enemyParent = GameObject.Find("--Enemies--").transform;
@@ -15,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
    IEnumerator EnemySpawn(){
        var enemy = GameObject.Instantiate(enemyPrefab, transform.position, Quaternion.identity,enemyParent);
-       yield return new WaitForSeconds(.8f);
+       yield return new WaitForSeconds(spawnDelay);
        StartCoroutine(nameof(EnemySpawn));
    }
 }

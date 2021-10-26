@@ -11,7 +11,7 @@ public class TurretRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyDetection = GetComponent<EnemyDetection>();
+        enemyDetection = GetComponentInChildren<EnemyDetection>();
     }
 
     // Update is called once per frame
