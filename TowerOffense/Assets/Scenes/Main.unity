@@ -389,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6444117590889975776, guid: 554558030cb603c4f84ad0a927e4b935, type: 3}
   enemyParent: {fileID: 0}
+  spawnDelay: 2
 --- !u!1 &106668749
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +791,11 @@ Transform:
   m_Father: {fileID: 524430984}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &744321632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -259972160606440404, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
+  m_PrefabInstance: {fileID: 42307825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &785481579
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +845,9 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   enemyClosestToTower: {fileID: 0}
   bulletPrefab: {fileID: 976518875534099733, guid: 055b77db1d5359c45acfd27587dd7168, type: 3}
+  detectionRadius: 8
   bulletSpeed: 5
+  enemyDetectedcols: []
 --- !u!135 &785481582
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -965,6 +973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6444117590889975776, guid: 554558030cb603c4f84ad0a927e4b935, type: 3}
   enemyParent: {fileID: 0}
+  spawnDelay: 2
 --- !u!1 &1070236297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,6 +1016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1197242652}
+  - component: {fileID: 1197242653}
   m_Layer: 0
   m_Name: TurretContainer
   m_TagString: Untagged
@@ -1030,6 +1040,21 @@ Transform:
   m_Father: {fileID: 1240754916}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1197242653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197242651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa485b7ddd0358043b6e0753cb3fbaef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 744321632}
+  target: {fileID: 0}
+  enemyDetection: {fileID: 0}
 --- !u!1 &1240754915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6444117590889975776, guid: 554558030cb603c4f84ad0a927e4b935, type: 3}
   enemyParent: {fileID: 0}
+  spawnDelay: 2
 --- !u!1 &1808189217
 GameObject:
   m_ObjectHideFlags: 0

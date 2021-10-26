@@ -65,6 +65,13 @@ public class DebugDisplay : MonoBehaviour
             $"{s}\n ";
         RText.text = stats;
         GText.text = worldData;
+
+
+
+        BText.text = $"Time speed = {Time.timeScale}\n Numpad +/- to adjust";
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) Time.timeScale += .5f;
+        if (Input.GetKeyDown(KeyCode.KeypadMinus)) Time.timeScale -= .5f;
+
     }
 
     public void InitDebugInfo()

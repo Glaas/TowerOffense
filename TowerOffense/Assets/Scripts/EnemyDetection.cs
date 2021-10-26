@@ -24,27 +24,13 @@ public class EnemyDetection : MonoBehaviour
         StartCoroutine(nameof(Shoot));
 
     }
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (!other.CompareTag("Enemy")) return;
-    //     enemiesDetected.Add(other);
-    // }
-    // private void OnTriggerExit(Collider other)
-    // {
-    //     if (!other.CompareTag("Enemy")) return;
-    //     enemiesDetected.Remove(other);
-    //     if (other == currentTarget.GetComponent<Collider>())
-    //     {
-    //         currentTarget = null;
-    //         enemyClosestToTower = null;
-    //     }
-    // }
+
 
     public List<Collider> enemyDetectedcols;
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         enemiesDetected = new List<Collider>();
-        foreach (var item in Physics.OverlapSphere(transform.position, 5))
+        foreach (var item in Physics.OverlapSphere(transform.position, detectionRadius))
         {
             if (item.GetComponent<Controller>())
             {
@@ -54,13 +40,16 @@ public class EnemyDetection : MonoBehaviour
         }
         ComputeCurrentTarget();
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (enemiesDetected.Count == 0)
+        {
+            enemyClosestToTower = null;
+            currentTarget = null;
+        }
+    }
     void ComputeCurrentTarget()
     {
-        //  enemiesDetected = new List<Collider>();
-        //  foreach (var item in Physics.OverlapSphere(transfom.position, 5))
-        //   {
-        //       
-        //  }
         if (enemiesDetected.Count > 0)
         {
             if (enemyClosestToTower == null) enemyClosestToTower = enemiesDetected[0].gameObject;
@@ -72,11 +61,6 @@ public class EnemyDetection : MonoBehaviour
                     currentTarget = enemyClosestToTower;
                 }
             }
-        }
-        else
-        {
-            enemyClosestToTower = null;
-            currentTarget = null;
         }
     }
 

@@ -13,6 +13,7 @@ public class BulletBehavior : MonoBehaviour
     void OnEnable()
     {
         DetectShooter();
+        Destroy(gameObject,3);
     }
     void DetectShooter()
     {
@@ -36,6 +37,7 @@ public class BulletBehavior : MonoBehaviour
         if (Vector3.Distance(target.transform.position, transform.position) < .2f)
         {
             Instantiate(explosionPrefab, target.transform.position, Quaternion.identity);
+            DebugDisplay.enemiesKilled +=1;
             Destroy(target.gameObject);
             Destroy(gameObject);
             //TODO make a proper destroy function that has consequences
