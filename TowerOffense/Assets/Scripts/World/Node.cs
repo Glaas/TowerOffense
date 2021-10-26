@@ -15,28 +15,19 @@ public class Node : MonoBehaviour
 
     // public bool isWalkable { set => StartCoroutine(nameof(RebuildNavMesh)); }
 
-    public int gCost, hCost;
-    public int fCost { get { return gCost + hCost; } }
-
     public (int, int) pos;
-    public Vector3 posInWorld;
     public bool selected = false;
 
-    Node(Vector3 _posInWorld)
-    {
-        posInWorld = _posInWorld;
-    }
+
 
     private void Awake()
     {
-        posInWorld = transform.position;
         outline = GetComponent<Outlinable>();
         selection = FindObjectOfType<Selection>();
         worldBuilder = FindObjectOfType<WorldBuilder>();
         navmeshSurface = GameObject.Find("NavMesh").GetComponent<NavMeshSurface>();
         playgrid = worldBuilder.grid;
         outline.enabled = false;
-        posInWorld = transform.position;
         // isWalkable = true;
     }
 
@@ -87,7 +78,10 @@ public class Node : MonoBehaviour
             switch (selection.pattern)
             {
                 case Selection.PATTERNS.HORIZONTAL_LINE:
+                    var i = playgrid;
                     posArr = playgrid.HorizontalLine(pos);
+
+
                     foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponent<Node>().outline.enabled = isOutlined;
                     break;
                 case Selection.PATTERNS.VERTICAL_LINE:

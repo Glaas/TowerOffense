@@ -9,7 +9,7 @@ public class Selection : MonoBehaviour
     public SELECT_MODE selectMode = SELECT_MODE.SINGLE;
     public PATTERNS pattern = PATTERNS.CROSS;
     public int i = 1;
-   
+
     public void CycleModes(SELECT_MODE _selectMode) => selectMode = _selectMode == SELECT_MODE.SINGLE ? SELECT_MODE.MULTIPLE : SELECT_MODE.SINGLE;
 
     public void CyclePatterns()
@@ -21,5 +21,18 @@ public class Selection : MonoBehaviour
         {
             i = 0;
         }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftControl))
+        {
+            CyclePatterns();
+        }
+        else if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            CycleModes(selectMode);
+
+        }
+
     }
 }

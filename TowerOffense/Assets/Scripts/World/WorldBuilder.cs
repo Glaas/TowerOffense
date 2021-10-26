@@ -39,16 +39,8 @@ public class WorldBuilder : MonoBehaviour
         tower.transform.SetParent(GridParent.transform);
         GridParent.transform.localScale *= 3;
         grid.InitializeNodesComponentsInGrid();
-        //grid.GenerateEdge();
-
-
-        // foreach (var edge in grid.edges)
-        // {
-        //     var n = GameObject.Instantiate(edgePrefab, subVector + new Vector3(0, 0, 0), Quaternion.identity, GridParent.transform);
-        //     Vector2 res = (edge.cellA + edge.cellB) / 2;
-        //     n.transform.localPosition = new Vector3(res.x, .45f, res.y);
-        //     n.name = $"{edge.cellA} - {edge.cellB}";
-        //}
+       
+       
     }
 
 }

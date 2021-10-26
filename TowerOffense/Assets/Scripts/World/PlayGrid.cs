@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class PlayGrid
 {
-
     public PlayGrid(int _worldWidth, int _worldHeight)
     {
         worldWidth = _worldWidth;

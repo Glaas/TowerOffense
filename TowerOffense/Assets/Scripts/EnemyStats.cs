@@ -4,7 +4,7 @@ public class EnemyStats : MonoBehaviour
 {
     public Controller controller;
 
-    public string[] possibleNames = new string[] { "Isabella", "Mika", "Marco", "Kais", "Ottavio", "Luca", "Maria", "Boyan", "Samartha", "David", "Kely", "Jana", "Seb", "Steven", "Sunny", "Ousama", "Azat", "Aleks", "Devarya", "Jose Maria" };
+    public string[] possibleNames = new string[] { "Marie", "Isabella", "Mika", "Marco", "Kais", "Ottavio", "Luca", "Maria", "Boyan", "Samartha", "David", "Kelly", "Jana", "Seb", "Steven", "Sunny", "Ousama", "Azat", "Aleks", "Devarya", "Jose Maria" };
     public int maxHealth = 5;
     public int currentHealth;
     public bool isAttacking;

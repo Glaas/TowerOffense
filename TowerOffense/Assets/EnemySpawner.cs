@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
 
    IEnumerator EnemySpawn(){
        var enemy = GameObject.Instantiate(enemyPrefab, transform.position, Quaternion.identity,enemyParent);
-       yield return new WaitForSeconds(2.5f);
+       yield return new WaitForSeconds(.8f);
        StartCoroutine(nameof(EnemySpawn));
    }
 }

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6444117590889975778}
   - component: {fileID: 6444117590889975779}
   - component: {fileID: 6444117590889975790}
+  - component: {fileID: -4240706473622965033}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -215,3 +216,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   target: {fileID: 0}
+  distanceToTower: 0
+--- !u!114 &-4240706473622965033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444117590889975776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbe5bce5d6e2234f8ce885e3ab380f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  possibleNames:
+  - Isabella
+  - Mika
+  - Marco
+  - Kais
+  - Ottavio
+  - Luca
+  - Maria
+  - Boyan
+  - Samartha
+  - David
+  - Kely
+  - Jana
+  - Seb
+  - Steven
+  - Sunny
+  - Ousama
+  - Azat
+  - Aleks
+  - Devarya
+  - Jose Maria
+  maxHealth: 5
+  currentHealth: 0
+  isAttacking: 0
