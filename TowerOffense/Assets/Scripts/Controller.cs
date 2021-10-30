@@ -12,10 +12,10 @@ public class Controller : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.Find("Tower").transform;
-        state = ENEMY_STATE.APPROACHING;
     }
     private void Start()
     {
+        state = ENEMY_STATE.APPROACHING;
         agent.SetDestination(target.position);
     }
     private void Update()

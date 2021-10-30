@@ -12,10 +12,14 @@ public class DisplayInfo : MonoBehaviour
     {
         node = GetComponent<Node>();
         tmpro = GetComponentInChildren<TextMeshProUGUI>();
-        index = node.pos.ToString();
+    }
+    private void Start()
+    {
+
     }
     private void Update()
     {
+        index = node.pos.ToString();
         tmpro.text = $"grid :{index}\n" +
         $"local space : {transform.localPosition}\n" +
         $"world space : " + transform.position;

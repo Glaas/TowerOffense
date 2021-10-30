@@ -12,10 +12,15 @@ public class WorldBuilder : MonoBehaviour
     string gridParentName = "GridParent";
 
 
+    private void Awake()
+    {
+        GameObject.Find("NavMesh").GetComponent<NavMeshSurface>().BuildNavMesh();
+    }
+
     private void Start()
     {
+
         GenerateGrid();
-        FindObjectOfType<NavMeshSurface>().BuildNavMesh();
     }
 
     public void GenerateGrid()

@@ -9,7 +9,7 @@ public class TurretRotation : MonoBehaviour
     public Transform target;
     public EnemyDetection enemyDetection;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         enemyDetection = GetComponentInChildren<EnemyDetection>();
     }

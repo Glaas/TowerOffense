@@ -10,7 +10,7 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
     public float speed = 100f;
 
     public GameObject explosionPrefab;
-    void OnEnable()
+    void Start()
     {
         DetectShooter();
         Destroy(gameObject,3);

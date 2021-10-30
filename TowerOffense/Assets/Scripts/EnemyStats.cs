@@ -12,8 +12,12 @@ public class EnemyStats : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<Controller>();
-        name = possibleNames[Random.Range(0, possibleNames.Length)];
 
+    }
+    private void OnEnable()
+    {
+
+        name = possibleNames[Random.Range(0, possibleNames.Length)];
     }
     void Start()
     {
