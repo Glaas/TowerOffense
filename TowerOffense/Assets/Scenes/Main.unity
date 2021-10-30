@@ -191,6 +191,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4157524182732408741, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 830affbcf52155d4a86d38264c03b056, type: 2}
+    - target: {fileID: -4157524182732408741, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: -876546973899608171, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
@@ -198,10 +202,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: -876546973899608171, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
+    - target: {fileID: -2859109400176981367, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 830affbcf52155d4a86d38264c03b056, type: 2}
     - target: {fileID: 919132149155446097, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
       propertyPath: m_Name
       value: turrentTEst1
       objectReference: {fileID: 0}
+    - target: {fileID: 3392169489729584843, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 830affbcf52155d4a86d38264c03b056, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7008f1714104a5d4ebce6adbe5c069c6, type: 3}
 --- !u!1 &58259955
@@ -215,6 +227,7 @@ GameObject:
   - component: {fileID: 58259957}
   - component: {fileID: 58259956}
   - component: {fileID: 58259958}
+  - component: {fileID: 58259959}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -305,6 +318,49 @@ MonoBehaviour:
   dilateQuality: 0
   blurIterations: 1
   blurType: 1
+--- !u!114 &58259959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58259955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b416fbce5a38cc47a3a1e709f95f5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cfuStatus: PSXEffects v1.18 - update available (click to update).
+  sections: 01010101
+  customRes: {x: 778, y: 437}
+  resolutionFactor: 2
+  limitFramerate: -1
+  skipFrames: 0
+  affineMapping: 1
+  polygonalDrawDistance: 0
+  vertexInaccuracy: 30
+  polygonInaccuracy: 2
+  colorDepth: 5
+  scanlines: 1
+  scanlineIntensity: 5
+  ditherTexture: {fileID: 0}
+  dithering: 1
+  ditherThreshold: 1
+  ditherIntensity: 12
+  maxDarkness: 20
+  subtractFade: 0
+  favorRed: 1
+  worldSpaceSnapping: 0
+  postProcessing: 1
+  verticalScanlines: 0
+  shadowIntensity: 0.5
+  downscale: 0
+  snapCamera: 0
+  camInaccuracy: 0.05
+  camSnapping: 0
+  shadowType: 1
+  ditherSky: 0
+  ditherType: 1
 --- !u!1 &65555310
 GameObject:
   m_ObjectHideFlags: 0

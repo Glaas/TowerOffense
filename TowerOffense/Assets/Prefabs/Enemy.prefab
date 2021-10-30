@@ -145,7 +145,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e552a28de834d9f448c442433723584a, type: 2}
+  - {fileID: 2100000, guid: ca2722c539df2234783afb64de449265, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   target: {fileID: 0}
   distanceToTower: 0
+  state: 0
 --- !u!114 &-4240706473622965033
 MonoBehaviour:
   m_ObjectHideFlags: 0
