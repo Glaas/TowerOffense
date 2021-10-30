@@ -13,7 +13,7 @@ public class Node : MonoBehaviour
     public PlayGrid playgrid;
     public Selection selection;
 
-    // public bool isWalkable { set => StartCoroutine(nameof(RebuildNavMesh)); }
+
 
     public (int, int) pos;
     public bool selected = false;
@@ -62,8 +62,8 @@ public class Node : MonoBehaviour
     IEnumerator RebuildNavMesh()
     {
         yield return new WaitForSeconds(0.7f);
-        navmeshSurface.RemoveData();
-        navmeshSurface.BuildNavMesh();
+      //  navmeshSurface.RemoveData();
+       // navmeshSurface.BuildNavMesh();
 
     }
     void Highlighting(bool isOutlined)

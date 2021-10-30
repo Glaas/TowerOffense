@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehavior : MonoBehaviour
+public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
 {
     public EnemyDetection shooter;
     public Transform target;
