@@ -16,11 +16,11 @@ public class EnemyDetection : MonoBehaviour
 
     private void Awake()
     {
-        towerTransform = GameObject.Find("Tower").transform;
         enemiesDetected = new List<Collider>();
     }
     private void Start()
     {
+        towerTransform = GameObject.Find("Tower").transform;
         StartCoroutine(nameof(Shoot));
 
     }
