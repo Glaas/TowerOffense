@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PS1
+  m_Shaders:
+  - first: {fileID: 4800000, guid: 94cb0d6305cd4a743b1d2ec684e277de, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: 6a5011e467f6db1458461aac7408785b, type: 3}
+    second:
+      variants: []
