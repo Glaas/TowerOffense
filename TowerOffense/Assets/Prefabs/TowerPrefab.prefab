@@ -48,6 +48,24 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1675908036508167433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995932059544434311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7036b1428917ca4692c6145ec274b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFloating: 0
+  isRotating: 1
+  intensity: 1
+  speed: 1
+  rotateSpeed: 0.5
+  rotationDirection: 2
 --- !u!1001 &5120205328688942769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,6 +73,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2409344095614608822}
     m_Modifications:
+    - target: {fileID: 264050585392574584, guid: db0d57e5e11b3a44db0cf498e59bf281, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 264050585392574584, guid: db0d57e5e11b3a44db0cf498e59bf281, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 264050585392574584, guid: db0d57e5e11b3a44db0cf498e59bf281, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736026459214914598, guid: db0d57e5e11b3a44db0cf498e59bf281, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b2438210513f7914a90e27094360ff0b, type: 2}
     - target: {fileID: 6226060648130698408, guid: db0d57e5e11b3a44db0cf498e59bf281, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -108,5 +142,10 @@ PrefabInstance:
 --- !u!4 &1254805217448251929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6226060648130698408, guid: db0d57e5e11b3a44db0cf498e59bf281, type: 3}
+  m_PrefabInstance: {fileID: 5120205328688942769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2995932059544434311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7970579466953472054, guid: db0d57e5e11b3a44db0cf498e59bf281, type: 3}
   m_PrefabInstance: {fileID: 5120205328688942769}
   m_PrefabAsset: {fileID: 0}

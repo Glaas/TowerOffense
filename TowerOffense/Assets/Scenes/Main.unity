@@ -332,7 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18 - update available (click to update).
   sections: 01010101
-  customRes: {x: 778, y: 437}
+  customRes: {x: 578, y: 325}
   resolutionFactor: 2
   limitFramerate: -1
   skipFrames: 0
@@ -358,7 +358,7 @@ MonoBehaviour:
   snapCamera: 0
   camInaccuracy: 0.05
   camSnapping: 0
-  shadowType: 1
+  shadowType: 0
   ditherSky: 0
   ditherType: 1
 --- !u!1 &65555310
