@@ -59,7 +59,7 @@ public class WorldBuilder : MonoBehaviour
 
 
         }
-        var tower = GameObject.Instantiate(towerPrefab, new Vector3(-worldWidth / 2 - 1 - 1, 2, 0), Quaternion.identity);
+        var tower = GameObject.Instantiate(towerPrefab, new Vector3(-worldWidth / 2 - 1 - 1, .25f, 0), Quaternion.identity);
         tower.name = $"Tower";
         tower.transform.SetParent(GridParent.transform);
         GridParent.transform.localScale *= 3;
