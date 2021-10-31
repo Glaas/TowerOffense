@@ -4,18 +4,18 @@ using UnityEngine;
 [CustomEditor(typeof(WorldBuilder))]
 public class WorldBuilderEditor : Editor
 {
-    public override void OnInspectorGUI()
-    {
-        var t = (target as WorldBuilder);
+    // public override void OnInspectorGUI()
+    // {
+    //     var t = (target as WorldBuilder);
 
-        base.OnInspectorGUI();
+    //     base.OnInspectorGUI();
 
-        GUILayout.BeginHorizontal();
+    //     GUILayout.BeginHorizontal();
 
-        if (GUILayout.Button("Create world"))
-        {
-            t.GenerateGrid();
-        }
-        GUILayout.EndHorizontal();
-    }
+    //     if (GUILayout.Button("Create world"))
+    //     {
+    //         t.GenerateGrid();
+    //     }
+    //     GUILayout.EndHorizontal();
+    // }
 }
