@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: bdb9b524da2754447b98118c8badd738, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -668,7 +668,6 @@ MonoBehaviour:
   RText: {fileID: 0}
   GText: {fileID: 0}
   BText: {fileID: 0}
-  infoBox: {fileID: 0}
   selection: {fileID: 0}
   stats: 
   worldData: 

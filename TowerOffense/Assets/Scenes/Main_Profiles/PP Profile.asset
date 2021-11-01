@@ -20,7 +20,7 @@ MonoBehaviour:
     overrideState: 1
     value: 2
   threshold:
-    overrideState: 0
+    overrideState: 1
     value: 1
   softKnee:
     overrideState: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     overrideState: 0
     value: 65472
   diffusion:
-    overrideState: 0
+    overrideState: 1
     value: 7
   anamorphicRatio:
     overrideState: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 1
+    value: 0
   spectralLut:
     overrideState: 0
     value: {fileID: 0}
