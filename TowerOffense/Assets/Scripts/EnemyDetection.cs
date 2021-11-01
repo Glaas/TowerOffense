@@ -83,5 +83,4 @@ public class EnemyDetection : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
-    //TODO make turret shoot enemy
 }

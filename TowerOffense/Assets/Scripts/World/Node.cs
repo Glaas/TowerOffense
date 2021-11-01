@@ -5,30 +5,28 @@ using DG.Tweening;
 using UnityEngine.AI;
 using System.Collections;
 
-public class Node : MonoBehaviour
+public class Node : MonoBehaviour, ISelectable
 {
-    public NavMeshSurface navmeshSurface;
     public Outlinable outline;
-    public WorldBuilder worldBuilder;
     public PlayGrid playgrid;
     public Selection selection;
 
-
+    [ColorUsage(false, true)]
+    public Color baseColor;
+    [ColorUsage(false, true)]
+    public Color offSetColor;
 
     public (int, int) pos;
-    public bool selected = false;
 
-
+    public bool isSelected { get; set; }
 
     private void Awake()
     {
         outline = GetComponent<Outlinable>();
         selection = FindObjectOfType<Selection>();
-        worldBuilder = FindObjectOfType<WorldBuilder>();
-        navmeshSurface = GameObject.Find("NavMesh").GetComponent<NavMeshSurface>();
-        playgrid = worldBuilder.grid;
+        playgrid = FindObjectOfType<WorldBuilder>().grid;
+        baseColor = GetComponent<MeshRenderer>().material.GetColor("_Color");
         outline.enabled = false;
-        // isWalkable = true;
     }
 
     private void OnMouseOver()
@@ -39,33 +37,27 @@ public class Node : MonoBehaviour
     {
         Highlighting(false);
     }
-    void OnMouseUp() => Select(selected);
+    //void OnMouseUp() => Select(selected);
 
-    public void Select(bool isSelected)
+    public void OnSelect()
     {
-        if (!selected)
-        {
-            transform.DOMoveY(transform.position.y + 2f, .2f);
-            selected = true;
-            gameObject.AddComponent<NavMeshObstacle>();
-            GetComponent<NavMeshObstacle>().carving = true;
-        }
-        else
-        {
-            transform.DOMoveY(transform.position.y + -2f, .2f);
-            selected = false;
-            Destroy(gameObject.GetComponent<NavMeshObstacle>());
-        }
+        isSelected = true;
+        transform.DOMoveY(transform.position.y + 3f, .2f);
+        GetComponent<MeshRenderer>().material.DOColor(offSetColor, "_Color", .2f);
 
-        StartCoroutine(nameof(RebuildNavMesh));
+        gameObject.AddComponent<NavMeshObstacle>();
+        GetComponent<NavMeshObstacle>().carving = true;
     }
-    IEnumerator RebuildNavMesh()
+    public void OnDeselect()
     {
-        yield return new WaitForSeconds(0.7f);
-      //  navmeshSurface.RemoveData();
-       // navmeshSurface.BuildNavMesh();
+        isSelected = false;
+        transform.DOMoveY(transform.position.y + -3f, .2f);
+        GetComponent<MeshRenderer>().material.DOColor(baseColor, "_Color", .2f);
 
+        Destroy(gameObject.GetComponent<NavMeshObstacle>());
     }
+
+
     void Highlighting(bool isOutlined)
     {
         if (selection.selectMode == Selection.SELECT_MODE.SINGLE)

@@ -7,7 +7,6 @@ public class DebugDisplay : MonoBehaviour
     public TextMeshProUGUI GText;
     public TextMeshProUGUI BText;
 
-    public InfoBox infoBox;
     public Selection selection;
 
     public static int nbOfEnemiesCurrentlyAlive;
@@ -25,7 +24,6 @@ public class DebugDisplay : MonoBehaviour
         BText = GameObject.Find("B").GetComponentInChildren<TextMeshProUGUI>();
         BText.text = string.Empty;
 
-        infoBox = FindObjectOfType<InfoBox>();
         selection = FindObjectOfType<Selection>();
 
     }
@@ -59,7 +57,7 @@ public class DebugDisplay : MonoBehaviour
         }
 
         worldData =
-            $"Cell selected : {(infoBox.currentTarget != null ? infoBox.currentTarget.GetComponentInChildren<Node>().pos.ToString() : string.Empty)}\n" +
+             $"Cell selected : {(selection.currentTarget != null ? selection.currentTarget.GetComponentInChildren<Node>().pos.ToString() : string.Empty)}\n" +
             $"Selection mode : {selection.selectMode}\n" +
             "(Press TAB to switch)\n" +
             $"{s}\n ";

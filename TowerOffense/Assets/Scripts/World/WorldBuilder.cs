@@ -20,7 +20,6 @@ public class WorldBuilder : MonoBehaviour
     private void Start()
     {
         StartCoroutine(nameof(WorldGenerationSequence));
-        GameObject.Find("NavMesh").GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
 
@@ -30,6 +29,7 @@ public class WorldBuilder : MonoBehaviour
         yield return StartCoroutine(nameof(InitializeGrid));
         yield return StartCoroutine(nameof(GenerateFrontOfTower));
         yield return StartCoroutine(nameof(GenerateTower));
+        GameObject.Find("NavMesh").GetComponent<NavMeshSurface>().BuildNavMesh();
 
     }
 
@@ -82,6 +82,6 @@ public class WorldBuilder : MonoBehaviour
 
         tower.name = $"Tower";
         grid.InitializeNodesComponentsInGrid();
-        yield return null;
+        yield return new WaitForSeconds(1.55f);
     }
 }
