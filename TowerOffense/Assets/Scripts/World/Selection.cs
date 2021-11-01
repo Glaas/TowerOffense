@@ -6,14 +6,14 @@ using EPOOutline;
 
 namespace TowerOffense
 {
-
-
     public class Selection : MonoBehaviour
     {
         public enum SELECT_MODE { SINGLE, MULTIPLE }
         public enum PATTERNS { HORIZONTAL_LINE = 1, VERTICAL_LINE = 2, CROSS = 3, SQUARE = 4 };
+        public enum TOOL_TYPE { BUILD_WALLS, PLACE_BUILDINGS }
         public SELECT_MODE selectMode = SELECT_MODE.SINGLE;
         public PATTERNS pattern = PATTERNS.CROSS;
+        public TOOL_TYPE toolType = TOOL_TYPE.BUILD_WALLS;
         public int i = 1;
 
         private Camera cam;
@@ -43,14 +43,18 @@ namespace TowerOffense
                 {
                     case SELECT_MODE.SINGLE:
                         nodeSelected = ReturnTarget(currentTarget);
+                        HighlightTarget(currentTarget);
                         break;
                     case SELECT_MODE.MULTIPLE:
                         nodesSelected = new HashSet<Node>();
                         nodesSelected = ReturnTargets(currentTarget);
+                        HighlightTargets(nodesSelected);
                         break;
                 }
             }
             else currentTarget = null;
+            if (oldTarget != currentTarget) ResetOutlines();
+            oldTarget = currentTarget;
         }
         Node ReturnTarget(GameObject objectHitByRay) { return objectHitByRay.GetComponentInChildren<Node>(); }
         HashSet<Node> ReturnTargets(GameObject objectHitByRay)
@@ -73,6 +77,7 @@ namespace TowerOffense
         }
 
         public void CycleModes(SELECT_MODE _selectMode) => selectMode = _selectMode == SELECT_MODE.SINGLE ? SELECT_MODE.MULTIPLE : SELECT_MODE.SINGLE;
+        public void CycleTool(TOOL_TYPE _toolType) => toolType = _toolType == TOOL_TYPE.PLACE_BUILDINGS ? TOOL_TYPE.BUILD_WALLS : TOOL_TYPE.PLACE_BUILDINGS;
 
         public void CyclePatterns()
         {
@@ -96,8 +101,22 @@ namespace TowerOffense
                 CycleModes(selectMode);
                 ResetOutlines();
             }
+            if (Input.GetMouseButtonDown(1))
+            {
+                CycleTool(toolType);
+                ResetOutlines();
+                Debug.Log(toolType);
+            }
             if (Input.GetMouseButtonDown(0))
             {
+                // switch (toolType)
+                // {
+                //     case TOOL_TYPE.BUILD_WALLS:
+                //         break;
+                //     case TOOL_TYPE.PLACE_BUILDINGS:
+                //         break;
+                //     default: throw new NotImplementedException();
+                // }
                 switch (selectMode)
                 {
                     case SELECT_MODE.SINGLE:
@@ -116,13 +135,35 @@ namespace TowerOffense
                 }
             }
         }
-        void ResetOutlines()
+        void HighlightTarget(GameObject target)
         {
-            foreach (var outline in FindObjectsOfType<Outlinable>())
+            if (!target.GetComponent<Outlinable>())
             {
-                outline.enabled = false;
+                Debug.Log(target.name + " is not outlinable");
+                return;
+            }
+            var outlinable = target.GetComponent<Outlinable>();
+            if (target.GetComponentInChildren<Node>())
+            {
+                if (target.GetComponentInChildren<Node>().canBeOutlined)
+                {
+                    nodeSelected.outline.enabled = true;
+                }
             }
         }
+        void HighlightTargets(HashSet<Node> targets)
+        {
+            foreach (var target in targets)
+            {
+                if (!target.GetComponentInChildren<Node>().canBeOutlined)
+                {
+                    continue;
+                }
+                target.GetComponentInChildren<Outlinable>().enabled = true;
+            }
+        }
+        void ResetOutlines() { foreach (var target in FindObjectsOfType<Outlinable>()) target.enabled = false; }
+
 
     }
 }

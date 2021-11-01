@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 using EPOOutline;
@@ -5,6 +6,8 @@ using DG.Tweening;
 using UnityEngine.AI;
 using System.Collections;
 using TowerOffense;
+using NaughtyAttributes;
+
 public class Node : MonoBehaviour, ISelectable
 {
     public Outlinable outline;
@@ -16,77 +19,74 @@ public class Node : MonoBehaviour, ISelectable
     [ColorUsage(false, true)]
     public Color offSetColor;
 
-    public (int, int) pos;
+    public List<GameObject> possibleBuildings;
+    public GameObject currentBuilding;
+    public Transform buildingLocation;
 
+
+    public (int, int) pos;
+    public bool canBeOutlined = true;
     public bool isSelected { get; set; }
 
     private void Awake()
     {
-        outline = GetComponent<Outlinable>();
+
         selection = FindObjectOfType<Selection>();
         playgrid = FindObjectOfType<WorldBuilder>().grid;
         baseColor = GetComponent<MeshRenderer>().material.GetColor("_Color");
-        outline.enabled = false;
+        buildingLocation = transform.Find("BuildingLocation");
     }
-
-    private void OnMouseOver()
+    private void Start()
     {
-        Highlighting(true);
+        if (GetComponent<Outlinable>())
+        {
+            outline = GetComponent<Outlinable>();
+            outline.enabled = false;
+        }
     }
-    private void OnMouseExit()
-    {
-        Highlighting(false);
-    }
-    //void OnMouseUp() => Select(selected);
 
     public void OnSelect()
     {
-        isSelected = true;
-        transform.DOMoveY(transform.position.y + 3f, .2f);
-        GetComponent<MeshRenderer>().material.DOColor(offSetColor, "_Color", .2f);
+        switch (selection.toolType)
+        {
+            case Selection.TOOL_TYPE.BUILD_WALLS:
+                isSelected = true;
+                transform.DOMoveY(transform.position.y + 3f, .2f);
+                GetComponent<MeshRenderer>().material.DOColor(offSetColor, "_Color", .2f);
 
-        gameObject.AddComponent<NavMeshObstacle>();
-        GetComponent<NavMeshObstacle>().carving = true;
+                gameObject.AddComponent<NavMeshObstacle>();
+                GetComponent<NavMeshObstacle>().carving = true;
+                break;
+            case Selection.TOOL_TYPE.PLACE_BUILDINGS:
+                BuildBuilding();
+                break;
+            default: throw new NotImplementedException();
+        }
+
     }
     public void OnDeselect()
     {
-        isSelected = false;
-        transform.DOMoveY(transform.position.y + -3f, .2f);
-        GetComponent<MeshRenderer>().material.DOColor(baseColor, "_Color", .2f);
+        switch (selection.toolType)
+        {
+            case Selection.TOOL_TYPE.BUILD_WALLS:
+                isSelected = false;
+                transform.DOMoveY(transform.position.y + -3f, .2f);
+                GetComponent<MeshRenderer>().material.DOColor(baseColor, "_Color", .2f);
 
-        Destroy(gameObject.GetComponent<NavMeshObstacle>());
+                Destroy(gameObject.GetComponent<NavMeshObstacle>());
+                break;
+            case Selection.TOOL_TYPE.PLACE_BUILDINGS:
+                break;
+            default: throw new NotImplementedException();
+        }
+
     }
 
-
-    void Highlighting(bool isOutlined)
+    [Button("Build building")]
+    void BuildBuilding()
     {
-        if (selection.selectMode == Selection.SELECT_MODE.SINGLE)
-        {
-            outline.enabled = isOutlined;
-        }
-        else if (selection.selectMode == Selection.SELECT_MODE.MULTIPLE)
-        {
-            (int, int)[] posArr;
-            switch (selection.pattern)
-            {
-                case Selection.PATTERNS.HORIZONTAL_LINE:
-                    posArr = playgrid.HorizontalLine(pos);
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
-                    break;
-                case Selection.PATTERNS.VERTICAL_LINE:
-                    posArr = playgrid.VerticalLine(pos);
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
-                    break;
-                case Selection.PATTERNS.CROSS:
-                    posArr = playgrid.Cross(pos);
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
-                    break;
-                case Selection.PATTERNS.SQUARE:
-                    posArr = playgrid.Square(pos);
-                    foreach (var node in posArr) playgrid.nodeGrid[node.Item1, node.Item2].GetComponentInChildren<Node>().outline.enabled = isOutlined;
-                    break;
-                default: throw new NotImplementedException();
-            }
-        }
+        currentBuilding = Instantiate(possibleBuildings[0], buildingLocation.position, possibleBuildings[0].transform.rotation, transform);
     }
+
+
 }

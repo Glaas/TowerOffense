@@ -70,6 +70,9 @@ public class WorldBuilder : MonoBehaviour
             block.name = $"-1, {i}";
             block.transform.localPosition = new Vector3(-1, 20, i);
             block.transform.DOLocalMoveY(0, Random.Range(1f, 1.5f));
+            block.GetComponentInChildren<Node>().canBeOutlined = false;
+            var col = block.GetComponentsInChildren<Collider>();
+            foreach (var item in col) Destroy(item);
         }
         yield return new WaitForSeconds(2);
     }

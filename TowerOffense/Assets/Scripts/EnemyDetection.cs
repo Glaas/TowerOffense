@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class EnemyDetection : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EnemyDetection : MonoBehaviour
     public float detectionRadius = 8f;
 
     public float bulletSpeed = 5;
+    public float delayBetweenShots = 1;
 
     private void Awake()
     {
@@ -20,7 +22,6 @@ public class EnemyDetection : MonoBehaviour
     }
     private void Start()
     {
-        towerTransform = GameObject.Find("Tower").transform;
         StartCoroutine(nameof(Shoot));
 
     }
@@ -50,6 +51,8 @@ public class EnemyDetection : MonoBehaviour
     }
     void ComputeCurrentTarget()
     {
+        if (towerTransform == null) towerTransform = GameObject.Find("Tower").transform;
+
         if (enemiesDetected.Count > 0)
         {
             if (enemyClosestToTower == null) enemyClosestToTower = enemiesDetected[0].gameObject;
@@ -71,16 +74,23 @@ public class EnemyDetection : MonoBehaviour
         }
         else
         {
+            PlayShootAnim();
             var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
             b.GetComponent<BulletBehavior>().target = currentTarget.transform;
         }
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(delayBetweenShots);
         StartCoroutine(nameof(Shoot));
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+
+    [Button("PlayShootAnim)")]
+    void PlayShootAnim()
+    {
+        GetComponentInChildren<Animator>().SetTrigger("Shoot");
     }
 
 }
