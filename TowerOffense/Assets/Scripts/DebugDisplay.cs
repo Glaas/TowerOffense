@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-
+using TowerOffense;
 public class DebugDisplay : MonoBehaviour
 {
     public TextMeshProUGUI RText;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TowerOffense;
 
 
 public class GUIDisplayer : MonoBehaviour
