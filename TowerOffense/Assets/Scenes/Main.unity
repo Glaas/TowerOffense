@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: bdb9b524da2754447b98118c8badd738, type: 2}
+  m_LightingDataAsset: {fileID: 112000002, guid: bdb9b524da2754447b98118c8badd738, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: b4b7ed8c58cc04c4dbf1d2273fa9d4c3, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -365,8 +365,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cfuStatus: PSXEffects v1.18
   sections: 01010101
-  customRes: {x: 465, y: 261}
-  resolutionFactor: 2
+  customRes: {x: 800, y: 800}
+  resolutionFactor: 1
   limitFramerate: -1
   skipFrames: 0
   affineMapping: 0
@@ -387,8 +387,8 @@ MonoBehaviour:
   postProcessing: 0
   verticalScanlines: 0
   shadowIntensity: 0.5
-  downscale: 0
-  snapCamera: 1
+  downscale: 1
+  snapCamera: 0
   camInaccuracy: 0.05
   camSnapping: 0
   shadowType: 0
@@ -1448,13 +1448,13 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1487,7 +1487,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1505,13 +1505,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220081542}
-  m_LocalRotation: {x: 0.46595952, y: -0.067425996, z: 0.42462423, w: 0.7733239}
+  m_LocalRotation: {x: 0.4657094, y: -0.13306308, z: 0.6327641, w: 0.6041677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 51.072, y: 27.633, z: 70.944}
+  m_LocalEulerAnglesHint: {x: 46.981, y: 38.917, z: 110.108}
 --- !u!1 &1240754915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2500,7 +2500,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938318478}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
   m_MotionVectors: 1
@@ -2549,7 +2549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938318478}
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 16.7224, y: -2.1, z: 10}
+  m_LocalPosition: {x: 16.7224, y: -1.61, z: 10}
   m_LocalScale: {x: 150, y: 150, z: 1}
   m_Children: []
   m_Father: {fileID: 34165040}
