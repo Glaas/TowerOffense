@@ -26,6 +26,7 @@ public class EnemyDetection : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("ComputeTarget", 1, .5f);
+        InvokeRepeating("Shoot", 1, delayBetweenShots);
     }
     private void ComputeTarget()
     {
@@ -47,23 +48,26 @@ public class EnemyDetection : MonoBehaviour
             currentTarget = chosenEnemy.gameObject;
         }
         else currentTarget = null;
-        Debug.Log("Current target is " + currentTarget);
-
     }
     private void Update()
     {
         if (currentTarget == null) return;
     }
 
-    void Shoot(GameObject realTarget)
+    void Shoot() => StartCoroutine(nameof(ShootCorout));
+
+    IEnumerator ShootCorout()
     {
+        if (currentTarget == null) yield break;
 
         PlayShootAnim();
-        var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
-        float c = (Vector3.Distance(realTarget.transform.position, transform.position) / b.GetComponent<BulletBehavior>().speed) / 2;
-        Destroy(b, c);
-        b.GetComponent<BulletBehavior>().InitTarget(realTarget.transform);
-
+        GameObject bulletInstantiated = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
+        BulletBehavior bulletBehaviour = bulletInstantiated.GetComponent<BulletBehavior>();
+        bulletBehaviour.InitTarget(currentTarget.transform);
+        yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 0.3f);
+        Destroy(bulletInstantiated);
+        Destroy(currentTarget);
+        
     }
 
     [Button("PlayShootAnim)")]

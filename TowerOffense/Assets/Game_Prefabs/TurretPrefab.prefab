@@ -85,7 +85,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   bulletPrefab: {fileID: 976518875534099733, guid: 055b77db1d5359c45acfd27587dd7168, type: 3}
   detectionRadius: 20
-  bulletSpeed: 5
+  bulletSpeed: 30
   delayBetweenShots: 3
 --- !u!135 &2912780370871596019
 SphereCollider:

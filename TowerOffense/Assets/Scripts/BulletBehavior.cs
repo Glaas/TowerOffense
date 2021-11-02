@@ -8,6 +8,7 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
     public Transform target;
     [Range(0.0f, 1.0f)]
     public float speed = 1;
+    public float distanceToTarget = float.MaxValue;
 
     public GameObject explosionPrefab;
     void Start()
@@ -15,11 +16,12 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
         shooter = DetectShooter();
         speed = shooter.bulletSpeed;
     }
+
     EnemyDetection DetectShooter()
     {
         EnemyDetection oneRandomGun = FindObjectOfType<EnemyDetection>(); //To avoid nullRefs
         EnemyDetection[] allGuns = FindObjectsOfType<EnemyDetection>();
-        
+
         foreach (var gun in allGuns)
         {
             if (Vector3.Distance(transform.position, gun.transform.position) < Vector3.Distance(transform.position, oneRandomGun.transform.position))
@@ -38,15 +40,16 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
     {
         if (target == null) Destroy(gameObject);
 
-        transform.Translate(Vector3.Normalize(target.position - transform.position) * speed*Time.deltaTime);
+        distanceToTarget = Vector3.Distance(transform.position, target.transform.position);        //FIXME error at this line mofo
+
+        
+        transform.Translate(Vector3.Normalize(target.position - transform.position) * speed * Time.deltaTime);
 
         if (Vector3.Distance(target.transform.position, transform.position) < .2f)
         {
             Instantiate(explosionPrefab, target.transform.position, Quaternion.identity);
-            // DebugDisplay.enemiesKilled += 1;
-            // shooter.enemiesDetected.Remove(target.gameObject.GetComponent<Collider>());
-            // Destroy(target.gameObject);
-            // Destroy(gameObject);
+            //TODO put this elsewhere DebugDisplay.enemiesKilled += 1;
+
             //TODO make a proper destroy function that has consequences
         }
     }

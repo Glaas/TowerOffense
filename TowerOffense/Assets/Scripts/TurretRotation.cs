@@ -24,7 +24,7 @@ public class TurretRotation : MonoBehaviour
 
             Quaternion lookOnLook = Quaternion.LookRotation(enemyDetection.currentTarget.transform.position - gun.transform.position);
 
-            gun.transform.rotation = Quaternion.Slerp(gun.transform.rotation, lookOnLook, Time.deltaTime * 5);
+            gun.transform.rotation = Quaternion.Slerp(gun.transform.rotation, lookOnLook, Time.deltaTime * 10);
 
 
 
