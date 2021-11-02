@@ -19,6 +19,7 @@ public class EnemyDetection : MonoBehaviour
     private void Awake()
     {
         enemiesDetected = new List<Collider>();
+        GetComponent<SphereCollider>().radius = detectionRadius;
     }
     private void Start()
     {
@@ -80,11 +81,6 @@ public class EnemyDetection : MonoBehaviour
         }
         yield return new WaitForSeconds(delayBetweenShots);
         StartCoroutine(nameof(Shoot));
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
     [Button("PlayShootAnim)")]
