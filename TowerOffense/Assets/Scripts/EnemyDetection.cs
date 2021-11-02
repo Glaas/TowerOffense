@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,15 @@ public class EnemyDetection : MonoBehaviour
 {
     public List<Collider> enemiesDetected = new List<Collider>();
     public GameObject currentTarget;
+
     private Transform towerTransform;
-    public GameObject enemyClosestToTower;
 
     public GameObject bulletPrefab;
     public float detectionRadius = 8f;
 
     public float bulletSpeed = 5;
     public float delayBetweenShots = 1;
+
 
     private void Awake()
     {
@@ -23,63 +25,45 @@ public class EnemyDetection : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(nameof(Shoot));
+        InvokeRepeating("ComputeTarget", 1, .5f);
     }
-
-
-    public List<Collider> enemyDetectedcols;
-    void OnTriggerEnter(Collider other)
+    private void ComputeTarget()
     {
-        enemiesDetected = new List<Collider>();
-        foreach (var item in Physics.OverlapSphere(transform.position, detectionRadius))
-        {
-            if (item.GetComponent<Controller>())
-            {
-                enemiesDetected.Add(item);
+        var allEnemiesInScene = FindObjectsOfType<EnemyStats>();
+        float shortestDistance = Mathf.Infinity;
+        EnemyStats chosenEnemy = null;
 
+        foreach (var enemy in allEnemiesInScene)
+        {
+            float distanceToEnemy = (Vector3.Distance(transform.position, enemy.transform.position));
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                chosenEnemy = enemy;
             }
         }
-        ComputeCurrentTarget();
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (enemiesDetected.Count == 0)
+        if (chosenEnemy != null)
         {
-            enemyClosestToTower = null;
-            currentTarget = null;
+            currentTarget = chosenEnemy.gameObject;
         }
-    }
-    void ComputeCurrentTarget()
-    {
-        if (towerTransform == null) towerTransform = GameObject.Find("Tower").transform;
+        else currentTarget = null;
+        Debug.Log("Current target is " + currentTarget);
 
-        if (enemiesDetected.Count > 0)
-        {
-            if (enemyClosestToTower == null) enemyClosestToTower = enemiesDetected[0].gameObject;
-            foreach (Collider enemy in enemiesDetected)
-            {
-                if (Vector3.Distance(enemy.transform.position, towerTransform.position) <= Vector3.Distance(enemyClosestToTower.transform.position, towerTransform.position))
-                {
-                    enemyClosestToTower = enemy.gameObject;
-                    currentTarget = enemyClosestToTower;
-                }
-            }
-        }
+    }
+    private void Update()
+    {
+        if (currentTarget == null) return;
     }
 
-    IEnumerator Shoot()
+    void Shoot(GameObject realTarget)
     {
-        if (currentTarget == null)
-        {
-        }
-        else
-        {
-            PlayShootAnim();
-            var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
-            b.GetComponent<BulletBehavior>().InitTarget(currentTarget);
-        }
-        yield return new WaitForSeconds(delayBetweenShots);
-        StartCoroutine(nameof(Shoot));
+
+        PlayShootAnim();
+        var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
+        float c = (Vector3.Distance(realTarget.transform.position, transform.position) / b.GetComponent<BulletBehavior>().speed) / 2;
+        Destroy(b, c);
+        b.GetComponent<BulletBehavior>().InitTarget(realTarget.transform);
+
     }
 
     [Button("PlayShootAnim)")]

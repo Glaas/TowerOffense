@@ -19,8 +19,16 @@ public class TurretRotation : MonoBehaviour
     {
         if (enemyDetection.currentTarget != null)
         {
-            target = enemyDetection.currentTarget.transform;
-            gun.transform.LookAt(target);
+            // target = enemyDetection.currentTarget.transform;
+            //gun.transform.LookAt(target);
+
+            Quaternion lookOnLook = Quaternion.LookRotation(enemyDetection.currentTarget.transform.position - gun.transform.position);
+
+            gun.transform.rotation = Quaternion.Slerp(gun.transform.rotation, lookOnLook, Time.deltaTime * 5);
+
+
+
+            
         }
     }
 

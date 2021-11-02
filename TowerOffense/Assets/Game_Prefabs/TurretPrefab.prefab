@@ -83,12 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesDetected: []
   currentTarget: {fileID: 0}
-  enemyClosestToTower: {fileID: 0}
   bulletPrefab: {fileID: 976518875534099733, guid: 055b77db1d5359c45acfd27587dd7168, type: 3}
   detectionRadius: 20
   bulletSpeed: 5
   delayBetweenShots: 3
-  enemyDetectedcols: []
 --- !u!135 &2912780370871596019
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -172,6 +170,30 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
       propertyPath: m_Name
       value: SM_turret_fina;
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876023681238672744, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876023681238672744, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876023681238672744, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876023681238672744, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876023681238672744, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876023681238672744, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}

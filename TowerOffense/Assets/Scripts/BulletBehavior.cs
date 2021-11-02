@@ -7,43 +7,46 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
     public EnemyDetection shooter;
     public Transform target;
     [Range(0.0f, 1.0f)]
-    public float speed = 100f;
+    public float speed = 1;
 
     public GameObject explosionPrefab;
     void Start()
     {
-        //DetectShooter();
-        Destroy(gameObject, 3);
+        shooter = DetectShooter();
+        speed = shooter.bulletSpeed;
     }
-    void DetectShooter()
+    EnemyDetection DetectShooter()
     {
         EnemyDetection oneRandomGun = FindObjectOfType<EnemyDetection>(); //To avoid nullRefs
         EnemyDetection[] allGuns = FindObjectsOfType<EnemyDetection>();
+        
         foreach (var gun in allGuns)
         {
             if (Vector3.Distance(transform.position, gun.transform.position) < Vector3.Distance(transform.position, oneRandomGun.transform.position))
             {
-                shooter = gun;
+                oneRandomGun = gun;
             }
         }
+        return oneRandomGun;
     }
 
-    public void InitTarget(GameObject target)
+    public void InitTarget(Transform target)
     {
         this.target = target.transform;
     }
     private void Update()
     {
-        if (target == null) return;
+        if (target == null) Destroy(gameObject);
 
-        transform.Translate(Vector3.Normalize(target.position - transform.position) * speed);
+        transform.Translate(Vector3.Normalize(target.position - transform.position) * speed*Time.deltaTime);
 
         if (Vector3.Distance(target.transform.position, transform.position) < .2f)
         {
             Instantiate(explosionPrefab, target.transform.position, Quaternion.identity);
-            DebugDisplay.enemiesKilled += 1;
-            Destroy(target.gameObject);
-            Destroy(gameObject);
+            // DebugDisplay.enemiesKilled += 1;
+            // shooter.enemiesDetected.Remove(target.gameObject.GetComponent<Collider>());
+            // Destroy(target.gameObject);
+            // Destroy(gameObject);
             //TODO make a proper destroy function that has consequences
         }
     }

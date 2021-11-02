@@ -8,6 +8,7 @@ public class EnemyStats : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
     public bool isAttacking;
+    public bool isBeingTargeted = false;
 
     private void Awake()
     {
