@@ -86,6 +86,7 @@ public class EnemyDetection : MonoBehaviour
     void PlayShootAnim()
     {
         GetComponentInChildren<Animator>().SetTrigger("Shoot");
+        GetComponentInChildren<ParticleSystem>().Play();
     }
 
 }
