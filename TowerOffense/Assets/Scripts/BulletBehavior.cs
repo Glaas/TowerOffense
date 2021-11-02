@@ -12,8 +12,8 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
     public GameObject explosionPrefab;
     void Start()
     {
-        DetectShooter();
-        Destroy(gameObject,3);
+        //DetectShooter();
+        Destroy(gameObject, 3);
     }
     void DetectShooter()
     {
@@ -27,17 +27,21 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
             }
         }
     }
+
+    public void InitTarget(GameObject target)
+    {
+        this.target = target.transform;
+    }
     private void Update()
     {
         if (target == null) return;
 
-        //transform.position += (target.transform.position - transform.position) * .1f;
         transform.Translate(Vector3.Normalize(target.position - transform.position) * speed);
 
         if (Vector3.Distance(target.transform.position, transform.position) < .2f)
         {
             Instantiate(explosionPrefab, target.transform.position, Quaternion.identity);
-            DebugDisplay.enemiesKilled +=1;
+            DebugDisplay.enemiesKilled += 1;
             Destroy(target.gameObject);
             Destroy(gameObject);
             //TODO make a proper destroy function that has consequences

@@ -24,7 +24,6 @@ public class EnemyDetection : MonoBehaviour
     private void Start()
     {
         StartCoroutine(nameof(Shoot));
-
     }
 
 
@@ -77,7 +76,7 @@ public class EnemyDetection : MonoBehaviour
         {
             PlayShootAnim();
             var b = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
-            b.GetComponent<BulletBehavior>().target = currentTarget.transform;
+            b.GetComponent<BulletBehavior>().InitTarget(currentTarget);
         }
         yield return new WaitForSeconds(delayBetweenShots);
         StartCoroutine(nameof(Shoot));

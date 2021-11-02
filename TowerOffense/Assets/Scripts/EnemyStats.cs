@@ -33,6 +33,11 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(int dmgAmount)
     {
         currentHealth -= dmgAmount;
-        if (currentHealth <= 0) Destroy(gameObject);
+        if (currentHealth <= 0)
+        {
+            Debug.Log(name + "got destroyed");
+            Destroy(gameObject);
+        }
+
     }
 }
