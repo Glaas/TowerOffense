@@ -53,9 +53,8 @@ public class Node : MonoBehaviour, ISelectable
                 isSelected = true;
                 transform.DOMoveY(transform.position.y + 3f, .2f);
                 GetComponent<MeshRenderer>().material.DOColor(offSetColor, "_Color", .2f);
+                ExcludeItselfFromNavmesh(true);
 
-                gameObject.AddComponent<NavMeshObstacle>();
-                GetComponent<NavMeshObstacle>().carving = true;
                 break;
             case Selection.TOOL_TYPE.PLACE_BUILDINGS:
                 BuildBuilding();
@@ -72,8 +71,8 @@ public class Node : MonoBehaviour, ISelectable
                 isSelected = false;
                 transform.DOMoveY(transform.position.y + -3f, .2f);
                 GetComponent<MeshRenderer>().material.DOColor(baseColor, "_Color", .2f);
+                ExcludeItselfFromNavmesh(false);
 
-                Destroy(gameObject.GetComponent<NavMeshObstacle>());
                 break;
             case Selection.TOOL_TYPE.PLACE_BUILDINGS:
                 break;
@@ -86,6 +85,21 @@ public class Node : MonoBehaviour, ISelectable
     void BuildBuilding()
     {
         currentBuilding = Instantiate(possibleBuildings[0], buildingLocation.position, possibleBuildings[0].transform.rotation, transform);
+        ExcludeItselfFromNavmesh(true);
+
+    }
+
+    void ExcludeItselfFromNavmesh(bool becomeObstacle)
+    {
+        if (becomeObstacle)
+        {
+            gameObject.AddComponent<NavMeshObstacle>();
+            GetComponent<NavMeshObstacle>().carving = true;
+            GetComponent<NavMeshObstacle>().carveOnlyStationary = false;
+            GetComponent<NavMeshObstacle>().size = Vector3.one*1.5f;
+        }
+        else Destroy(gameObject.GetComponent<NavMeshObstacle>());
+
     }
 
 
