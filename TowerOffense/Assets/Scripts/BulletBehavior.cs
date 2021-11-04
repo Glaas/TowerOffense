@@ -44,17 +44,8 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
             return;
         }
         distanceToTarget = Vector3.Distance(transform.position, target.transform.position);      
-
-
         transform.Translate(Vector3.Normalize(target.position - transform.position) * speed * Time.deltaTime);
 
-        if (Vector3.Distance(target.transform.position, transform.position) < .2f)
-        {
-            Instantiate(explosionPrefab, target.transform.position, Quaternion.identity);
-            //TODO put this elsewhere DebugDisplay.enemiesKilled += 1;
-
-            //TODO make a proper destroy function that has consequences
-        }
     }
 
 }

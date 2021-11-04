@@ -12,6 +12,7 @@ public class EnemyDetection : MonoBehaviour
     private Transform towerTransform;
 
     public GameObject bulletPrefab;
+    public GameObject destructionPrefab;
     public float detectionRadius = 8f;
 
     public float bulletSpeed = 5;
@@ -65,10 +66,13 @@ public class EnemyDetection : MonoBehaviour
         BulletBehavior bulletBehaviour = bulletInstantiated.GetComponent<BulletBehavior>();
         bulletBehaviour.InitTarget(currentTarget.transform);
         yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 0.3f);
+        var explosionInstance = Instantiate(destructionPrefab, bulletInstantiated.transform.position, Quaternion.identity);
+        Destroy(explosionInstance.gameObject, 4f);
         Destroy(bulletInstantiated);
         Destroy(currentTarget);
+
         DebugDisplay.enemiesKilled++;
-        
+
     }
 
     [Button("PlayShootAnim)")]

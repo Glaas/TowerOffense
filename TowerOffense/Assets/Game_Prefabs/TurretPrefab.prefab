@@ -84,6 +84,7 @@ MonoBehaviour:
   enemiesDetected: []
   currentTarget: {fileID: 0}
   bulletPrefab: {fileID: 976518875534099733, guid: 055b77db1d5359c45acfd27587dd7168, type: 3}
+  destructionPrefab: {fileID: 731975484264008846, guid: 7f394129d9cfbaa46b5974eb08178fe7, type: 3}
   detectionRadius: 20
   bulletSpeed: 30
   delayBetweenShots: 3
