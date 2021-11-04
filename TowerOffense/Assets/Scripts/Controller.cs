@@ -2,11 +2,12 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Controller : MonoBehaviour
 {
+    public enum ENEMY_STATE { APPROACHING, ATTACKING, DEAD }
+    public ENEMY_STATE state;
     public NavMeshAgent agent;
     public Transform target;
     public float distanceToTower;
-    public enum ENEMY_STATE { APPROACHING, ATTACKING, DEAD }
-    public ENEMY_STATE state;
+    public bool isAttacking = false;
 
     private void Awake()
     {
@@ -17,18 +18,28 @@ public class Controller : MonoBehaviour
         target = GameObject.Find("Tower").transform;
         state = ENEMY_STATE.APPROACHING;
         agent.SetDestination(target.position);
+        InvokeRepeating(nameof(CheckState), 1, .5f);
     }
-    private void Update()
+
+    private void CheckState()
     {
-        ComputeDistanceToTower();
+        switch (state)
+        {
+            case ENEMY_STATE.APPROACHING:
+                ComputeDistanceToTower();
+                if (distanceToTower > .4f)
+                {
+                    state = ENEMY_STATE.ATTACKING;
+                    CancelInvoke(nameof(CheckState));
+                }
+                break;
+            case ENEMY_STATE.ATTACKING:
 
-
-        //TODO implement attack behaviour
-        //  switch (state) 
-        //  {
-        //
-        //      default:
-        // }
+                break;
+            case ENEMY_STATE.DEAD:
+                break;
+            default: throw new System.Exception("Invalid state");
+        }
 
     }
     void ComputeDistanceToTower() => distanceToTower = Vector3.Distance(target.position, transform.position);
@@ -41,10 +52,10 @@ public class Controller : MonoBehaviour
         }
         for (int i = 0; i < agent.path.corners.Length; i++)
         {
-            if (i==0)continue;
-            if (i+1>=agent.path.corners.Length)continue;
+            if (i == 0) continue;
+            if (i + 1 >= agent.path.corners.Length) continue;
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(agent.path.corners[i], agent.path.corners[i+1]);
+            Gizmos.DrawLine(agent.path.corners[i], agent.path.corners[i + 1]);
         }
     }
 }
