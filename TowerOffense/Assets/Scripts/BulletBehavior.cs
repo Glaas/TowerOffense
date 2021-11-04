@@ -38,11 +38,14 @@ public class BulletBehavior : MonoBehaviour //HACK this whole class is a hack
     }
     private void Update()
     {
-        if (target == null) Destroy(gameObject);
- 
-        distanceToTarget = Vector3.Distance(transform.position, target.transform.position);        //FIXME error at this line mofo
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        distanceToTarget = Vector3.Distance(transform.position, target.transform.position);      
 
-        
+
         transform.Translate(Vector3.Normalize(target.position - transform.position) * speed * Time.deltaTime);
 
         if (Vector3.Distance(target.transform.position, transform.position) < .2f)

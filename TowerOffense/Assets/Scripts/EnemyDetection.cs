@@ -67,6 +67,7 @@ public class EnemyDetection : MonoBehaviour
         yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 0.3f);
         Destroy(bulletInstantiated);
         Destroy(currentTarget);
+        DebugDisplay.enemiesKilled++;
         
     }
 
