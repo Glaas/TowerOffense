@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public Transform enemyParent;
+    public ARPGFX.ARPGFXPortalScript portalManager;
     public float spawnDelay;
-
+    public int enemiesToSpawn = 10;
     private void Awake()
     {
-        enemyParent = GameObject.Find("--Enemies--").transform;
+        portalManager = GetComponent<ARPGFX.ARPGFXPortalScript>();
 
     }
-    private void Start()
+   
+
+    public void EnemySpawn(GameObject enemyPrefab)
     {
-
-        StartCoroutine(nameof(EnemySpawn));
+        var enemy = GameObject.Instantiate(enemyPrefab, transform.position, Quaternion.identity, transform);
     }
 
-    IEnumerator EnemySpawn()
-    {
-        var enemy = GameObject.Instantiate(enemyPrefab, transform.position, Quaternion.identity, enemyParent);
-        yield return new WaitForSeconds(spawnDelay);
-        StartCoroutine(nameof(EnemySpawn));
-    }
+
 }

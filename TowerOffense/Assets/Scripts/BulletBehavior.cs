@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
-    public EnemyDetection shooter;
+    public TurretAttack shooter;
     public Transform target;
     [Range(0.0f, 1.0f)]
     public float speed = 1;
@@ -17,10 +15,10 @@ public class BulletBehavior : MonoBehaviour
         speed = shooter.bulletSpeed;
     }
 
-    EnemyDetection DetectShooter()
+    TurretAttack DetectShooter()
     {
-        EnemyDetection oneRandomGun = FindObjectOfType<EnemyDetection>(); //To avoid nullRefs
-        EnemyDetection[] allGuns = FindObjectsOfType<EnemyDetection>();
+        TurretAttack oneRandomGun = FindObjectOfType<TurretAttack>(); //To avoid nullRefs
+        TurretAttack[] allGuns = FindObjectsOfType<TurretAttack>();
 
         foreach (var gun in allGuns)
         {

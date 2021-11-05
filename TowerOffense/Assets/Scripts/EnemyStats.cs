@@ -17,17 +17,9 @@ public class EnemyStats : MonoBehaviour
     }
     private void OnEnable()
     {
-
         name = possibleNames[Random.Range(0, possibleNames.Length)];
     }
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-
-    }
+   
 
     void InitHealth() => currentHealth = maxHealth;
 
@@ -39,6 +31,5 @@ public class EnemyStats : MonoBehaviour
             Debug.Log(name + "got destroyed");
             Destroy(gameObject);
         }
-
     }
 }

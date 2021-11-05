@@ -29,7 +29,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2912780370871596028}
   - component: {fileID: 2912780370871596029}
-  - component: {fileID: 2912780370871596018}
+  - component: {fileID: 9038333484543490484}
   - component: {fileID: 2912780370871596019}
   - component: {fileID: -2332334335651829457}
   m_Layer: 2
@@ -68,8 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 6055128054535413295}
   target: {fileID: 0}
-  enemyDetection: {fileID: 0}
---- !u!114 &2912780370871596018
+  turretAttack: {fileID: 0}
+--- !u!114 &9038333484543490484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,16 +78,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2912780370871596016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72325458b60c9f049ae09c8f8b90a4c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 79010e53d27d3a34fae55860283be524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesDetected: []
   currentTarget: {fileID: 0}
   bulletPrefab: {fileID: 976518875534099733, guid: 055b77db1d5359c45acfd27587dd7168, type: 3}
   destructionPrefab: {fileID: 731975484264008846, guid: 7f394129d9cfbaa46b5974eb08178fe7, type: 3}
-  detectionRadius: 20
-  bulletSpeed: 30
-  delayBetweenShots: 3
+  detectionRadius: 8
+  bulletSpeed: 5
+  delayBetweenShots: 1
 --- !u!135 &2912780370871596019
 SphereCollider:
   m_ObjectHideFlags: 0
