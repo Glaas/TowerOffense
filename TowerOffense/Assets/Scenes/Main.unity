@@ -3073,6 +3073,7 @@ GameObject:
   - component: {fileID: 1955914133}
   - component: {fileID: 1955914134}
   - component: {fileID: 1955914135}
+  - component: {fileID: 1955914136}
   m_Layer: 0
   m_Name: GlobalStateManager
   m_TagString: Untagged
@@ -3119,19 +3120,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e034ed0bc4b07b4bb11ee1a38a6bf74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slasherPrefab: {fileID: 0}
-  spawnersObjects: []
-  myWave:
-    Drops:
-    - enemyAmount: 2
-      timeInSecondsUntilNextDrop: 2.5
-      isLastDrop: 0
-    - enemyAmount: 5
-      timeInSecondsUntilNextDrop: 3
-      isLastDrop: 0
-    - enemyAmount: 8
-      timeInSecondsUntilNextDrop: 3.5
-      isLastDrop: 1
+  slasherPrefab: {fileID: 6444117590889975776, guid: 554558030cb603c4f84ad0a927e4b935, type: 3}
+  waves: []
+  currentWave: 0
+  wavesTotal: 0
+--- !u!114 &1955914136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955914132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237a31a7775eda947ae5031614cae2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000669376
 GameObject:
   m_ObjectHideFlags: 0

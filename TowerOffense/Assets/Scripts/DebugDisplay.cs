@@ -66,7 +66,11 @@ public class DebugDisplay : MonoBehaviour
 
 
 
-        BText.text = $"Time speed = {Time.timeScale}\n Numpad +/- to adjust";
+        BText.text =
+        $"Time speed = {Time.timeScale}\n Numpad +/- to adjust" +
+        "Current global state = " + GlobalStateManager.Instance.gameState;
+
+
         if (Input.GetKeyDown(KeyCode.KeypadPlus)) Time.timeScale += .5f;
         if (Input.GetKeyDown(KeyCode.KeypadMinus)) Time.timeScale -= .5f;
 

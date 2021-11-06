@@ -7,44 +7,49 @@ using NaughtyAttributes;
 public class WaveManager : MonoBehaviour
 {
     public GameObject slasherPrefab;
-    public List<EnemySpawner> spawnersObjects;
-    public Wave myWave;
+    List<GameObject> spawnersObjects;
+    public List<Wave> waves;
+    public int currentWave = 0;
+    public int wavesTotal;
 
     private void Start()
     {
-
+        spawnersObjects = new List<GameObject>();
         for (int i = 0; i < GameObject.Find("--Spawners--").transform.childCount; i++)
         {
             var obj = GameObject.Find("--Spawners--").transform.GetChild(i).gameObject;
-            obj.AddComponent<EnemySpawner>();
-            spawnersObjects.Add(obj.GetComponent<EnemySpawner>());
+            spawnersObjects.Add(obj);
             obj.name = "Spawner : " + i;
-
         }
     }
 
     [Button("StartWave")]
     public void StartWave()
     {
-        StartCoroutine("StartWave", myWave);
+        StartCoroutine("StartWaveCorout", waves[currentWave]);
     }
 
-    IEnumerator StartWave(Wave wave)
+    IEnumerator StartWaveCorout(Wave wave)
     {
-        print($"Starting wave {myWave.ToString()}");
-        for (int i = 0; i < wave.Drops.Count; i++)
+        foreach (Drop drop in wave.Drops)
         {
-            for (int j = 0; j < wave.Drops[j].enemyAmount; j++)
+            print($"Starting drop, which has a TimeInSeconds of {drop.timeInSecondsUntilNextDrop} and spawns {drop.enemyAmount} enemies");
+
+            for (int i = 0; i < drop.enemyAmount; i++)
             {
-                print($"Starting drop {wave.Drops[j]}, which has a TimeInSeconds of {wave.Drops[j].timeInSecondsUntilNextDrop} and spawns {wave.Drops[j].enemyAmount} enemies");
-                if (wave.Drops[j].isLastDrop)
-                {
-                    print("This is the last drop");
-                }
-                spawnersObjects[UnityEngine.Random.Range(0, spawnersObjects.Count)].EnemySpawn(slasherPrefab);
-                yield return new WaitForSeconds(wave.Drops[j].timeInSecondsUntilNextDrop);
+                if (drop.isLastDrop) print("Last drop");
+                var enemy = GameObject.Instantiate(
+                    slasherPrefab,
+                     spawnersObjects[UnityEngine.Random.Range(0, spawnersObjects.Count)].transform.position,
+                      Quaternion.identity,
+                         transform);
+
             }
+            yield return new WaitForSeconds(drop.timeInSecondsUntilNextDrop);
         }
+        print("Finished ! Switching to player preparation");
+        GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
+        GlobalStateManager.Instance.IterateGameState();
     }
     void OnGUI()
     {

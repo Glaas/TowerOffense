@@ -38,6 +38,7 @@ public class GlobalStateManager : MonoBehaviour
                 break;
             case GameState.WAVE:
                 print("Preparation finished, entering Wave");
+                FindObjectOfType<WaveManager>().StartWave();
                 break;
             case GameState.PLAYER_WIN:
                 print("Player wins !");

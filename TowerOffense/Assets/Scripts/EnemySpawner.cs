@@ -5,8 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public ARPGFX.ARPGFXPortalScript portalManager;
-    public float spawnDelay;
-    public int enemiesToSpawn = 10;
     private void Awake()
     {
         portalManager = GetComponent<ARPGFX.ARPGFXPortalScript>();
