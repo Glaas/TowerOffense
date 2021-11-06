@@ -32,12 +32,13 @@ public class GlobalStateManager : MonoBehaviour
         {
             case GameState.GENERATE_WORLD:
                 FindObjectOfType<WorldBuilder>().GeneratingWorld();
+                print("Generating World...");
                 break;
             case GameState.PLAYER_PREPARATION:
-                print("World generated, entering Player Preparation");
+                print("Entering Player Preparation");
                 break;
             case GameState.WAVE:
-                print("Preparation finished, entering Wave");
+                print("Entering Wave");
                 FindObjectOfType<WaveManager>().StartWave();
                 break;
             case GameState.PLAYER_WIN:
@@ -48,4 +49,15 @@ public class GlobalStateManager : MonoBehaviour
                 break;
         }
     }
+
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 100, 200, 100), "End Player preparation")){
+
+            print("End Player preparation, starting next wave");
+            Instance.gameState = GameState.WAVE;
+            IterateGameState();
+        }
+    }
 }
+

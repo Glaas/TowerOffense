@@ -14,6 +14,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        wavesTotal = waves.Count;
         spawnersObjects = new List<GameObject>();
         for (int i = 0; i < GameObject.Find("--Spawners--").transform.childCount; i++)
         {
@@ -31,6 +32,10 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator StartWaveCorout(Wave wave)
     {
+        if (currentWave == wavesTotal)
+        {
+            print("Last wave !");
+        }
         foreach (Drop drop in wave.Drops)
         {
             print($"Starting drop, which has a TimeInSeconds of {drop.timeInSecondsUntilNextDrop} and spawns {drop.enemyAmount} enemies");
@@ -46,6 +51,21 @@ public class WaveManager : MonoBehaviour
 
             }
             yield return new WaitForSeconds(drop.timeInSecondsUntilNextDrop);
+        }
+
+        while (FindObjectOfType<EnemyStats>())
+        {
+            print("Enemies are still alive");
+            yield return new WaitForSeconds(1);
+        }
+        currentWave++;
+
+        if (currentWave == wavesTotal)
+        {
+            print("player won !");
+            GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_WIN;
+            GlobalStateManager.Instance.IterateGameState();
+            yield break;
         }
         print("Finished ! Switching to player preparation");
         GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
