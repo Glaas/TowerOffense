@@ -311,7 +311,7 @@ RectTransform:
   m_GameObject: {fileID: 1450280202418466078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.145852, y: 2.3841238, z: 2.1188443}
+  m_LocalScale: {x: 12.145852, y: 2.3841238, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1450280203537590141}
   m_RootOrder: 1
@@ -342,14 +342,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6392157}
+  m_Color: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 411208caca9deb546bdc299fe9b022ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63a2607e15f4f9048afc276838da002d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2348,7 +2348,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -63.646698, y: -25.790037, z: -64.64733, w: -28.281765}
+  m_margin: {x: -59.063477, y: -25.790037, z: -59.147285, w: -28.281765}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
