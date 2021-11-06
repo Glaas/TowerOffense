@@ -1,12 +1,11 @@
-using System.Runtime.InteropServices;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class EnemyDetection : MonoBehaviour
+public class TurretAttack : MonoBehaviour
 {
-    public List<Collider> enemiesDetected = new List<Collider>();
+    List<Collider> enemiesDetected = new List<Collider>();
     public GameObject currentTarget;
 
     private Transform towerTransform;

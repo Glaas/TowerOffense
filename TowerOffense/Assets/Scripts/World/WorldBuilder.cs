@@ -17,12 +17,7 @@ public class WorldBuilder : MonoBehaviour
     string gridParentName = "GridParent";
 
 
-    private void Start()
-    {
-        StartCoroutine(nameof(WorldGenerationSequence));
-    }
-
-
+    public void GeneratingWorld() => StartCoroutine(nameof(WorldGenerationSequence));
     IEnumerator WorldGenerationSequence()
     {
         StartCoroutine(nameof(CreateParents));
@@ -30,9 +25,10 @@ public class WorldBuilder : MonoBehaviour
         yield return StartCoroutine(nameof(GenerateFrontOfTower));
         yield return StartCoroutine(nameof(GenerateTower));
         GameObject.Find("NavMesh").GetComponent<NavMeshSurface>().BuildNavMesh();
-
+        yield return new WaitForSeconds(.2f);
+        GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
+        GlobalStateManager.Instance.IterateGameState();
     }
-
     IEnumerator CreateParents()
     {
         gridParent = new GameObject(gridParentName);
@@ -69,22 +65,21 @@ public class WorldBuilder : MonoBehaviour
             block.GetComponentInChildren<Node>().pos = (-1, i);
             block.name = $"-1, {i}";
             block.transform.localPosition = new Vector3(-1, 20, i);
-            block.transform.DOLocalMoveY(0, Random.Range(1f, 1.5f));
+            block.transform.DOLocalMoveY(0, Random.Range(1f, .7f));
             block.GetComponentInChildren<Node>().canBeOutlined = false;
             var col = block.GetComponentsInChildren<Collider>();
             foreach (var item in col) Destroy(item);
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForEndOfFrame();
     }
-
     IEnumerator GenerateTower()
     {
         var tower = GameObject.Instantiate(towerPrefab, Vector3.zero, towerPrefab.transform.rotation, GameObject.Find("--Tower--").transform);
         tower.transform.position = new Vector3(-16.5f, 20, 8);
-        tower.transform.DOLocalMoveY(0, Random.Range(1f, 1.5f));
+        tower.transform.DOLocalMoveY(0, Random.Range(1f, .5f));
 
         tower.name = $"Tower";
         grid.InitializeNodesComponentsInGrid();
-        yield return new WaitForSeconds(1.55f);
+        yield return new WaitForSeconds(1.3f);
     }
 }
