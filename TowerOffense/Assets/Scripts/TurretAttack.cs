@@ -16,12 +16,13 @@ public class TurretAttack : MonoBehaviour
 
     public float bulletSpeed = 5;
     public float delayBetweenShots = 1;
-
+    //TODO detection radius is way too large and also maybe should be visible ?
 
     private void Awake()
     {
         enemiesDetected = new List<Collider>();
         GetComponent<SphereCollider>().radius = detectionRadius;
+
     }
     private void Start()
     {

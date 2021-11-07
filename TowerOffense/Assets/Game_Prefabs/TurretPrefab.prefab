@@ -85,8 +85,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 976518875534099733, guid: 055b77db1d5359c45acfd27587dd7168, type: 3}
   destructionPrefab: {fileID: 731975484264008846, guid: 7f394129d9cfbaa46b5974eb08178fe7, type: 3}
   detectionRadius: 8
-  bulletSpeed: 5
-  delayBetweenShots: 1
+  bulletSpeed: 75
+  delayBetweenShots: 3
 --- !u!135 &2912780370871596019
 SphereCollider:
   m_ObjectHideFlags: 0
