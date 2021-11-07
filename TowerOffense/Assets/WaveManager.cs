@@ -43,12 +43,15 @@ public class WaveManager : MonoBehaviour
             for (int i = 0; i < drop.enemyAmount; i++)
             {
                 if (drop.isLastDrop) print("Last drop");
-                var enemy = GameObject.Instantiate(
-                    slasherPrefab,
-                     spawnersObjects[UnityEngine.Random.Range(0, spawnersObjects.Count)].transform.position,
-                      Quaternion.identity,
-                         transform);
+                var spawnerChosen = spawnersObjects[UnityEngine.Random.Range(0, spawnersObjects.Count)].GetComponent<EnemySpawner>();
+                spawnerChosen.StartPortalSequence(slasherPrefab);
+            }
+            yield return new WaitForSeconds(drop.timeInSecondsUntilNextDrop);
 
+            while (FindObjectOfType<EnemyStats>())
+            {
+                print("Enemies are still alive");
+                yield return new WaitForSeconds(1);
             }
             yield return new WaitForSeconds(drop.timeInSecondsUntilNextDrop);
         }
@@ -67,6 +70,7 @@ public class WaveManager : MonoBehaviour
             GlobalStateManager.Instance.IterateGameState();
             yield break;
         }
+
         print("Finished ! Switching to player preparation");
         GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
         GlobalStateManager.Instance.IterateGameState();

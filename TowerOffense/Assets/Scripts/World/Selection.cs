@@ -47,12 +47,22 @@ namespace TowerOffense
                         break;
                     case SELECT_MODE.MULTIPLE:
                         nodesSelected = new HashSet<Node>();
-                        nodesSelected = ReturnTargets(currentTarget);
+                        // nodesSelected = ReturnTargets(currentTarget); 
+                        //FIXME this is temporarily disabled 
+                        //bc i cannot find the source of the bug and I have more pressing shit to do
                         HighlightTargets(nodesSelected);
                         break;
                 }
             }
-            else currentTarget = null;
+            else
+            {
+                currentTarget = null;
+                oldTarget = null;
+                nodeSelected = null;
+                nodesSelected = null;
+                ResetOutlines();
+            }
+
             if (oldTarget != currentTarget) ResetOutlines();
             oldTarget = currentTarget;
         }
@@ -117,13 +127,16 @@ namespace TowerOffense
                 //         break;
                 //     default: throw new NotImplementedException();
                 // }
+
                 switch (selectMode)
                 {
                     case SELECT_MODE.SINGLE:
+                        if (nodeSelected == null) return;
                         if (!nodeSelected.isSelected) nodeSelected.OnSelect();
                         else nodeSelected.OnDeselect();
                         break;
                     case SELECT_MODE.MULTIPLE:
+                        if (nodesSelected == null) return;
                         foreach (Node node in nodesSelected)
                         {
                             if (!node.isSelected) node.OnSelect();
