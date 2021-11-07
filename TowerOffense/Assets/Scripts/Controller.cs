@@ -6,35 +6,43 @@ public class Controller : MonoBehaviour
     public ENEMY_STATE state;
     public NavMeshAgent agent;
     public Transform target;
+    public Animator animator;
     public float distanceToTower;
     public bool isAttacking = false;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
     }
     private void Start()
     {
-        target = GameObject.Find("Tower").transform;
+        target = GameObject.Find("--Target--").transform;
         state = ENEMY_STATE.APPROACHING;
         agent.SetDestination(target.position);
         InvokeRepeating(nameof(CheckState), 1, .5f);
+
     }
 
     private void CheckState()
     {
+        print(name + " checking state");
         switch (state)
         {
             case ENEMY_STATE.APPROACHING:
                 ComputeDistanceToTower();
-                if (distanceToTower > .4f)
+                if (distanceToTower <= 2)
                 {
                     state = ENEMY_STATE.ATTACKING;
                     CancelInvoke(nameof(CheckState));
+                    CheckState();
                 }
                 break;
             case ENEMY_STATE.ATTACKING:
-
+                agent.isStopped = true;
+                print(name + "is attacking");
+                isAttacking = true;
+                animator.SetBool("isAttacking", true); 
                 break;
             case ENEMY_STATE.DEAD:
                 break;
