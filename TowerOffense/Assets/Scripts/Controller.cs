@@ -42,13 +42,20 @@ public class Controller : MonoBehaviour
                 agent.isStopped = true;
                 print(name + "is attacking");
                 isAttacking = true;
-                animator.SetBool("isAttacking", true); 
+                animator.SetBool("isAttacking", true);
+                InvokeRepeating(nameof(AttackTower), 1, 2f);
                 break;
             case ENEMY_STATE.DEAD:
                 break;
             default: throw new System.Exception("Invalid state");
         }
 
+    }
+
+    void AttackTower()
+    {
+        print(name + " is damaging tower");
+        GameObject.Find("Tower").GetComponentInParent<BuildingStats>().TakeDamage(2);
     }
     void ComputeDistanceToTower() => distanceToTower = Vector3.Distance(target.position, transform.position);
 
