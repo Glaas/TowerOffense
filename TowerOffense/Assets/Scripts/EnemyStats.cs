@@ -9,6 +9,7 @@ public class EnemyStats : MonoBehaviour
     public int currentHealth;
     public bool isAttacking;
     public bool isBeingTargeted = false;
+    public GameObject coinPrefab;
 
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class EnemyStats : MonoBehaviour
         name = possibleNames[Random.Range(0, possibleNames.Length)];
         InitHealth();
     }
-   
+
 
     void InitHealth() => currentHealth = maxHealth;
 
@@ -30,6 +31,7 @@ public class EnemyStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log(name + "got destroyed");
+            Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -34,11 +34,7 @@ public class ItemAnimator : MonoBehaviour
         {
             float time = Time.time;
             float newPos = Mathf.Sin(time * speed) * intensity;
-            print("time = " + time);
-            print("newpos = " + newPos);
-
-
-
+           
             transform.localPosition = new Vector3(transform.localPosition.x, startpos.y + newPos, transform.localPosition.z);
         }
 

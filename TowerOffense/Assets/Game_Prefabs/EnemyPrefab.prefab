@@ -128,6 +128,7 @@ MonoBehaviour:
   currentHealth: 0
   isAttacking: 0
   isBeingTargeted: 0
+  coinPrefab: {fileID: 976518875534099733, guid: 331cf45526d609c439e9e8a6bcea2cbb, type: 3}
 --- !u!114 &6585085656953595309
 MonoBehaviour:
   m_ObjectHideFlags: 0
