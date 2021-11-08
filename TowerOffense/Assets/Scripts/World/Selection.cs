@@ -16,6 +16,9 @@ namespace TowerOffense
         public TOOL_TYPE toolType = TOOL_TYPE.BUILD_WALLS;
         public int i = 1;
 
+        public Texture2D normalCursorTexture;
+        public Texture2D selectCursorTexture;
+
         private Camera cam;
         public GameObject oldTarget;
         public GameObject currentTarget;
@@ -87,7 +90,19 @@ namespace TowerOffense
         }
 
         public void CycleModes(SELECT_MODE _selectMode) => selectMode = _selectMode == SELECT_MODE.SINGLE ? SELECT_MODE.MULTIPLE : SELECT_MODE.SINGLE;
-        public void CycleTool(TOOL_TYPE _toolType) => toolType = _toolType == TOOL_TYPE.PLACE_BUILDINGS ? TOOL_TYPE.BUILD_WALLS : TOOL_TYPE.PLACE_BUILDINGS;
+        public void CycleTool(TOOL_TYPE _toolType)
+        {
+            toolType = _toolType == TOOL_TYPE.PLACE_BUILDINGS ? TOOL_TYPE.BUILD_WALLS : TOOL_TYPE.PLACE_BUILDINGS;
+            if (toolType == TOOL_TYPE.BUILD_WALLS)
+            {
+                Cursor.SetCursor(selectCursorTexture, Vector2.zero, CursorMode.Auto);
+            }
+            else
+            {
+                Cursor.SetCursor(normalCursorTexture, Vector2.zero, CursorMode.Auto);
+            }
+           
+        }
 
         public void CyclePatterns()
         {
