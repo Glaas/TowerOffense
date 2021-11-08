@@ -23,6 +23,7 @@ public class Node : MonoBehaviour, ISelectable
     public GameObject currentBuilding;
     public Transform buildingLocation;
 
+    public int buildingPrice = 30; //FIXME: This should be a variable in the building itself. and more modular for more buildings
 
     public (int, int) pos;
     public bool canBeOutlined = true;
@@ -64,10 +65,14 @@ public class Node : MonoBehaviour, ISelectable
                         print("Can't build here");
                         return;
                     }
-
-
+                }
+                if (GlobalDataHandler.instance.currentPlayerCoins < buildingPrice)
+                {
+                    print("Not enough coins to build");
+                    return;
                 }
                 BuildBuilding();
+                GlobalDataHandler.instance.SubtractMoney(buildingPrice);
                 break;
             default: throw new NotImplementedException();
         }

@@ -1957,7 +1957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 836472813}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1316876281}
+        m_TargetAssemblyTypeName: TowerOffense.Selection, Assembly-CSharp
+        m_MethodName: EnterPlacingTurret
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &836472813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3006,6 +3018,7 @@ MonoBehaviour:
   pattern: 1
   toolType: 0
   i: 1
+  cursorState: 0
   normalCursorTexture: {fileID: 2800000, guid: 49420744338b92444a9a230b822973c0, type: 3}
   selectCursorTexture: {fileID: 2800000, guid: 6e8f84196ddf26247bc74b74da1c3a9e, type: 3}
   oldTarget: {fileID: 0}
