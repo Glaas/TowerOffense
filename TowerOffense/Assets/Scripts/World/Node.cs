@@ -57,6 +57,16 @@ public class Node : MonoBehaviour, ISelectable
 
                 break;
             case Selection.TOOL_TYPE.PLACE_BUILDINGS:
+                foreach (var n in playgrid.Square(pos))
+                {
+                    if (playgrid.nodeGrid[n.Item1, n.Item2].GetComponentInChildren<Node>().currentBuilding != null)
+                    {
+                        print("Can't build here");
+                        return;
+                    }
+
+
+                }
                 BuildBuilding();
                 break;
             default: throw new NotImplementedException();
@@ -96,7 +106,7 @@ public class Node : MonoBehaviour, ISelectable
             gameObject.AddComponent<NavMeshObstacle>();
             GetComponent<NavMeshObstacle>().carving = true;
             GetComponent<NavMeshObstacle>().carveOnlyStationary = false;
-            GetComponent<NavMeshObstacle>().size = Vector3.one*1.5f;
+            GetComponent<NavMeshObstacle>().size = Vector3.one * 1.5f;
         }
         else Destroy(gameObject.GetComponent<NavMeshObstacle>());
 

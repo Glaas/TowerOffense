@@ -18,6 +18,7 @@ public class EnemyStats : MonoBehaviour
     private void OnEnable()
     {
         name = possibleNames[Random.Range(0, possibleNames.Length)];
+        InitHealth();
     }
    
 

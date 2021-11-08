@@ -29,7 +29,6 @@ public class BuildingStats : MonoBehaviour
             Destroy(gameObject);
         } 
         //TODO make this building
-          //TODO keep track of amount of enemies killed
           //TODO keep track of durability of building
 
 

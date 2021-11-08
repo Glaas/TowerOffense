@@ -85,8 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  agent: {fileID: 0}
+  agent: {fileID: 6444117590889975779}
   target: {fileID: 0}
+  animator: {fileID: 0}
   distanceToTower: 0
   isAttacking: 0
 --- !u!114 &-4240706473622965033
@@ -123,7 +124,7 @@ MonoBehaviour:
   - Aleks
   - Devarya
   - Jose Maria
-  maxHealth: 5
+  maxHealth: 3
   currentHealth: 0
   isAttacking: 0
   isBeingTargeted: 0

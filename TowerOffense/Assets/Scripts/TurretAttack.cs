@@ -16,6 +16,8 @@ public class TurretAttack : MonoBehaviour
 
     public float bulletSpeed = 5;
     public float delayBetweenShots = 1;
+
+    public int enemiesKilled = 0;
     //TODO detection radius is way too large and also maybe should be visible ?
 
     private void Awake()
@@ -64,14 +66,16 @@ public class TurretAttack : MonoBehaviour
         PlayShootAnim();
         GameObject bulletInstantiated = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
         BulletBehavior bulletBehaviour = bulletInstantiated.GetComponent<BulletBehavior>();
+        GetComponent<BuildingStats>().TakeDamage(1);
         bulletBehaviour.InitTarget(currentTarget.transform);
         yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 0.3f);
         var explosionInstance = Instantiate(destructionPrefab, bulletInstantiated.transform.position, Quaternion.identity);
         Destroy(explosionInstance.gameObject, 4f);
         Destroy(bulletInstantiated);
-        Destroy(currentTarget);
+        currentTarget.GetComponent<EnemyStats>().TakeDamage(1);
 
         DebugDisplay.enemiesKilled++;
+        enemiesKilled++;
 
     }
 
