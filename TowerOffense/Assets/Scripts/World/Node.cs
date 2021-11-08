@@ -63,12 +63,14 @@ public class Node : MonoBehaviour, ISelectable
                     if (playgrid.nodeGrid[n.Item1, n.Item2].GetComponentInChildren<Node>().currentBuilding != null)
                     {
                         print("Can't build here");
+                        GlobalSoundManager.instance.PlayError();
                         return;
                     }
                 }
                 if (GlobalDataHandler.instance.currentPlayerCoins < buildingPrice)
                 {
                     print("Not enough coins to build");
+                    GlobalSoundManager.instance.PlayError();
                     return;
                 }
                 BuildBuilding();
