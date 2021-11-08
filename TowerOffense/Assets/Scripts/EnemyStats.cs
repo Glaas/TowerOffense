@@ -31,7 +31,7 @@ public class EnemyStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log(name + "got destroyed");
-            Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), Quaternion.identity);
+            Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z), Quaternion.identity);
             Destroy(gameObject);
         }
     }
