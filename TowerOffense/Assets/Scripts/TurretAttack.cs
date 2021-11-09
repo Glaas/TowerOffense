@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using DG.Tweening;
 
 public class TurretAttack : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class TurretAttack : MonoBehaviour
     public float delayBetweenShots = 1;
 
     public int enemiesKilled = 0;
-    //TODO detection radius is way too large and also maybe should be visible ?
 
     private void Awake()
     {
@@ -46,11 +46,18 @@ public class TurretAttack : MonoBehaviour
                 chosenEnemy = enemy;
             }
         }
-        if (chosenEnemy != null)
+        if (chosenEnemy != null && shortestDistance <= detectionRadius)
         {
             currentTarget = chosenEnemy.gameObject;
+            DOTween.Kill(this);
+            GetComponentInChildren<Light>().DOColor(Color.red, .4f);
         }
-        else currentTarget = null;
+        else
+        {
+            DOTween.Kill(this);
+            currentTarget = null;
+            GetComponentInChildren<Light>().DOColor(Color.white, .4f);
+        }
     }
     private void Update()
     {
@@ -66,10 +73,13 @@ public class TurretAttack : MonoBehaviour
         PlayShootAnim();
         GetComponent<AudioSource>().Play();
         GameObject bulletInstantiated = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
+        Destroy(bulletInstantiated,2);
+        if (bulletInstantiated == null) yield break;
         BulletBehavior bulletBehaviour = bulletInstantiated.GetComponent<BulletBehavior>();
         GetComponent<BuildingStats>().TakeDamage(1);
         bulletBehaviour.InitTarget(currentTarget.transform);
         yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 0.3f);
+        if (bulletInstantiated == null) yield break;
         var explosionInstance = Instantiate(destructionPrefab, bulletInstantiated.transform.position, Quaternion.identity);
         Destroy(explosionInstance.gameObject, 4f);
         Destroy(bulletInstantiated);
@@ -85,6 +95,12 @@ public class TurretAttack : MonoBehaviour
     {
         GetComponentInChildren<Animator>().SetTrigger("Shoot");
         GetComponentInChildren<ParticleSystem>().Play();
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+
     }
 
 }
