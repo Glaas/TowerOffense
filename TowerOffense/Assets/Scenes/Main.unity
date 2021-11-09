@@ -3805,24 +3805,39 @@ MonoBehaviour:
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
   - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
+    - enemyAmount: 2
+      timeInSecondsUntilNextDrop: 1
+      isLastDrop: 0
+    - enemyAmount: 3
+      timeInSecondsUntilNextDrop: 1
       isLastDrop: 1
   - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
+    - enemyAmount: 5
+      timeInSecondsUntilNextDrop: 3
+      isLastDrop: 0
+    - enemyAmount: 7
+      timeInSecondsUntilNextDrop: 4
       isLastDrop: 1
   - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
+    - enemyAmount: 7
+      timeInSecondsUntilNextDrop: 4
+      isLastDrop: 0
+    - enemyAmount: 10
+      timeInSecondsUntilNextDrop: 5
       isLastDrop: 1
   - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
+    - enemyAmount: 15
+      timeInSecondsUntilNextDrop: 7
+      isLastDrop: 0
+    - enemyAmount: 20
+      timeInSecondsUntilNextDrop: 9
       isLastDrop: 1
   - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
+    - enemyAmount: 25
+      timeInSecondsUntilNextDrop: 10
+      isLastDrop: 0
+    - enemyAmount: 30
+      timeInSecondsUntilNextDrop: 12
       isLastDrop: 1
   - Drops:
     - enemyAmount: 1
@@ -4026,7 +4041,7 @@ MonoBehaviour:
       isLastDrop: 1
   currentWave: 0
   wavesTotal: 0
-  fileName: sdgsdghsdghsdgh
+  fileName: BalancedWaves
 --- !u!114 &1955914136
 MonoBehaviour:
   m_ObjectHideFlags: 0
