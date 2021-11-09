@@ -3838,8 +3838,63 @@ MonoBehaviour:
       isLastDrop: 0
     - enemyAmount: 30
       timeInSecondsUntilNextDrop: 12
+      isLastDrop: 0
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
   - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
     - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
@@ -3943,43 +3998,18 @@ MonoBehaviour:
     - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
-  - Drops:
     - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
-  - Drops:
     - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
-  - Drops:
     - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
-  - Drops:
     - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
-  - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
-      isLastDrop: 1
-  - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
-      isLastDrop: 1
-  - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
-      isLastDrop: 1
-  - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
-      isLastDrop: 1
-  - Drops:
-    - enemyAmount: 1
-      timeInSecondsUntilNextDrop: 2
-      isLastDrop: 1
-  - Drops:
     - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1

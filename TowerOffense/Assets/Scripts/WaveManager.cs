@@ -29,6 +29,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartWave()
     {
+        CheckDrops();
         StartCoroutine("StartWaveCorout", waves[currentWave]);
     }
 
@@ -47,12 +48,12 @@ public class WaveManager : MonoBehaviour
         {
             print($"Starting drop, which has a TimeInSeconds of {drop.timeInSecondsUntilNextDrop} and spawns {drop.enemyAmount} enemies");
             //generate a list of 10 unique numbers
-            List<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
             var shuffledcards = numbers.OrderBy(a => Guid.NewGuid()).ToList();
-           
+
             for (int i = 0; i < drop.enemyAmount; i++)
             {
-                var spawnerChosen = spawnersObjects[i].GetComponent<EnemySpawner>();
+                var spawnerChosen = spawnersObjects[shuffledcards[i]].GetComponent<EnemySpawner>();
                 spawnerChosen.StartPortalSequence(slasherPrefab);
             }
             yield return new WaitForSeconds(drop.timeInSecondsUntilNextDrop);
@@ -101,9 +102,38 @@ public class WaveManager : MonoBehaviour
         Selection.activeObject = asset;
 
     }
+    [Button("Check Waves for errors")]
+    void CheckDrops()
+    {
+        for (int i = 0; i < waves.Count; i++)
+        {
+            for (int j = 0; j < waves[i].Drops.Count; j++)
+            {
+                if (waves[i].Drops[j].enemyAmount > 9)
+                {
+                    Debug.LogWarning($"Error, too many enemies in a drop\n Wave {i}, drop {j}");
+                }
+            }
+        }
+
+        foreach (var wave in waves)
+        {
+            for (int i = 0; i < wave.Drops.Count; i++)
+            {
+                if (wave.Drops[i].isLastDrop && i != wave.Drops.Count - 1)
+                {
+                    Debug.LogWarning($"Error, last drop is not the last drop but is marked as such\n Problem is at {waves.IndexOf(wave)}, drop {i}");
+                }
+            }
+
+            if (!wave.Drops[wave.Drops.Count - 1].isLastDrop)
+            {
+
+                Debug.LogWarning($"Error, last drop is not marked as last drop\n Problem is {waves.IndexOf(wave)}");
+            }
+        }
+    }
 }
-
-
 
 
 [Serializable]
