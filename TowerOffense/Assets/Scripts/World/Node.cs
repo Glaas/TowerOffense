@@ -62,19 +62,22 @@ public class Node : MonoBehaviour, ISelectable
                 {
                     if (playgrid.nodeGrid[n.Item1, n.Item2].GetComponentInChildren<Node>().currentBuilding != null)
                     {
-                        print("Can't build here");
+                        UiHandler.instance.SetInfo("Too close to another structure");
                         GlobalSoundManager.instance.PlayError();
                         return;
                     }
                 }
                 if (GlobalDataHandler.instance.currentPlayerCoins < buildingPrice)
                 {
-                    print("Not enough coins to build");
+                    UiHandler.instance.SetInfo("You can't afford that");
                     GlobalSoundManager.instance.PlayError();
                     return;
                 }
                 BuildBuilding();
                 GlobalDataHandler.instance.SubtractMoney(buildingPrice);
+                UiHandler.instance.UpdateCoins();
+                UiHandler.instance.SetInfo("Structure was built successfully");
+                GameObject.Find("PlaceTurretSFX").GetComponent<AudioSource>().Play();
                 break;
             default: throw new NotImplementedException();
         }

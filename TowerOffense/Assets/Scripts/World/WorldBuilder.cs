@@ -25,7 +25,7 @@ public class WorldBuilder : MonoBehaviour
         yield return StartCoroutine(nameof(GenerateFrontOfTower));
         yield return StartCoroutine(nameof(GenerateTower));
         GameObject.Find("NavMesh").GetComponent<NavMeshSurface>().BuildNavMesh();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         yield return new WaitForSeconds(.2f);
         GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
         GlobalStateManager.Instance.IterateGameState();

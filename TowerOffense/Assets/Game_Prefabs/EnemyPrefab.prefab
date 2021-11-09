@@ -129,6 +129,7 @@ MonoBehaviour:
   isAttacking: 0
   isBeingTargeted: 0
   coinPrefab: {fileID: 976518875534099733, guid: 331cf45526d609c439e9e8a6bcea2cbb, type: 3}
+  deathPS: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
 --- !u!114 &6585085656953595309
 MonoBehaviour:
   m_ObjectHideFlags: 0

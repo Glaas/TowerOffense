@@ -23,11 +23,17 @@ public class GlobalDataHandler : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+
+        InitData();
+        UiHandler.instance.UpdateCoins();
+    }
 
     void InitData()
     {
         enemiesKilled = 0;
-        currentPlayerCoins = 0;
+        currentPlayerCoins = 60;
     }
     public void AddMoney(int amount) => currentPlayerCoins += amount;
     public void SubtractMoney(int amount) => currentPlayerCoins -= amount;

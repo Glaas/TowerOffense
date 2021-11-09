@@ -32,9 +32,12 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator StartWaveCorout(Wave wave)
     {
+        UiHandler.instance.SetInfo("Wave incoming !");
         if (currentWave == wavesTotal)
         {
             print("Last wave !");
+            UiHandler.instance.SetInfo("Last wave !");
+
         }
         foreach (Drop drop in wave.Drops)
         {
@@ -66,6 +69,8 @@ public class WaveManager : MonoBehaviour
         if (currentWave == wavesTotal)
         {
             print("player won !");
+            UiHandler.instance.SetInfo("You won !");
+
             GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_WIN;
             GlobalStateManager.Instance.IterateGameState();
             yield break;
@@ -74,12 +79,6 @@ public class WaveManager : MonoBehaviour
         print("Finished ! Switching to player preparation");
         GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
         GlobalStateManager.Instance.IterateGameState();
-    }
-    void OnGUI()
-    {
-
-
-        if (GUI.Button(new Rect(10, 70, 50, 30), "Start Wave")) StartWave();
     }
 }
 

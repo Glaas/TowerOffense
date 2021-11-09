@@ -10,6 +10,7 @@ public class EnemyStats : MonoBehaviour
     public bool isAttacking;
     public bool isBeingTargeted = false;
     public GameObject coinPrefab;
+    public GameObject deathPS;
 
     private void Awake()
     {
@@ -32,6 +33,8 @@ public class EnemyStats : MonoBehaviour
         {
             Debug.Log(name + "got destroyed");
             Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z), Quaternion.identity);
+            var deathPSObj = Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z), Quaternion.identity);
+            Destroy(deathPSObj, 3f);
             Destroy(gameObject);
         }
     }

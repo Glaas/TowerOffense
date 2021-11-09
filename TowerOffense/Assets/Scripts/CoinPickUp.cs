@@ -8,7 +8,10 @@ public class CoinPickUp : MonoBehaviour
     private void OnMouseDown()
     {
         print("Coin picked up");
+        GameObject.Find("CoinSFX").GetComponent<AudioSource>().Play();
         GlobalDataHandler.instance.AddMoney(coinValue);
+        UiHandler.instance.UpdateCoins();
+        
         Destroy(gameObject);
     }
 }

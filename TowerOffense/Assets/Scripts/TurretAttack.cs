@@ -64,6 +64,7 @@ public class TurretAttack : MonoBehaviour
         if (currentTarget == null) yield break;
 
         PlayShootAnim();
+        GetComponent<AudioSource>().Play();
         GameObject bulletInstantiated = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
         BulletBehavior bulletBehaviour = bulletInstantiated.GetComponent<BulletBehavior>();
         GetComponent<BuildingStats>().TakeDamage(1);

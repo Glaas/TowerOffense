@@ -1,16 +1,20 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GlobalStateManager : MonoBehaviour
 {
     public static GlobalStateManager Instance;
+    public GameObject startWaveButton;
     private void Awake() //IMPORTANT entry point of the program
     {
         Instance = this;
     }
     private void Start()
     {
+        startWaveButton = GameObject.Find("StartWave");
+        startWaveButton.SetActive(false);
         gameState = GameState.GENERATE_WORLD;
         IterateGameState();
     }
@@ -33,12 +37,17 @@ public class GlobalStateManager : MonoBehaviour
             case GameState.GENERATE_WORLD:
                 FindObjectOfType<WorldBuilder>().GeneratingWorld();
                 print("Generating World...");
+                UiHandler.instance.SetInfo("Generating World...");
                 break;
             case GameState.PLAYER_PREPARATION:
-                print("Entering Player Preparation");
+                print("Start your preparation, and click \"Next wave\" when you are ready");
+                UiHandler.instance.SetInfo("Start your preparation, and click \"Next wave\" when you are ready");
+                startWaveButton.SetActive(true);
                 break;
             case GameState.WAVE:
                 print("Entering Wave");
+                UiHandler.instance.SetInfo("Wave incoming !");
+                startWaveButton.SetActive(false);
                 FindObjectOfType<WaveManager>().StartWave();
                 break;
             case GameState.PLAYER_WIN:
@@ -50,14 +59,10 @@ public class GlobalStateManager : MonoBehaviour
         }
     }
 
-    void OnGUI()
+    public void NextWave()
     {
-        if (GUI.Button(new Rect(10, 100, 200, 100), "End Player preparation")){
-
-            print("End Player preparation, starting next wave");
-            Instance.gameState = GameState.WAVE;
-            IterateGameState();
-        }
+        gameState = GameState.WAVE;
+        IterateGameState();
     }
 }
 
