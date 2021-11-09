@@ -6,8 +6,9 @@ public class GlobalDataHandler : MonoBehaviour
 {
     //make instance
     public static GlobalDataHandler instance;
-    public int enemiesKilled = 0;
+    public int playerStartingCoins;
     public int currentPlayerCoins = 0;
+    public int enemiesKilled = 0;
     public int amountOfBuildingsPlaced = 0;
 
 
@@ -33,7 +34,7 @@ public class GlobalDataHandler : MonoBehaviour
     void InitData()
     {
         enemiesKilled = 0;
-        currentPlayerCoins = 60;
+        currentPlayerCoins = playerStartingCoins;
     }
     public void AddMoney(int amount) => currentPlayerCoins += amount;
     public void SubtractMoney(int amount) => currentPlayerCoins -= amount;

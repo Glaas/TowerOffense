@@ -3896,8 +3896,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d63020497c8b794db84b9303374d416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesKilled: 0
+  playerStartingCoins: 100
   currentPlayerCoins: 0
+  enemiesKilled: 0
   amountOfBuildingsPlaced: 0
 --- !u!1 &2000669376
 GameObject:

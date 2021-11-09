@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
 
         var enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+        GameObject.Find("EnemySpawnSFX").GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(1.5f);
 
         portalIdle.transform.DOScale(smol, .3f);
