@@ -3735,7 +3735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc077e0ca6856b6438304218eebba045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startWaveButton: {fileID: 0}
   gameState: 0
 --- !u!114 &1955914135
 MonoBehaviour:
