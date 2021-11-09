@@ -799,6 +799,54 @@ MonoBehaviour:
   portalIdle: {fileID: 561669407}
   portalLifetime: 4
   isActive: 0
+--- !u!1 &207030515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 207030516}
+  - component: {fileID: 207030517}
+  m_Layer: 1
+  m_Name: PPTemp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &207030516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207030515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 524430984}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &207030517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207030515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: c1381d7bbe298ee40a92b6d5b9cbff65, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1001 &217757760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1203,6 +1251,7 @@ Transform:
   m_Children:
   - {fileID: 58259957}
   - {fileID: 1675124355}
+  - {fileID: 207030516}
   - {fileID: 1805763096}
   - {fileID: 1220081544}
   m_Father: {fileID: 0}
@@ -2122,7 +2171,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2184,7 +2233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 524430984}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 46.981, y: 38.917, z: 110.108}
 --- !u!1 &1240754915
 GameObject:
@@ -2900,7 +2949,7 @@ GameObject:
   - component: {fileID: 1675124355}
   - component: {fileID: 1675124356}
   m_Layer: 1
-  m_Name: PP
+  m_Name: PPMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3193,7 +3242,7 @@ Transform:
   - {fileID: 1768194829}
   - {fileID: 721433337}
   m_Father: {fileID: 524430984}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1808189217
 GameObject:
@@ -3735,6 +3784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc077e0ca6856b6438304218eebba045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startWaveButton: {fileID: 0}
   gameState: 0
 --- !u!114 &1955914135
 MonoBehaviour:

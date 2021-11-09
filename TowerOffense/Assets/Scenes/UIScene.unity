@@ -1712,6 +1712,38 @@ PrefabInstance:
       propertyPath: triggerAnimPlayerOnChange
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 311474339322879238, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 311474339322879238, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 311474339322879238, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 980794491977012150, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 394e93ce356b57344903a08ff72fcab2, type: 3}
+    - target: {fileID: 980794491977012150, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 980794491977012150, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 980794491977012150, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 980794491977012150, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
     - target: {fileID: 1450280203537590081, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_Name
       value: UI Canvas
@@ -1804,6 +1836,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 680390548}
+    - target: {fileID: 3017211628306890273, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3258917878892127802, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_Interactable
       value: 1
@@ -1836,9 +1872,45 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6256430861796342301, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256430861796342301, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256430861796342301, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256430861796342301, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6415094
+      objectReference: {fileID: 0}
     - target: {fileID: 6555169288621681967, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 680390548}
+    - target: {fileID: 7990570305177426395, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 394e93ce356b57344903a08ff72fcab2, type: 3}
+    - target: {fileID: 7990570305177426395, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990570305177426395, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990570305177426395, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990570305177426395, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}

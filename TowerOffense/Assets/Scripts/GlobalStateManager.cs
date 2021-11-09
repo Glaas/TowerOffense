@@ -2,6 +2,7 @@ using System;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GlobalStateManager : MonoBehaviour
 {
@@ -38,13 +39,17 @@ public class GlobalStateManager : MonoBehaviour
                 FindObjectOfType<WorldBuilder>().GeneratingWorld();
                 print("Generating World...");
                 UiHandler.instance.SetInfo("Generating World...");
+                AdjustDirLight(.5f, .1f);
                 break;
             case GameState.PLAYER_PREPARATION:
                 print("Start your preparation, and click \"Next wave\" when you are ready");
                 UiHandler.instance.SetInfo("Start your preparation, and click \"Next wave\" when you are ready");
                 startWaveButton.SetActive(true);
+                AdjustDirLight(.80f, 2f);
                 break;
             case GameState.WAVE:
+                //TODO dim the directional light
+                AdjustDirLight(.20f, 2f);
                 print("Entering Wave");
                 UiHandler.instance.SetInfo("Wave incoming !");
                 startWaveButton.SetActive(false);
@@ -63,6 +68,10 @@ public class GlobalStateManager : MonoBehaviour
     {
         gameState = GameState.WAVE;
         IterateGameState();
+    }
+    public void AdjustDirLight(float intensity, float duration)
+    {
+        GameObject.Find("DirLight").GetComponent<Light>().DOIntensity(intensity, duration);
     }
 }
 
