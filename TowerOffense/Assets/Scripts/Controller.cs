@@ -30,7 +30,7 @@ public class Controller : MonoBehaviour
         {
             case ENEMY_STATE.APPROACHING:
                 ComputeDistanceToTower();
-                if (distanceToTower <= 2)
+                if (distanceToTower <= 4)
                 {
                     state = ENEMY_STATE.ATTACKING;
                     CancelInvoke(nameof(CheckState));

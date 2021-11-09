@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(int dmgAmount)
     {
         currentHealth -= dmgAmount;
+        transform.DOShakeScale(0.5f, 0.3f, 20, 90);
         if (currentHealth <= 0)
         {
             Debug.Log(name + "got destroyed");
