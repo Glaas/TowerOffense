@@ -43,9 +43,9 @@ public class UiHandler : MonoBehaviour
     {
         infoText.GetComponent<TextAnimatorPlayer>().ShowText(info);
     }
-    public void SetWaveNumber(int waveNumber)
+    public void SetWaveNumber(string waveText)
     {
-        wavesText.text = "Wave: " + waveNumber;
+        wavesText.text = waveText;
     }
     public void UpdateCoins()
     {

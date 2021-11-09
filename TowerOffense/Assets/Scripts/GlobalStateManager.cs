@@ -39,6 +39,7 @@ public class GlobalStateManager : MonoBehaviour
                 FindObjectOfType<WorldBuilder>().GeneratingWorld();
                 print("Generating World...");
                 UiHandler.instance.SetInfo("Generating World...");
+                UiHandler.instance.SetWaveNumber("");
                 AdjustDirLight(.5f, .1f);
                 break;
             case GameState.PLAYER_PREPARATION:

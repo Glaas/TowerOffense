@@ -35,10 +35,12 @@ public class WaveManager : MonoBehaviour
     IEnumerator StartWaveCorout(Wave wave)
     {
         UiHandler.instance.SetInfo("Wave incoming !");
+        UiHandler.instance.SetWaveNumber("Wave : " + (currentWave + 1));
         if (currentWave == wavesTotal)
         {
             print("Last wave !");
             UiHandler.instance.SetInfo("Last wave !");
+            UiHandler.instance.SetWaveNumber("Final wave");
 
         }
         foreach (Drop drop in wave.Drops)
