@@ -3805,21 +3805,28 @@ MonoBehaviour:
       timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
   - Drops:
-    - enemyAmount: 2
-      timeInSecondsUntilNextDrop: 1
-      isLastDrop: 0
-    - enemyAmount: 2
-      timeInSecondsUntilNextDrop: 1
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
   - Drops:
-    - enemyAmount: 3
+    - enemyAmount: 1
       timeInSecondsUntilNextDrop: 2
-      isLastDrop: 0
-    - enemyAmount: 5
-      timeInSecondsUntilNextDrop: 1
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
+      isLastDrop: 1
+  - Drops:
+    - enemyAmount: 1
+      timeInSecondsUntilNextDrop: 2
       isLastDrop: 1
   currentWave: 0
   wavesTotal: 0
+  fileName: Zoink
 --- !u!114 &1955914136
 MonoBehaviour:
   m_ObjectHideFlags: 0
