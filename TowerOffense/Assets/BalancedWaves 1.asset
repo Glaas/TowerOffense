@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06f5628e6c24e4140abef524f13c3034, type: 3}
-  m_Name: BalancedWaves
+  m_Name: BalancedWaves 1
   m_EditorClassIdentifier: 
   waves:
   - Drops:
@@ -35,35 +35,25 @@ MonoBehaviour:
     - enemyAmount: 7
       timeInSecondsUntilNextDrop: 4
       isLastDrop: 0
-    - enemyAmount: 10
+    - enemyAmount: 9
       timeInSecondsUntilNextDrop: 5
-      isLastDrop: 1
-  - Drops:
-    - enemyAmount: 9
-      timeInSecondsUntilNextDrop: 4
-      isLastDrop: 0
-    - enemyAmount: 8
-      timeInSecondsUntilNextDrop: 4
-      isLastDrop: 0
-    - enemyAmount: 9
-      timeInSecondsUntilNextDrop: 4
       isLastDrop: 0
     - enemyAmount: 8
       timeInSecondsUntilNextDrop: 4
       isLastDrop: 1
   - Drops:
     - enemyAmount: 9
-      timeInSecondsUntilNextDrop: 3
+      timeInSecondsUntilNextDrop: 5
       isLastDrop: 0
     - enemyAmount: 8
-      timeInSecondsUntilNextDrop: 2
-      isLastDrop: 1
+      timeInSecondsUntilNextDrop: 4
+      isLastDrop: 0
     - enemyAmount: 7
       timeInSecondsUntilNextDrop: 3
-      isLastDrop: 1
+      isLastDrop: 0
     - enemyAmount: 8
       timeInSecondsUntilNextDrop: 4
-      isLastDrop: 1
+      isLastDrop: 0
     - enemyAmount: 9
       timeInSecondsUntilNextDrop: 5
       isLastDrop: 1
