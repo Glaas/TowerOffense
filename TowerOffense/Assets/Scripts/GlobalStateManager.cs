@@ -8,6 +8,9 @@ public class GlobalStateManager : MonoBehaviour
 {
     public static GlobalStateManager Instance;
     public GameObject startWaveButton;
+
+    public GameObject winScreen;
+
     private void Awake() //IMPORTANT entry point of the program
     {
         Instance = this;
@@ -18,6 +21,9 @@ public class GlobalStateManager : MonoBehaviour
         startWaveButton.SetActive(false);
         gameState = GameState.GENERATE_WORLD;
         IterateGameState();
+
+        winScreen = GameObject.Find("WinScreen");
+        winScreen.SetActive(false);
     }
     public enum GameState
     {
@@ -58,6 +64,7 @@ public class GlobalStateManager : MonoBehaviour
                 break;
             case GameState.PLAYER_WIN:
                 print("Player wins !");
+                winScreen.SetActive(true);
                 break;
             case GameState.PLAYER_LOSE:
                 print("Player loses! Oh no !");

@@ -3806,7 +3806,7 @@ MonoBehaviour:
       isLastDrop: 1
   - Drops:
     - enemyAmount: 2
-      timeInSecondsUntilNextDrop: 1
+      timeInSecondsUntilNextDrop: 0.5
       isLastDrop: 0
     - enemyAmount: 3
       timeInSecondsUntilNextDrop: 1
