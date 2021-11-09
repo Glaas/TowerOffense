@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f179efd76a2a34fbcce1c0b1b657fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPickUpSound: {fileID: 8300000, guid: 397f994937b1b8949840b9bdb7b97525, type: 3}
   coinValue: 10
+  coinPickUpEffect: {fileID: 144388, guid: ef72c3446f164b14bb66e59105126b52, type: 3}
 --- !u!114 &4219877340809671352
 MonoBehaviour:
   m_ObjectHideFlags: 0
