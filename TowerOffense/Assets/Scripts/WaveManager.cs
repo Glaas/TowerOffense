@@ -46,10 +46,8 @@ public class WaveManager : MonoBehaviour
         foreach (Drop drop in wave.Drops)
         {
             print($"Starting drop, which has a TimeInSeconds of {drop.timeInSecondsUntilNextDrop} and spawns {drop.enemyAmount} enemies");
-
             for (int i = 0; i < drop.enemyAmount; i++)
             {
-                if (drop.isLastDrop) print("Last drop");
                 var spawnerChosen = spawnersObjects[UnityEngine.Random.Range(0, spawnersObjects.Count)].GetComponent<EnemySpawner>();
                 spawnerChosen.StartPortalSequence(slasherPrefab);
             }
@@ -57,7 +55,6 @@ public class WaveManager : MonoBehaviour
 
             while (FindObjectOfType<EnemyStats>())
             {
-                print("Enemies are still alive");
                 yield return new WaitForSeconds(1);
             }
             yield return new WaitForSeconds(drop.timeInSecondsUntilNextDrop);
@@ -65,7 +62,7 @@ public class WaveManager : MonoBehaviour
 
         while (FindObjectOfType<EnemyStats>())
         {
-            print("Enemies are still alive");
+            // hold while theres enemies alive
             yield return new WaitForSeconds(1);
         }
         currentWave++;

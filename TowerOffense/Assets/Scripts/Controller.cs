@@ -26,7 +26,6 @@ public class Controller : MonoBehaviour
 
     private void CheckState()
     {
-        print(name + " checking state");
         switch (state)
         {
             case ENEMY_STATE.APPROACHING:

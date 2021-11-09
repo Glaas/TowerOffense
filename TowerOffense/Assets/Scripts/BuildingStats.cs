@@ -18,7 +18,6 @@ public class BuildingStats : MonoBehaviour
         {
             if (child.gameObject.CompareTag("Healthbar"))
             {
-                print("Found foreground");
                 child.gameObject.GetComponent<Image>().fillAmount = (float)currentHealth / (float)maxHealth;
                 child.gameObject.GetComponent<Image>().color = Color.Lerp(ded, healthy, (float)currentHealth / (float)maxHealth);
             }
