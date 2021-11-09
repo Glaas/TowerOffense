@@ -14,7 +14,8 @@ public class UiHandler : MonoBehaviour
     public TextMeshProUGUI infoText;
 
     public static UiHandler instance;
-    //awake singleton
+//todo display wave nummer
+
     private void Awake()
     {
         if (instance == null)

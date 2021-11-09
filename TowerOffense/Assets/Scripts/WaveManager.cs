@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using NaughtyAttributes;
+using UnityEditor;
+using System.Linq;
+
 
 public class WaveManager : MonoBehaviour
 {
@@ -24,7 +27,6 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    [Button("StartWave")]
     public void StartWave()
     {
         StartCoroutine("StartWaveCorout", waves[currentWave]);
@@ -80,6 +82,22 @@ public class WaveManager : MonoBehaviour
         GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
         GlobalStateManager.Instance.IterateGameState();
     }
+
+    public string fileName = "Save current Waves to file";
+    [Button("Save")]
+    public void CreateMyAsset()
+    {
+        WavesSO asset = ScriptableObject.CreateInstance<WavesSO>();
+        asset.waves = waves.ConvertAll(x => x);
+
+        string name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath($"Assets/{fileName}.asset");
+        AssetDatabase.CreateAsset(asset, name);
+        AssetDatabase.SaveAssets();
+        Debug.Log($"Created asset {asset} at {name}");
+        EditorUtility.FocusProjectWindow();
+        Selection.activeObject = asset;
+
+    }
 }
 
 
@@ -90,11 +108,7 @@ public class Wave
 {
     public List<Drop> Drops;
 
-    [Button("Save Wave to file")]
-    public void SaveWaveToFile()
-    {
-        // SomeFancyCode
-    }
+
 }
 [Serializable]
 public class Drop
