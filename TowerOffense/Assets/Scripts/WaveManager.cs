@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using NaughtyAttributes;
-using UnityEditor;
 using System.Linq;
 
 
@@ -91,15 +90,15 @@ public class WaveManager : MonoBehaviour
     [Button("Save")]
     public void CreateMyAsset()
     {
-        WavesSO asset = ScriptableObject.CreateInstance<WavesSO>();
-        asset.waves = waves.ConvertAll(x => x);
+        // WavesSO asset = ScriptableObject.CreateInstance<WavesSO>();
+        // asset.waves = waves.ConvertAll(x => x);
 
-        string name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath($"Assets/{fileName}.asset");
-        AssetDatabase.CreateAsset(asset, name);
-        AssetDatabase.SaveAssets();
-        Debug.Log($"Created asset {asset} at {name}");
-        EditorUtility.FocusProjectWindow();
-        Selection.activeObject = asset;
+        // string name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath($"Assets/{fileName}.asset");
+        // AssetDatabase.CreateAsset(asset, name);
+        // AssetDatabase.SaveAssets();
+        // Debug.Log($"Created asset {asset} at {name}");
+        // EditorUtility.FocusProjectWindow();
+        // Selection.activeObject = asset;
 
     }
     [Button("Check Waves for errors")]
