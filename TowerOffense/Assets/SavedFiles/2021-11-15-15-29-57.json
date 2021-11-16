@@ -1,0 +1,10 @@
+{
+  "range": "Sheet1!A1:F15",
+  "majorDimension": "ROWS",
+  "values": [
+    ["playername", "lives", "health"],
+    ["poopymcpoop", "3", "3.14"],
+    ["doodoomcdoodoo", "4", "4.15"],
+    ["fartymcfart", "100", "100.10015"]
+  ]
+}
