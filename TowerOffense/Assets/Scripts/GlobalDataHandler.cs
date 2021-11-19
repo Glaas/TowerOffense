@@ -36,6 +36,10 @@ public class GlobalDataHandler : MonoBehaviour
         enemiesKilled = 0;
         currentPlayerCoins = playerStartingCoins;
     }
-    public void AddMoney(int amount) => currentPlayerCoins += amount;
+    public void AddMoney(int amount)
+    {
+        currentPlayerCoins += amount;
+        UiHandler.instance.UpdateCoins();
+    }
     public void SubtractMoney(int amount) => currentPlayerCoins -= amount;
 }
