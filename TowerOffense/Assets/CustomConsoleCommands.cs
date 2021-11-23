@@ -11,6 +11,7 @@ public class CustomConsoleCommands : MonoBehaviour
         DebugLogConsole.AddCommand<int>("gold", "add money, specify an amount", AddMoney);
         DebugLogConsole.AddCommand<int>("spawn", "spawn x number of enemies", SpawnEnemy);
         DebugLogConsole.AddCommand("exit", "exit the game", ExitGame);
+        DebugLogConsole.AddCommand<string>("fetch", "fetch the cell", ReadCell);
 
     }
     public static void AddMoney(int amount)
@@ -31,4 +32,18 @@ public class CustomConsoleCommands : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ReadCell(string cell)
+    {
+        StartCoroutine(WaitForCompletion(cell));
+    }
+    object fetchCache = "Empty fetch cache";
+    IEnumerator WaitForCompletion(string cell)
+    {
+        IEnumerator coroutine = FindObjectOfType<GetDataFromEthercalc>().UpdateVariablesFromWeb(cell.ToUpper());
+        yield return StartCoroutine(coroutine);
+        fetchCache = FindObjectOfType<GetDataFromEthercalc>().valueRetrieved;
+        Debug.Log("cell is " + fetchCache);
+    }
+
 }
