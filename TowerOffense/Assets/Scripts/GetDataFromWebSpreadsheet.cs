@@ -29,8 +29,11 @@ public class GetDataFromWebSpreadsheet : MonoBehaviour
         builtString.Append("/" + sheetID);
         builtString.Append("/values");
         builtString.Append("/" + worksheetName + "!" + startCell + ":" + endCell);
-        builtString.Append("?key=" + APIKey);
+        builtString.Append("?prettyPrint=true");
+        builtString.Append("&");
+        builtString.Append("key=" + APIKey);
 
+        print("URL Requested = " + builtString.ToString());
 
 
         // Initiate the web request
@@ -60,16 +63,21 @@ public class GetDataFromWebSpreadsheet : MonoBehaviour
 
             //Create a JSON object from received string data
             JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
+            var myJ = JSON.Parse(jsonNode["values"]);
 
-            var myJ = JsonUtility.ToJson(webRequest.downloadHandler.text);
+            print(myJ);
 
-            //print current date and time
-            var myDate = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            var path = "Assets/SavedFiles/";
-            File.WriteAllText(path + myDate + ".json", jsonNode.ToString());
-
+            WriteAsFile(myJ, nameof(myJ));
         }
 
+    }
+    public static void WriteAsFile(JSONNode node, string nodeName = "")
+    {
+        var myDate = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+        var path = UnityEditor.AssetDatabase.GenerateUniqueAssetPath("Assets/SavedFiles/" + nodeName + myDate + ".json");
+
+        File.WriteAllText(path, node.ToString());
+        print("Saved to: " + path + myDate + ".json");
     }
 }
 [System.Serializable]

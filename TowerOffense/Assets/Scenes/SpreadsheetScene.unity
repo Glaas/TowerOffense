@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 493869474}
   - component: {fileID: 493869473}
+  - component: {fileID: 493869475}
+  - component: {fileID: 493869476}
   m_Layer: 0
   m_Name: SS
   m_TagString: Untagged
@@ -147,18 +149,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493869472}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2845cb4dd73f94ba1050c38dbdeba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URI: https://docs.google.com/spreadsheets/d/e/2PACX-1vQqGIAJn2F3vyNLsCb-3_OJs7Jzb-3P9CUHOX7MkqlkgCm9xRG9BAXWQRSlrFngpz--74__8vKFPe3r/pubhtml?gid=0&single=true
-  key: 
-  data:
-    playerName: 
-    lives: 0
-    health: 0
-  dataList: []
+  googleSheetsAPIURL: https://sheets.googleapis.com/v4/spreadsheets
+  sheetID: 1Zl2wV337Mjls1dJSckvE-ThFl8MGrbNDyDtYWj_aD0E
+  APIKey: AIzaSyAeBeTsGl9dUuq2S9Y9fO28qZ8ZJhL2i70
+  worksheetName: Sheet1
+  startCell: A1
+  endCell: L32
 --- !u!4 &493869474
 Transform:
   m_ObjectHideFlags: 0
@@ -173,3 +174,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &493869475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493869472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667f99e6d9623954baede06b7152cae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonList: []
+--- !u!114 &493869476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493869472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cafc2ecab96e544843221fab3ef3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correspondingCell: A2
