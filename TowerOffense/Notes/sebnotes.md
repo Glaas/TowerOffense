@@ -1,0 +1,3 @@
+- values relevant to game logic could be adjusted
+- send data to the server to write player's data
+- adjust game design in real time by reading into the sheet
