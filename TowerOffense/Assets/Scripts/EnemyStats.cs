@@ -33,7 +33,6 @@ public class EnemyStats : MonoBehaviour
         transform.DOShakeScale(0.5f, 0.3f, 20, 90);
         if (currentHealth <= 0)
         {
-            Debug.Log(name + "got destroyed");
             Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z), Quaternion.identity);
             var deathPSObj = Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z), Quaternion.identity);
             Destroy(deathPSObj, 3f);

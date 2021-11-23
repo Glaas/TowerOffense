@@ -77,8 +77,8 @@ public class TurretAttack : MonoBehaviour
         if (bulletInstantiated == null) yield break;
         BulletBehavior bulletBehaviour = bulletInstantiated.GetComponent<BulletBehavior>();
         GetComponent<BuildingStats>().TakeDamage(1);
-        bulletBehaviour.InitTarget(currentTarget.transform);
-        yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 0.3f);
+        bulletBehaviour.InitTarget(currentTarget);
+        yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 1);
         if (bulletInstantiated == null) yield break;
         var explosionInstance = Instantiate(destructionPrefab, bulletInstantiated.transform.position, Quaternion.identity);
         Destroy(explosionInstance.gameObject, 4f);

@@ -30,7 +30,7 @@ public class BulletBehavior : MonoBehaviour
         return oneRandomGun;
     }
 
-    public void InitTarget(Transform target)
+    public void InitTarget(GameObject target)
     {
         this.target = target.transform;
     }
@@ -41,9 +41,9 @@ public class BulletBehavior : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        distanceToTarget = Vector3.Distance(transform.position, target.transform.position);      
-        transform.Translate(Vector3.Normalize(target.position - transform.position) * speed * Time.deltaTime);
+        var targetPos = target.GetComponentInChildren<Collider>().bounds.center;
+        distanceToTarget = Vector3.Distance(transform.position, targetPos);
+        transform.Translate(Vector3.Normalize(targetPos - transform.position) * speed * Time.deltaTime);
 
     }
-
 }
