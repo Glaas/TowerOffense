@@ -767,8 +767,9 @@ GameObject:
   m_Component:
   - component: {fileID: 157678576}
   - component: {fileID: 157678577}
+  - component: {fileID: 157678578}
   m_Layer: 0
-  m_Name: SpreadsheetManager
+  m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,6 +802,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correspondingCell: D1
+--- !u!114 &157678578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157678575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb68c9581b04c9e4cad3278f23a54623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealthAmount: 0
+  towerMaxHealthAmount: 0
+  towerMaxDurability: 0
+  coinValue: 0
+  enemySpeed: 0
 --- !u!1 &197684174
 GameObject:
   m_ObjectHideFlags: 0

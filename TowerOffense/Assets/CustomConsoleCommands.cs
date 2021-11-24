@@ -40,9 +40,9 @@ public class CustomConsoleCommands : MonoBehaviour
     object fetchCache = "Empty fetch cache";
     IEnumerator WaitForCompletion(string cell)
     {
-        IEnumerator coroutine = FindObjectOfType<GetDataFromEthercalc>().UpdateVariablesFromWeb(cell.ToUpper());
+        IEnumerator coroutine = FindObjectOfType<GetDataFromEthercalc>().GetCellFromSpreadsheet(cell.ToUpper());
         yield return StartCoroutine(coroutine);
-        fetchCache = FindObjectOfType<GetDataFromEthercalc>().valueRetrieved;
+        fetchCache = FindObjectOfType<GetDataFromEthercalc>().cellRetrieved;
         Debug.Log("cell is " + fetchCache);
     }
 

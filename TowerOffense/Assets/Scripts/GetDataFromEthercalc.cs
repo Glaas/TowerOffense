@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,11 @@ public class GetDataFromEthercalc : MonoBehaviour
     [SerializeField]
     string correspondingCell;
 
-    public object valueRetrieved;
+    public object cellRetrieved;
+    public JSONNode spreadsheetRetrieved;
+
+    public delegate void FetchAction();
+    public static event FetchAction OnSpreadsheetFetch;
 
     void Start()
     {
@@ -24,12 +29,13 @@ public class GetDataFromEthercalc : MonoBehaviour
 
     public void FetchVariableFromWeb(string cell)
     {
-        StartCoroutine(UpdateVariablesFromWeb(cell));
+        StartCoroutine(GetCellFromSpreadsheet(cell));
+        StartCoroutine(GetSpreadsheet());
 
     }
     // Taken from the Unity Documentation:
     // https://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.Get.html
-    public IEnumerator UpdateVariablesFromWeb(string cell)
+    public IEnumerator GetCellFromSpreadsheet(string cell)
     {
         if (cell == "")
         {
@@ -57,34 +63,62 @@ public class GetDataFromEthercalc : MonoBehaviour
                 // Create a JSON object from received string data
                 JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
 
-                valueRetrieved = jsonNode["datavalue"];
+                cellRetrieved = jsonNode["datavalue"];
+            }
+        }
+    }
+    public IEnumerator GetSpreadsheet()
+    {
+        uri = "http://gd-ue.de:8000/_/pcwrsc9ifu1o/cells";
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        {
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
+
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(pages[page] + ": Error: " + webRequest.error);
+            }
+            else
+            {
+                Debug.Log(pages[page] + ":\nReceived response:  \n" + webRequest.downloadHandler.text);
+
+                // Create a JSON object from received string data
+                JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
+                spreadsheetRetrieved = jsonNode;
+
+                if (OnSpreadsheetFetch != null) { OnSpreadsheetFetch(); }
+
             }
 
 
             // Notify timer to run again.
-            //
+
             updateDone = true;
         }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        // Only start waiting for next call when the previous one is complete
+        //
+        if (updateDone == true)
+        {
+            timeElapsed += Time.deltaTime;
 
-        // Update is called once per frame
-        // void Update()
-        // {
-        //     // Only start waiting for next call when the previous one is complete
-        //     //
-        //     if (updateDone == true)
-        //     {
-        //         timeElapsed += Time.deltaTime;
+            if (timeElapsed >= timeToWait)
+            {
+                updateDone = false;
 
-        //         if (timeElapsed >= timeToWait)
-        //         {
-        //             updateDone = false;
+                // Initiate the web request
+                StartCoroutine(GetSpreadsheet());
 
-        //             // Initiate the web request
-        //             StartCoroutine(UpdateVariablesFromWeb());
-
-        //             timeElapsed = 0.0f;
-        //         }
-        //     }
-        // }
+                timeElapsed = 0.0f;
+            }
+        }
     }
 }
