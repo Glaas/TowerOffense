@@ -11,6 +11,8 @@ public class CoinPickUp : MonoBehaviour
         print("Coin picked up");
         //change pitch of CoinSFX
 
+        coinValue = GlobalDataRetriever.instance.coinValue;
+
         GameObject.Find("CoinSFX").GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
         GameObject.Find("CoinSFX").GetComponent<AudioSource>().Play();
         var obj = Instantiate(coinPickUpEffect, transform.position, Quaternion.identity);
