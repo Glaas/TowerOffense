@@ -10,7 +10,7 @@ public class GetDataFromEthercalc : MonoBehaviour
     string uri;
     bool updateDone = true;
     float timeElapsed = 0.0f;
-    float timeToWait = 2.0f;
+    float timeToWait = 5;
 
     [SerializeField]
     string correspondingCell;
