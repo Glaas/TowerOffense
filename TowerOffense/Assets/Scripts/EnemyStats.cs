@@ -25,7 +25,11 @@ public class EnemyStats : MonoBehaviour
     }
 
 
-    void InitHealth() => currentHealth = maxHealth;
+    void InitHealth()
+    {
+        maxHealth = GlobalDataRetriever.instance.enemyHealthAmount;
+        currentHealth = maxHealth;
+    }
 
     public void TakeDamage(int dmgAmount)
     {

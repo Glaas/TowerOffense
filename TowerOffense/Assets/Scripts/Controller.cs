@@ -21,6 +21,7 @@ public class Controller : MonoBehaviour
         state = ENEMY_STATE.APPROACHING;
         agent.SetDestination(target.position);
         InvokeRepeating(nameof(CheckState), 1, .5f);
+        InvokeRepeating(nameof(UpdateValues), 1, .5f);
 
     }
 
@@ -49,6 +50,10 @@ public class Controller : MonoBehaviour
             default: throw new System.Exception("Invalid state");
         }
 
+    }
+    private void UpdateValues()
+    {
+        GetComponent<NavMeshAgent>().speed = GlobalDataRetriever.instance.enemySpeed;
     }
 
     void AttackTower()

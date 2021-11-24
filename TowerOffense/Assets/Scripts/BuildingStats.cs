@@ -26,9 +26,9 @@ public class BuildingStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
-        } 
+        }
         //TODO make this building
-          //TODO keep track of durability of building
+        //TODO keep track of durability of building
 
 
 
@@ -40,6 +40,15 @@ public class BuildingStats : MonoBehaviour
     }
     void InitHealth()
     {
+        if (name == "TurretPrefab(Clone)")
+        {
+            maxHealth = GlobalDataRetriever.instance.turretMaxDurability;
+        }
+        else if (name == "Tower")
+        {
+            maxHealth = GlobalDataRetriever.instance.towerMaxHealthAmount;
+        }
+        else print("No health found for " + name);
         currentHealth = maxHealth;
     }
     float GetHealthPercentage()

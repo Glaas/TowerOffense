@@ -12,8 +12,8 @@ public class GlobalDataRetriever : MonoBehaviour
     public int enemyHealthAmount;
     const string TOWER_MAX_HEALTH_AMOUNT = "B4";
     public int towerMaxHealthAmount;
-    const string TOWER_MAX_DURABILITY = "B5";
-    public int towerMaxDurability;
+    const string TURRET_MAX_DURABILITY = "B5";
+    public int turretMaxDurability;
     const string COIN_VALUE = "B6";
     public int coinValue;
     const string ENEMY_SPEED = "B7";
@@ -26,7 +26,7 @@ public class GlobalDataRetriever : MonoBehaviour
 
         enemyHealthAmount = spreadsheetData[ENEMY_HEALTH_AMOUNT]["datavalue"].AsInt;
         towerMaxHealthAmount = spreadsheetData[TOWER_MAX_HEALTH_AMOUNT]["datavalue"].AsInt;
-        towerMaxDurability = spreadsheetData[TOWER_MAX_DURABILITY]["datavalue"].AsInt;
+        turretMaxDurability = spreadsheetData[TURRET_MAX_DURABILITY]["datavalue"].AsInt;
         coinValue = spreadsheetData[COIN_VALUE]["datavalue"].AsInt;
         enemySpeed = spreadsheetData[ENEMY_SPEED]["datavalue"].AsFloat;
 
