@@ -12,6 +12,7 @@ public class CustomConsoleCommands : MonoBehaviour
         DebugLogConsole.AddCommand<int>("spawn", "spawn x number of enemies", SpawnEnemy);
         DebugLogConsole.AddCommand("exit", "exit the game", ExitGame);
         DebugLogConsole.AddCommand<string>("fetch", "fetch the cell", ReadCell);
+        DebugLogConsole.AddCommand("spreadsheet", "open the spreadsheet controlling the game", OpenSpreadsheet);
 
     }
     public static void AddMoney(int amount)
@@ -45,5 +46,8 @@ public class CustomConsoleCommands : MonoBehaviour
         fetchCache = FindObjectOfType<GetDataFromEthercalc>().cellRetrieved;
         Debug.Log("cell is " + fetchCache);
     }
+    static void OpenSpreadsheet() => Application.OpenURL("http://gd-ue.de:8000/pcwrsc9ifu1o");
+
+
 
 }
