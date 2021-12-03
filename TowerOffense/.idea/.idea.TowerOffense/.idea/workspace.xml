@@ -8,11 +8,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VolumeSlider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PauseMenuButtons.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/PauseMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/VolumeSlider.cs" />
+      <option value="$PROJECT_DIR$/Assets/PauseMenuButtons.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="20XLGjjwYwXzyvbEFstT7bgPRPA" />
@@ -64,7 +67,7 @@
       <updated>1636185896147</updated>
       <workItem from="1636185901912" duration="146000" />
       <workItem from="1637869464352" duration="622000" />
-      <workItem from="1638537026369" duration="9342000" />
+      <workItem from="1638537026369" duration="10061000" />
     </task>
     <servers />
   </component>

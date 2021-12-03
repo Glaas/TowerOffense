@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class VolumeSlider : MonoBehaviour
 {
-    public GameObject VolumeSlider;
+    public GameObject volumeSlider;
     public Slider Slider;
     
     private void Start()
     {
-        VolumeSlider = GameObject.Find("VolumeSlider"); //gameobject with Slider on it
-        Slider = VolumeSlider.GetComponent<Slider>();
+        volumeSlider = GameObject.Find("VolumeSlider"); //gameobject with Slider on it
+        Slider = volumeSlider.GetComponent<Slider>();
     }
 
     public void SetVolume()
