@@ -6,22 +6,17 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    //public AudioMixer unityAudioMixer;
-
-    private GameObject SliderFunction;
-
+    public GameObject VolumeSlider;
+    public Slider Slider;
+    
     private void Start()
     {
-        GameObject.Find("SliderFunction");
-        SliderFunction.GetComponent<Slider>();
+        VolumeSlider = GameObject.Find("VolumeSlider"); //gameobject with Slider on it
+        Slider = VolumeSlider.GetComponent<Slider>();
     }
-    
-    public void SetVolume(float volume)
-    {
-        //unityAudioMixer.SetFloat("volume", volume);
-        
-        //change audiolistener volume instead
 
-        AudioListener.volume.Equals(SliderFunction);
+    public void SetVolume()
+    {
+        AudioListener.volume = Slider.value;
     }
 }
