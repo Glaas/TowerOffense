@@ -21,7 +21,6 @@ public class GlobalDataRetriever : MonoBehaviour
 
     public void UpdateValues()
     {
-        print("updating values");
         spreadsheetData = FindObjectOfType<GetDataFromEthercalc>().spreadsheetRetrieved;
 
         enemyHealthAmount = spreadsheetData[ENEMY_HEALTH_AMOUNT]["datavalue"].AsInt;

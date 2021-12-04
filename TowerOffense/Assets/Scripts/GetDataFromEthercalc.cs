@@ -58,7 +58,6 @@ public class GetDataFromEthercalc : MonoBehaviour
             }
             else
             {
-                Debug.Log(pages[page] + ":\nReceived response:  \n" + webRequest.downloadHandler.text);
 
                 // Create a JSON object from received string data
                 JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
@@ -85,8 +84,6 @@ public class GetDataFromEthercalc : MonoBehaviour
             }
             else
             {
-                Debug.Log(pages[page] + ":\nReceived response:  \n" + webRequest.downloadHandler.text);
-
                 // Create a JSON object from received string data
                 JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
                 spreadsheetRetrieved = jsonNode;
