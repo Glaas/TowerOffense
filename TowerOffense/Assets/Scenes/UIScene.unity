@@ -2801,6 +2801,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1578345168057012761, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578345168057012761, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578345168057012761, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: f603fc2d04fe3874684401d998b46503, type: 3}
+    - target: {fileID: 1578345168057012761, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2020032908558393659, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2965,6 +2981,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 680390548}
+    - target: {fileID: 6660877392319894087, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+      propertyPath: m_Name
+      value: PauseGame
+      objectReference: {fileID: 0}
     - target: {fileID: 7990570305177426395, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_Sprite
       value: 

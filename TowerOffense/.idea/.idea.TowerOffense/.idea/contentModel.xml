@@ -9,6 +9,9 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="CustomConsoleCommands.cs" t="Include" />
+        <e p="GlobalDataRetriever.cs" t="Include" />
+        <e p="PauseMenuButtons.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Demigiant" t="Include">
             <e p="DemiLib" t="Include">
@@ -110,6 +113,168 @@
               <e p="TargetsHolder.cs" t="Include" />
               <e p="TargetStateListener.cs" t="Include" />
               <e p="URPOutlineFeature.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Febucci" t="Include">
+            <e p="Text Animator" t="Include">
+              <e p="Example" t="Include">
+                <e p="Font" t="Include">
+                  <e p="OFL.txt" t="Include" />
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="Editor" t="Include">
+                    <e p="EffectsTestingCustomEditor.cs" t="Include" />
+                    <e p="Febucci.TextAnimator.Demo.Editor.asmdef" t="Include" />
+                    <e p="UsageExampleCustomEditor.cs" t="Include" />
+                  </e>
+                  <e p="Runtime" t="Include">
+                    <e p="DefaultEffectsExample.cs" t="Include" />
+                    <e p="EffectsTesting.cs" t="Include" />
+                    <e p="EventExample.cs" t="Include" />
+                    <e p="Febucci.TextAnimator.Demo.Runtime.asmdef" t="Include" />
+                    <e p="SetTextOnEnable.cs" t="Include" />
+                    <e p="UsageExample.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Integrations" t="Include">
+                <e p="Integrations.txt" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="Attributes" t="Include">
+                    <e p="CharsDisplayTimeAttributeDrawer.cs" t="Include" />
+                    <e p="MinValueAttributeDrawer.cs" t="Include" />
+                    <e p="NotZeroAttribute.cs" t="Include" />
+                    <e p="PositiveValueAttributeDrawer.cs" t="Include" />
+                  </e>
+                  <e p="BuiltinEffectsDataScriptableDrawer.cs" t="Include" />
+                  <e p="Febucci.TextAnimator.Editor.asmdef" t="Include" />
+                  <e p="TAnimGlobalDataScriptableDrawer.cs" t="Include" />
+                  <e p="TAnimPlayerBaseDrawer.cs" t="Include" />
+                  <e p="TextAnimatorDrawer.cs" t="Include" />
+                </e>
+                <e p="Runtime" t="Include">
+                  <e p="Core" t="Include">
+                    <e p="Base" t="Include">
+                      <e p="Character.cs" t="Include" />
+                      <e p="EffectInfoAttribute.cs" t="Include" />
+                      <e p="EffectsBase.cs" t="Include" />
+                      <e p="Modifier.cs" t="Include" />
+                    </e>
+                    <e p="EffectsDefaultValues.cs" t="Include" />
+                    <e p="Special Tags" t="Include">
+                      <e p="EventMarker.cs" t="Include" />
+                    </e>
+                    <e p="TAnimBuilder.cs" t="Include" />
+                    <e p="TAnimGlobalDataScriptable.cs" t="Include" />
+                    <e p="TAnimPlayerBase.cs" t="Include" />
+                    <e p="TAnimTags.cs" t="Include" />
+                    <e p="TypewriterAction.cs" t="Include" />
+                  </e>
+                  <e p="Effects" t="Include">
+                    <e p="Appearance Effects" t="Include">
+                      <e p="Base" t="Include">
+                        <e p="AppearanceBase.cs" t="Include" />
+                      </e>
+                      <e p="Defaults" t="Include">
+                        <e p="DiagonalExpandAppearance.cs" t="Include" />
+                        <e p="FadeAppearance.cs" t="Include" />
+                        <e p="HorizontallExpandAppearance.cs" t="Include" />
+                        <e p="OffsetAppearance.cs" t="Include" />
+                        <e p="RotatingAppearance.cs" t="Include" />
+                        <e p="SizeAppearance.cs" t="Include" />
+                        <e p="VerticalExpandAppearance.cs" t="Include" />
+                      </e>
+                      <e p="Presets" t="Include">
+                        <e p="PresetAppearance.cs" t="Include" />
+                        <e p="PresetAppearanceValues.cs" t="Include" />
+                      </e>
+                    </e>
+                    <e p="Behavior Effects" t="Include">
+                      <e p="Base" t="Include">
+                        <e p="BehaviorBase.cs" t="Include" />
+                        <e p="BehaviorSine.cs" t="Include" />
+                      </e>
+                      <e p="Defaults" t="Include">
+                        <e p="BounceBehavior.cs" t="Include" />
+                        <e p="DangleBehavior.cs" t="Include" />
+                        <e p="FadeBehavior.cs" t="Include" />
+                        <e p="PendulumBehavior.cs" t="Include" />
+                        <e p="RainbowBehavior.cs" t="Include" />
+                        <e p="RotationBehavior.cs" t="Include" />
+                        <e p="ShakeBehavior.cs" t="Include" />
+                        <e p="SizeBehavior.cs" t="Include" />
+                        <e p="SlideBehavior.cs" t="Include" />
+                        <e p="SwingBehavior.cs" t="Include" />
+                        <e p="WaveBehavior.cs" t="Include" />
+                        <e p="WiggleBehavior.cs" t="Include" />
+                      </e>
+                      <e p="Presets" t="Include">
+                        <e p="PresetBehavior.cs" t="Include" />
+                        <e p="PresetBehaviorValues.cs" t="Include" />
+                      </e>
+                    </e>
+                    <e p="Presets Base" t="Include">
+                      <e p="ColorCurve.cs" t="Include" />
+                      <e p="EffectEvaluator.cs" t="Include" />
+                      <e p="EmissionControl.cs" t="Include" />
+                      <e p="FloatCurve.cs" t="Include" />
+                      <e p="PresetBaseValues.cs" t="Include" />
+                    </e>
+                    <e p="Scriptables" t="Include">
+                      <e p="BuiltinAppearancesDataScriptable.cs" t="Include" />
+                      <e p="BuiltinBehaviorsDataScriptable.cs" t="Include" />
+                      <e p="BuiltinDataScriptableBase.cs" t="Include" />
+                    </e>
+                  </e>
+                  <e p="Febucci.TextAnimator.Runtime.asmdef" t="Include" />
+                  <e p="TextAnimator.cs" t="Include" />
+                  <e p="TextAnimatorPlayer.cs" t="Include" />
+                  <e p="Utilities" t="Include">
+                    <e p="Attributes" t="Include">
+                      <e p="CharsDisplayTimeAttribute.cs" t="Include" />
+                      <e p="MinValueAttribute.cs" t="Include" />
+                      <e p="NotZeroAttribute.cs" t="Include" />
+                      <e p="PositiveValueAttribute.cs" t="Include" />
+                    </e>
+                    <e p="FormatUtils.cs" t="Include" />
+                    <e p="TAnimExtensions.cs" t="Include" />
+                    <e p="TextUtilities.cs" t="Include" />
+                    <e p="Tween.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
+          </e>
+          <e p="IngameDebugConsole" t="Include">
+            <e p="Android" t="Include">
+              <e p="DebugLogLogcatListener.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="DebugLogManagerEditor.cs" t="Include" />
+              <e p="IngameDebugConsole.Editor.asmdef" t="Include" />
+            </e>
+            <e p="IngameDebugConsole.Runtime.asmdef" t="Include" />
+            <e p="Readme.txt" t="Include" />
+            <e p="Scripts" t="Include">
+              <e p="CircularBuffer.cs" t="Include" />
+              <e p="Commands" t="Include">
+                <e p="PlayerPrefsCommands.cs" t="Include" />
+                <e p="SceneCommands.cs" t="Include" />
+                <e p="TimeCommands.cs" t="Include" />
+              </e>
+              <e p="ConsoleMethodAttribute.cs" t="Include" />
+              <e p="DebugLogConsole.cs" t="Include" />
+              <e p="DebugLogEntry.cs" t="Include" />
+              <e p="DebugLogIndexList.cs" t="Include" />
+              <e p="DebugLogItem.cs" t="Include" />
+              <e p="DebugLogItemCopyWebGL.cs" t="Include" />
+              <e p="DebugLogManager.cs" t="Include" />
+              <e p="DebugLogPopup.cs" t="Include" />
+              <e p="DebugLogRecycledListView.cs" t="Include" />
+              <e p="DebugLogResizeListener.cs" t="Include" />
+              <e p="DebugsOnScrollListener.cs" t="Include" />
             </e>
           </e>
           <e p="NaughtyAttributes" t="Include">
@@ -341,10 +506,12 @@
             </e>
           </e>
         </e>
+        <e p="PostPlayerData.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="BuildingBase.cs" t="Include" />
           <e p="BuildingStats.cs" t="Include" />
           <e p="BulletBehavior.cs" t="Include" />
+          <e p="CoinPickUp.cs" t="Include" />
           <e p="Controller.cs" t="Include" />
           <e p="DebugDisplay.cs" t="Include" />
           <e p="Deprecated" t="Include">
@@ -359,13 +526,24 @@
           </e>
           <e p="EnemySpawner.cs" t="Include" />
           <e p="EnemyStats.cs" t="Include" />
+          <e p="GetDataFromEthercalc.cs" t="Include" />
+          <e p="GetDataFromWebSpreadsheet.cs" t="Include" />
+          <e p="GlobalDataHandler.cs" t="Include" />
+          <e p="GlobalSoundManager.cs" t="Include" />
           <e p="GlobalStateManager.cs" t="Include" />
           <e p="GUIDisplayer.cs" t="Include" />
           <e p="ISelectable.cs" t="Include" />
           <e p="ItemAnimator.cs" t="Include" />
+          <e p="JsonCreator.cs" t="Include" />
           <e p="NavMeshHelperClass.cs" t="Include" />
+          <e p="SimpleJSON.cs" t="Include" />
           <e p="TurretAttack.cs" t="Include" />
           <e p="TurretRotation.cs" t="Include" />
+          <e p="UiHandler.cs" t="Include" />
+          <e p="WaveCreator.cs" t="Include" />
+          <e p="WaveManager.cs" t="Include" />
+          <e p="WaveSO.cs" t="Include" />
+          <e p="WavesSO.cs" t="Include" />
           <e p="World" t="Include">
             <e p="Node.cs" t="Include" />
             <e p="PlayGrid.cs" t="Include" />
@@ -449,10 +627,14 @@
             </e>
           </e>
         </e>
-        <e p="WaveCreator.cs" t="Include" />
-        <e p="WaveManager.cs" t="Include" />
-        <e p="WaveSO.cs" t="Include" />
+        <e p="VolumeSlider.cs" t="Include" />
       </e>
+      <e p="Febucci.TextAnimator.Demo.Editor.csproj" t="IncludeRecursive" />
+      <e p="Febucci.TextAnimator.Demo.Runtime.csproj" t="IncludeRecursive" />
+      <e p="Febucci.TextAnimator.Editor.csproj" t="IncludeRecursive" />
+      <e p="Febucci.TextAnimator.Runtime.csproj" t="IncludeRecursive" />
+      <e p="IngameDebugConsole.Editor.csproj" t="IncludeRecursive" />
+      <e p="IngameDebugConsole.Runtime.csproj" t="IncludeRecursive" />
       <e p="NaughtyAttributes.Core.csproj" t="IncludeRecursive" />
       <e p="NaughtyAttributes.Editor.csproj" t="IncludeRecursive" />
       <e p="NaughtyAttributes.Test.csproj" t="IncludeRecursive" />
