@@ -16,6 +16,7 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/PauseMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/VolumeSlider.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UiHandler.cs" />
       <option value="$PROJECT_DIR$/Assets/PauseMenuButtons.cs" />
     </changedPaths>
   </component>
@@ -69,7 +70,7 @@
       <workItem from="1636185901912" duration="146000" />
       <workItem from="1637869464352" duration="622000" />
       <workItem from="1638537026369" duration="10463000" />
-      <workItem from="1638630777631" duration="1129000" />
+      <workItem from="1638630777631" duration="3969000" />
     </task>
     <servers />
   </component>
