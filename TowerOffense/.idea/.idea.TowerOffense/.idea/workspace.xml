@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/VolumeSlider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../ZZZ Everything Not 5th Semester/ZZZFourthSemester/Building Worlds/WICYN Repo/WICYN Movement Prototype/Assets/Scripts/MainMenu.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PauseMenuButtons.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -67,7 +68,8 @@
       <updated>1636185896147</updated>
       <workItem from="1636185901912" duration="146000" />
       <workItem from="1637869464352" duration="622000" />
-      <workItem from="1638537026369" duration="10061000" />
+      <workItem from="1638537026369" duration="10463000" />
+      <workItem from="1638630777631" duration="1129000" />
     </task>
     <servers />
   </component>
