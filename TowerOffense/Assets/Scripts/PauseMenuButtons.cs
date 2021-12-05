@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PauseMenuButtons : MonoBehaviour
 {
     public GameObject feedbackCanvas;
+    public GameObject pauseMenu;
     public GameObject connectionActiveSprite;
 
     public void Start()
@@ -15,6 +16,8 @@ public class PauseMenuButtons : MonoBehaviour
         feedbackCanvas.SetActive(false);
 
         connectionActiveSprite = GameObject.Find("ConnectionActive");
+
+        pauseMenu = GameObject.Find("PauseMenuCanvas");
     }
 
     public void RestartScene()
@@ -47,5 +50,10 @@ public class PauseMenuButtons : MonoBehaviour
         
         //if connection is inactive, disable ConnectionActive sprite
         
+    }
+
+    public void ClosePauseMenu()
+    {
+        pauseMenu.SetActive(false);
     }
 }
