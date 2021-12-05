@@ -44,9 +44,10 @@ public class PauseMenuButtons : MonoBehaviour
     public void ClosePauseMenu()
     {
         //timescale back to normal (from cached timescale in pausebutton)
-        Time.fixedDeltaTime = PauseButtonScript.cachedDeltaTime;
-        Time.timeScale = PauseButtonScript.cachedTime;
-        
+        //Time.fixedDeltaTime = PauseButtonScript.fixedDeltaTime;
+        //Time.timeScale = PauseButtonScript.cachedTime;
+        Time.timeScale = 1f;
+
         print($"current timescale is {Time.timeScale}");
         print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
         

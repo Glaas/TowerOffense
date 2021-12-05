@@ -26,8 +26,9 @@ public class PauseButton : MonoBehaviour
     public void Start()
     {
         //cache timescale
-        this.fixedDeltaTime = Time.fixedDeltaTime;
+        fixedDeltaTime = Time.fixedDeltaTime;
         cachedTime = Time.timeScale;
+        cachedDeltaTime = Time.deltaTime;
         
         print($"current timescale is {Time.timeScale}");
         print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
