@@ -8,9 +8,11 @@ public class PauseMenuButtons : MonoBehaviour
 {
     public GameObject feedbackCanvas;
     public GameObject pauseMenu;
+    public Canvas pauseMenuCanvas;
     public GameObject connectionActiveSprite;
 
     public PauseButton PauseButtonScript;
+    public UiHandler UIHandlerScript;
 
     public void Awake()
     {
@@ -18,8 +20,10 @@ public class PauseMenuButtons : MonoBehaviour
         feedbackCanvas.SetActive(false);
 
         connectionActiveSprite = GameObject.Find("ConnectionActive");
-
+        
+        //pauseMenuCanvas = UIHandlerScript.PauseMenuCanvas;
         pauseMenu = GameObject.Find("PauseMenuCanvas");
+        pauseMenuCanvas = pauseMenu.GetComponent<Canvas>();
     }
 
     public void RestartScene()
@@ -39,14 +43,14 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void ClosePauseMenu()
     {
-        pauseMenu.SetActive(false);
-        
         //timescale back to normal (from cached timescale in pausebutton)
         Time.fixedDeltaTime = PauseButtonScript.cachedDeltaTime;
         Time.timeScale = PauseButtonScript.cachedTime;
         
         print($"current timescale is {Time.timeScale}");
         print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
+        
+        pauseMenuCanvas.enabled = false;
     }
 
     public void SetFullscreen(bool isFullscreen)

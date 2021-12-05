@@ -12,6 +12,8 @@ public class UiHandler : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI wavesText;
     public TextMeshProUGUI infoText;
+    public GameObject PauseMenuUI;
+    public Canvas PauseMenuCanvas;
 
     public static UiHandler instance;
 //todo display wave nummer
@@ -26,6 +28,10 @@ public class UiHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        PauseMenuUI = GameObject.Find("PauseMenuCanvas");
+        PauseMenuCanvas = PauseMenuUI.GetComponent<Canvas>();
+        PauseMenuCanvas.enabled = true;
     }
 
 
@@ -36,6 +42,8 @@ public class UiHandler : MonoBehaviour
         SetInfo("Start your preparation, and click \"Next wave\" when you are ready");
         //  placeWallButton.onClick.AddListener(() => { GameManager.instance.PlaceWall(); });
         //  startWaveButton.onClick.AddListener(() => { GameManager.instance.StartWave(); });
+
+        PauseMenuCanvas.enabled = false;
     }
 
 
@@ -51,4 +59,10 @@ public class UiHandler : MonoBehaviour
     {
         moneyText.text = "Money: " + GlobalDataHandler.instance.currentPlayerCoins;
     }
+    
+    
+    
+    
+    
+    
 }
