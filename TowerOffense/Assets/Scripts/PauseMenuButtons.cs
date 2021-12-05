@@ -10,7 +10,9 @@ public class PauseMenuButtons : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject connectionActiveSprite;
 
-    public void Start()
+    public PauseButton PauseButtonScript;
+
+    public void Awake()
     {
         feedbackCanvas = GameObject.Find("FeedbackCanvas");
         feedbackCanvas.SetActive(false);
@@ -35,11 +37,18 @@ public class PauseMenuButtons : MonoBehaviour
         feedbackCanvas.SetActive(true);
     }
 
-    public void PauseButton()
+    public void ClosePauseMenu()
     {
-        //cache timescale
-        //when pausemenu active, timescale = 0
-        //afterwards go back to cached timescale (which is gonna be 1 lol)
+        pauseMenu.SetActive(false);
+        
+        //timescale back to normal (from cached timescale in pausebutton)
+        Time.fixedDeltaTime = PauseButtonScript.cachedDeltaTime;
+        Time.timeScale = PauseButtonScript.cachedTime;
+    }
+
+    public void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
     }
 
     public void CheckConnection()
@@ -50,10 +59,5 @@ public class PauseMenuButtons : MonoBehaviour
         
         //if connection is inactive, disable ConnectionActive sprite
         
-    }
-
-    public void ClosePauseMenu()
-    {
-        pauseMenu.SetActive(false);
     }
 }

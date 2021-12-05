@@ -17,8 +17,8 @@
       <option value="$PROJECT_DIR$/Assets/VolumeSlider.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UiHandler.cs" />
       <option value="$PROJECT_DIR$/Assets/PauseMenuButtons.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PauseButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PauseMenuButtons.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PauseButton.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="20XLGjjwYwXzyvbEFstT7bgPRPA" />
@@ -73,7 +73,7 @@
       <workItem from="1638537026369" duration="10463000" />
       <workItem from="1638630777631" duration="3969000" />
       <workItem from="1638672085459" duration="166000" />
-      <workItem from="1638711383774" duration="457000" />
+      <workItem from="1638711383774" duration="4936000" />
     </task>
     <servers />
   </component>
