@@ -44,6 +44,9 @@ public class PauseMenuButtons : MonoBehaviour
         //timescale back to normal (from cached timescale in pausebutton)
         Time.fixedDeltaTime = PauseButtonScript.cachedDeltaTime;
         Time.timeScale = PauseButtonScript.cachedTime;
+        
+        print($"current timescale is {Time.timeScale}");
+        print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
     }
 
     public void SetFullscreen(bool isFullscreen)

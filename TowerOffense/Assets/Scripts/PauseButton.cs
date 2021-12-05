@@ -21,6 +21,9 @@ public class PauseButton : MonoBehaviour
         //cache timescale
         this.fixedDeltaTime = Time.fixedDeltaTime;
         cachedTime = Time.timeScale;
+        
+        print($"current timescale is {Time.timeScale}");
+        print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
     }
     public void PauseGame()
     {
@@ -33,5 +36,8 @@ public class PauseButton : MonoBehaviour
         
         //timescale 0
         Time.timeScale = 0.0f;
+        
+        print($"pause. current timescale is {Time.timeScale}");
+        print($"pause. current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
     }
 }
