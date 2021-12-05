@@ -9,9 +9,6 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="CustomConsoleCommands.cs" t="Include" />
-        <e p="GlobalDataRetriever.cs" t="Include" />
-        <e p="PauseMenuButtons.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Demigiant" t="Include">
             <e p="DemiLib" t="Include">
@@ -506,13 +503,13 @@
             </e>
           </e>
         </e>
-        <e p="PostPlayerData.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="BuildingBase.cs" t="Include" />
           <e p="BuildingStats.cs" t="Include" />
           <e p="BulletBehavior.cs" t="Include" />
           <e p="CoinPickUp.cs" t="Include" />
           <e p="Controller.cs" t="Include" />
+          <e p="CustomConsoleCommands.cs" t="Include" />
           <e p="DebugDisplay.cs" t="Include" />
           <e p="Deprecated" t="Include">
             <e p="BreadthFirst.cs" t="Include" />
@@ -529,6 +526,7 @@
           <e p="GetDataFromEthercalc.cs" t="Include" />
           <e p="GetDataFromWebSpreadsheet.cs" t="Include" />
           <e p="GlobalDataHandler.cs" t="Include" />
+          <e p="GlobalDataRetriever.cs" t="Include" />
           <e p="GlobalSoundManager.cs" t="Include" />
           <e p="GlobalStateManager.cs" t="Include" />
           <e p="GUIDisplayer.cs" t="Include" />
@@ -536,10 +534,14 @@
           <e p="ItemAnimator.cs" t="Include" />
           <e p="JsonCreator.cs" t="Include" />
           <e p="NavMeshHelperClass.cs" t="Include" />
+          <e p="PauseButton.cs" t="Include" />
+          <e p="PauseMenuButtons.cs" t="Include" />
+          <e p="PostPlayerData.cs" t="Include" />
           <e p="SimpleJSON.cs" t="Include" />
           <e p="TurretAttack.cs" t="Include" />
           <e p="TurretRotation.cs" t="Include" />
           <e p="UiHandler.cs" t="Include" />
+          <e p="VolumeSlider.cs" t="Include" />
           <e p="WaveCreator.cs" t="Include" />
           <e p="WaveManager.cs" t="Include" />
           <e p="WaveSO.cs" t="Include" />
@@ -627,7 +629,6 @@
             </e>
           </e>
         </e>
-        <e p="VolumeSlider.cs" t="Include" />
       </e>
       <e p="Febucci.TextAnimator.Demo.Editor.csproj" t="IncludeRecursive" />
       <e p="Febucci.TextAnimator.Demo.Runtime.csproj" t="IncludeRecursive" />
