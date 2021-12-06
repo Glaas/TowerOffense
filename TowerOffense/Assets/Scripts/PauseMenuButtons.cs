@@ -28,7 +28,15 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void RestartScene()
     {
+        ClosePauseMenu();
+
+        SceneManager.UnloadSceneAsync("UIScene");
+        
+        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
     public void Quit()
@@ -48,8 +56,8 @@ public class PauseMenuButtons : MonoBehaviour
         //Time.timeScale = PauseButtonScript.cachedTime;
         Time.timeScale = 1f;
 
-        print($"current timescale is {Time.timeScale}");
-        print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
+        //print($"current timescale is {Time.timeScale}");
+        //print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
         
         pauseMenuCanvas.enabled = false;
     }
