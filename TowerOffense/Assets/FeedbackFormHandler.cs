@@ -62,10 +62,6 @@ public class FeedbackFormHandler : MonoBehaviour
         {
             ToggleFeedbackForm();
         }
-        if (GUI.Button(new Rect(10, 70, 100, 60), "Submit"))
-        {
-            SendFeedbackForm();
-        }
     }
     string ReturnMoodPicked()
     {
