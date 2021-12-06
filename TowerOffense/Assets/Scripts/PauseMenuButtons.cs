@@ -14,6 +14,9 @@ public class PauseMenuButtons : MonoBehaviour
     public PauseButton PauseButtonScript;
     public UiHandler UIHandlerScript;
 
+    public Dropdown resolutionDropdown;
+    public Resolution[] _resolutions;
+
     public void Awake()
     {
         feedbackCanvas = GameObject.Find("FeedbackCanvas");
@@ -24,6 +27,36 @@ public class PauseMenuButtons : MonoBehaviour
         //pauseMenuCanvas = UIHandlerScript.PauseMenuCanvas;
         pauseMenu = GameObject.Find("PauseMenuCanvas");
         pauseMenuCanvas = pauseMenu.GetComponent<Canvas>();
+    }
+
+    public void Start()
+    {
+        resolutionDropdown = GetComponentInChildren<Dropdown>();
+
+        _resolutions = Screen.resolutions;
+
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+        
+        for (int i = 0; i < _resolutions.Length; i++)
+        {
+            string option = _resolutions[i].width + " x " + _resolutions[i].height;
+            options.Add(option);
+
+            if (_resolutions[i].width == Screen.currentResolution.width &&
+                _resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
     }
 
     public void RestartScene()
@@ -75,5 +108,11 @@ public class PauseMenuButtons : MonoBehaviour
         
         //if connection is inactive, disable ConnectionActive sprite
         
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = _resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 }
