@@ -9,6 +9,7 @@ public class GlobalDataHandler : MonoBehaviour
     public int playerStartingCoins;
     public int currentPlayerCoins = 0;
     public int enemiesKilled = 0;
+    public int enemiesSpawned = 0;
     public int amountOfBuildingsPlaced = 0;
 
 

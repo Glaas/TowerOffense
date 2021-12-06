@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartPortalSequence(GameObject enemyPrefab)
     {
+        GlobalDataHandler.instance.enemiesSpawned++;
         portalIdle.SetActive(true);
         portalIdle.transform.DOScale(Vector3.one * 3.5f, 1.0f);
         StartCoroutine("PortalLoop", enemyPrefab);

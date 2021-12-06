@@ -68,7 +68,7 @@ public class DBLink : MonoBehaviour
     IEnumerator PostDocumentCoroutine()
     {
         PlayerData playerData = new PlayerData() { _id = UnityEngine.Random.Range(0, 1000).ToString(), name = playerName, score = score, tags = new string[] { "tag1", "tag2" }, comments = new string[][] { new string[] { "comment1", "comment2" }, new string[] { "comment1", "comment2" } } };
-        playerData.comments= new string[][] { new string[] { "comment1", "comment2" }, new string[] { "comment1", "comment2" } };
+        playerData.comments = new string[][] { new string[] { "comment1", "comment2" }, new string[] { "comment1", "comment2" } };
 
 
         var postRequest = CreateRequest(GETREQUEST, RequestType.POST, playerData);
@@ -117,20 +117,39 @@ public class DBLink : MonoBehaviour
         //print body of request
         Debug.Log("Data : " + Encoding.UTF8.GetString(request.uploadHandler.data));
     }
+    IEnumerator SendFeedbackFormCorout(FeedbackForm form)
+    {
+        var postRequest = CreateRequest(GETREQUEST, RequestType.POST, form);
 
-}
+        yield return postRequest.SendWebRequest();
 
-[Serializable]
-public class PlayerData
-{
-    public string _id = "mydoc";
-    public string name;
-    public int score;
-    public string[] tags;
-    public string[][] comments;
-}
-public class PostResult
-{
-    public string success { get; set; }
+        if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
+        else
+        {
+            Debug.Log("Form upload complete!");
+
+            var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
+            print("Deserialized data = " + deserializedPostData.success);
+        }
+    }
+    public void SendFeedbackForm(FeedbackForm form)
+    {
+        StartCoroutine(SendFeedbackFormCorout(form));
+
+    }
+
+    [Serializable]
+    public class PlayerData
+    {
+        public string _id = "mydoc";
+        public string name;
+        public int score;
+        public string[] tags;
+        public string[][] comments;
+    }
+    public class PostResult
+    {
+        public string success { get; set; }
+    }
 }
 
