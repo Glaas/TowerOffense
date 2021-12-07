@@ -8,7 +8,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PauseButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../ZZZ Everything Not 5th Semester/ZZZFourthSemester/Building Worlds/WICYN Repo/WICYN Movement Prototype/Assets/Scripts/MainMenu.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -77,6 +76,7 @@
       <workItem from="1638722895043" duration="85000" />
       <workItem from="1638790656891" duration="2411000" />
       <workItem from="1638827494674" duration="1895000" />
+      <workItem from="1638871095246" duration="3295000" />
     </task>
     <servers />
   </component>

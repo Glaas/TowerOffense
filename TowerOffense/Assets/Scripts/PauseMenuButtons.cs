@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,17 +11,23 @@ public class PauseMenuButtons : MonoBehaviour
     public GameObject pauseMenu;
     public Canvas pauseMenuCanvas;
     public GameObject connectionActiveSprite;
+    public Toggle fullscreenToggle;
 
     public PauseButton PauseButtonScript;
     public UiHandler UIHandlerScript;
 
-    public Dropdown resolutionDropdown;
+    public TMP_Dropdown resolutionDropdown;
     public Resolution[] _resolutions;
 
     public void Awake()
     {
         feedbackCanvas = GameObject.Find("FeedbackCanvas");
         feedbackCanvas.SetActive(false);
+
+        if (fullscreenToggle == null)
+        {
+            fullscreenToggle = GameObject.Find("ToggleFullscreen").GetComponent<Toggle>();
+        }
 
         connectionActiveSprite = GameObject.Find("ConnectionActive");
         
@@ -31,7 +38,7 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void Start()
     {
-        resolutionDropdown = GetComponentInChildren<Dropdown>();
+        resolutionDropdown = GetComponentInChildren<TMP_Dropdown>();
 
         _resolutions = Screen.resolutions;
 
@@ -95,9 +102,12 @@ public class PauseMenuButtons : MonoBehaviour
         pauseMenuCanvas.enabled = false;
     }
 
-    public void SetFullscreen(bool isFullscreen)
+    public void SetFullscreen()
     {
-        Screen.fullScreen = isFullscreen;
+        print("full screen is now " + Screen.fullScreen);
+        print($"Passing {fullscreenToggle.isOn} to fullscreen");
+        Screen.fullScreen = fullscreenToggle.isOn;
+        print("full screen is now " + Screen.fullScreen);
     }
 
     public void CheckConnection()
