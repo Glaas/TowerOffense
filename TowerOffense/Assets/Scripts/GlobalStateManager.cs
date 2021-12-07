@@ -18,7 +18,7 @@ public class GlobalStateManager : MonoBehaviour
     }
     private void Start()
     {
-        startWaveButton = GameObject.Find("StartWave");
+        startWaveButton = GameObject.Find("StartWaveButton");
         startWaveButton.SetActive(false);
         gameState = GameState.GENERATE_WORLD;
         IterateGameState();
