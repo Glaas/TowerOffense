@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 
+
 public class GetDataFromEthercalc : MonoBehaviour
 {
     string uri;
