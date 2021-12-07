@@ -14,7 +14,6 @@ public class GlobalStateManager : MonoBehaviour
     private void Awake() //IMPORTANT entry point of the program
     {
         Instance = this;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
 
     }
     private void Start()
