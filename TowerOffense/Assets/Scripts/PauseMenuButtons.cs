@@ -104,8 +104,6 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void SetFullscreen()
     {
-        print("full screen is now " + Screen.fullScreen);
-        print($"Passing {fullscreenToggle.isOn} to fullscreen");
         Screen.fullScreen = fullscreenToggle.isOn;
         print("full screen is now " + Screen.fullScreen);
     }

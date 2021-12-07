@@ -377,6 +377,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &294508585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1450280203537590081, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
+  m_PrefabInstance: {fileID: 1450280202428236509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &294508591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294508585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28ca849370d8d743815f9331c94724d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuCanvas: {fileID: 0}
+  PauseMenuButtons: {fileID: 0}
+  UIHandlerScript: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  cachedTime: 0
 --- !u!1001 &320689315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3260,11 +3282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5314786535621099142, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3317.326
+      value: 3657.4604
       objectReference: {fileID: 0}
     - target: {fileID: 5314786535621099142, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 19316.303
+      value: 21289.705
       objectReference: {fileID: 0}
     - target: {fileID: 5565032040641172312, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
       propertyPath: m_RootOrder
@@ -3318,5 +3340,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330855832271978330, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 56a76955182c9d5408c16bcdfe471b0b, type: 3}
