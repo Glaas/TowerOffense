@@ -28,10 +28,6 @@ public class UiHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-        PauseMenuUI = GameObject.Find("PauseMenuCanvas");
-        PauseMenuCanvas = PauseMenuUI.GetComponent<Canvas>();
-        PauseMenuCanvas.enabled = true;
     }
 
 
@@ -40,10 +36,7 @@ public class UiHandler : MonoBehaviour
         placeTurretButton.onClick.AddListener(() => { FindObjectOfType<Selection>().EnterPlacingTurret(); });
         startWaveButton.onClick.AddListener(() => { GlobalStateManager.Instance.NextWave(); });
         SetInfo("Start your preparation, and click \"Next wave\" when you are ready");
-        //  placeWallButton.onClick.AddListener(() => { GameManager.instance.PlaceWall(); });
-        //  startWaveButton.onClick.AddListener(() => { GameManager.instance.StartWave(); });
 
-        PauseMenuCanvas.enabled = false;
     }
 
 
