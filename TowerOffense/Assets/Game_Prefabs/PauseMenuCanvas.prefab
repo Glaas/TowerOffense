@@ -522,6 +522,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   pauseMenuCanvas: {fileID: 0}
   connectionActiveSprite: {fileID: 0}
+  fullscreenToggle: {fileID: 0}
   PauseButtonScript: {fileID: 0}
   UIHandlerScript: {fileID: 0}
   resolutionDropdown: {fileID: 0}
@@ -1252,11 +1253,11 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: LOW
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 21300000, guid: d99b781e72e5a154588473760703adf3, type: 3}
     - m_Text: MEDIUM
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 21300000, guid: d99b781e72e5a154588473760703adf3, type: 3}
     - m_Text: HIGH
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 21300000, guid: d99b781e72e5a154588473760703adf3, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1361,7 +1362,7 @@ MonoBehaviour:
       - m_Target: {fileID: 902461034848608231}
         m_TargetAssemblyTypeName: PauseMenuButtons, Assembly-CSharp
         m_MethodName: SetFullscreen
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1370,7 +1371,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &902461035165472052
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,8 +3324,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LOW
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: eeabe2963150eda46aa6c5bb8b17001d, type: 2}
-  m_sharedMaterial: {fileID: -2722790565671352911, guid: eeabe2963150eda46aa6c5bb8b17001d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9e8731748c953b347bd6ff9edb39b9ad, type: 2}
+  m_sharedMaterial: {fileID: -8887272531273332332, guid: 9e8731748c953b347bd6ff9edb39b9ad, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
