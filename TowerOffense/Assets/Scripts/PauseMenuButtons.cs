@@ -7,9 +7,8 @@ using UnityEngine.UI;
 
 public class PauseMenuButtons : MonoBehaviour
 {
-    public GameObject feedbackCanvas;
+    public GameObject feedbackFormParent;
     public GameObject pauseMenu;
-    public Canvas pauseMenuCanvas;
     public GameObject connectionActiveSprite;
     public Toggle fullscreenToggle;
 
@@ -21,19 +20,21 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void Awake()
     {
-        feedbackCanvas = GameObject.Find("FeedbackCanvas");
-        feedbackCanvas.SetActive(false);
+        feedbackFormParent = GameObject.Find("FeedbackForm");
+        GetComponent<FeedbackFormHandler>().AssignReferences();
+        feedbackFormParent.SetActive(false);
 
-        if (fullscreenToggle == null)
-        {
-            fullscreenToggle = GameObject.Find("ToggleFullscreen").GetComponent<Toggle>();
-        }
+        //TODO remake awake function and assign everything correctly
 
-        connectionActiveSprite = GameObject.Find("ConnectionActive");
-        
-        //pauseMenuCanvas = UIHandlerScript.PauseMenuCanvas;
-        pauseMenu = GameObject.Find("PauseMenuCanvas");
-        pauseMenuCanvas = pauseMenu.GetComponent<Canvas>();
+        // if (fullscreenToggle == null)
+        // {
+        //     fullscreenToggle = GameObject.Find("ToggleFullscreen").GetComponent<Toggle>();
+        // }
+
+        // connectionActiveSprite = GameObject.Find("ConnectionActive");
+
+        // //pauseMenuCanvas = UIHandlerScript.PauseMenuCanvas;
+        // pauseMenu = GameObject.Find("PauseMenuCanvas");
     }
 
     public void Start()
@@ -47,7 +48,7 @@ public class PauseMenuButtons : MonoBehaviour
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
-        
+
         for (int i = 0; i < _resolutions.Length; i++)
         {
             string option = _resolutions[i].width + " x " + _resolutions[i].height;
@@ -71,7 +72,7 @@ public class PauseMenuButtons : MonoBehaviour
         ClosePauseMenu();
 
         SceneManager.UnloadSceneAsync("UIScene");
-        
+
         //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -86,20 +87,15 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void FeedbackButton()
     {
-        feedbackCanvas.SetActive(true);
+        feedbackFormParent.SetActive(true);
     }
 
     public void ClosePauseMenu()
     {
-        //timescale back to normal (from cached timescale in pausebutton)
-        //Time.fixedDeltaTime = PauseButtonScript.fixedDeltaTime;
-        //Time.timeScale = PauseButtonScript.cachedTime;
+        //TODO close pause menu
         Time.timeScale = 1f;
 
-        //print($"current timescale is {Time.timeScale}");
-        //print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
-        
-        pauseMenuCanvas.enabled = false;
+
     }
 
     public void SetFullscreen()
@@ -113,9 +109,9 @@ public class PauseMenuButtons : MonoBehaviour
         //check the connection to the spreadsheet
         //if the spreadsheet has been successfully accessed within the last 10 seconds, connection is active
         //so the script that fetches from the connection needs to send something to this script
-        
+
         //if connection is inactive, disable ConnectionActive sprite
-        
+
     }
 
     public void SetResolution(int resolutionIndex)
