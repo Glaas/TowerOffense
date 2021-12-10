@@ -9,7 +9,7 @@ public class VolumeSlider : MonoBehaviour
     public GameObject volumeSlider;
     public Slider Slider;
     
-    private void Start()
+    private void Awake()
     {
         volumeSlider = GameObject.Find("VolumeSlider"); //gameobject with Slider on it
         Slider = volumeSlider.GetComponent<Slider>();

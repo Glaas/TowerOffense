@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuButtons : MonoBehaviour
 {
     public GameObject feedbackFormParent;
-    public GameObject pauseMenu;
+    public GameObject pauseMenuParent;
     public GameObject connectionActiveSprite;
     public Toggle fullscreenToggle;
 
@@ -33,12 +34,20 @@ public class PauseMenuButtons : MonoBehaviour
 
         // connectionActiveSprite = GameObject.Find("ConnectionActive");
 
-        // //pauseMenuCanvas = UIHandlerScript.PauseMenuCanvas;
-        // pauseMenu = GameObject.Find("PauseMenuCanvas");
+        pauseMenuParent = GameObject.Find("PauseMenuParent");
     }
 
     public void Start()
     {
+        SetUpResolution();
+
+
+        pauseMenuParent.SetActive(false);
+
+    }
+    void SetUpResolution()
+    {
+
         resolutionDropdown = GetComponentInChildren<TMP_Dropdown>();
 
         _resolutions = Screen.resolutions;
@@ -69,8 +78,6 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void RestartScene()
     {
-        ClosePauseMenu();
-
         SceneManager.UnloadSceneAsync("UIScene");
 
         //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
@@ -91,12 +98,20 @@ public class PauseMenuButtons : MonoBehaviour
         feedbackFormParent.SetActive(true);
     }
 
-    public void ClosePauseMenu()
+    void TogglePauseMenu()
     {
-        //TODO close pause menu
-        Time.timeScale = 1f;
+        pauseMenuParent.SetActive(!pauseMenuParent.activeSelf);
 
+        foreach (Button button in GameObject.Find("GameButtons").GetComponentsInChildren<Button>())
+        {
+            button.interactable = !pauseMenuParent.activeSelf;
+            if (button.GetComponent<EventTrigger>())
+            {
+                button.GetComponent<EventTrigger>().enabled = !pauseMenuParent.activeSelf;
+            }
 
+        }
+        Time.timeScale = Time.timeScale == 0 ? 1f : 0f;
     }
 
     public void SetFullscreen()
@@ -119,5 +134,13 @@ public class PauseMenuButtons : MonoBehaviour
     {
         Resolution resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu();
+        }
     }
 }
