@@ -80,9 +80,10 @@ public class PauseMenuButtons : MonoBehaviour
         //UnityEngine.SceneManagement.SceneManager.LoadScene("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
-    public void Quit()
+    public void QuitGame()
     {
         Application.Quit();
+        print("Quit");
     }
 
     public void FeedbackButton()
