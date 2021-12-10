@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PauseMenuButtons : MonoBehaviour
 {
@@ -40,12 +41,11 @@ public class PauseMenuButtons : MonoBehaviour
     public void Start()
     {
         SetUpResolution();
-
-
+        Screen.SetResolution(1280, 720, false);
         pauseMenuParent.SetActive(false);
 
     }
-    void SetUpResolution()
+    public void SetUpResolution()
     {
 
         resolutionDropdown = GetComponentInChildren<TMP_Dropdown>();
@@ -70,22 +70,24 @@ public class PauseMenuButtons : MonoBehaviour
             }
         }
 
-        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.AddOptions(options.ToList());
 
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+    }
+    public void SetResolution()
+    {
+        int choice = resolutionDropdown.value;
+        Resolution resolution = _resolutions[choice];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        print("Resolution set to: " + resolution.width + " x " + resolution.height);
     }
 
     public void RestartScene()
     {
         TogglePauseMenu();
         SceneManager.UnloadSceneAsync("UIScene");
-
-        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
     public void QuitGame()
@@ -117,9 +119,23 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void SetFullscreen()
     {
-        Screen.fullScreen = fullscreenToggle.isOn;
+        if (fullscreenToggle.isOn)
+        {
+            Screen.fullScreen = fullscreenToggle.isOn;
+            Resolution storedResolution = _resolutions[_resolutions.Length];
+
+            Screen.SetResolution(Screen.width, Screen.height, fullscreenToggle.isOn);
+        }
+        else if (!fullscreenToggle.isOn)
+        {
+            Resolution storedResolution = _resolutions[resolutionDropdown.value];
+            Screen.fullScreen = fullscreenToggle.isOn;
+
+            Screen.SetResolution(storedResolution.width, storedResolution.height, fullscreenToggle.isOn);
+        }
         print("Value sent to fullscreen is " + fullscreenToggle.isOn);
         print("full screen is now " + Screen.fullScreen);
+
     }
 
     public void CheckConnection()
@@ -132,11 +148,7 @@ public class PauseMenuButtons : MonoBehaviour
 
     }
 
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = _resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
+
 
     private void Update()
     {
