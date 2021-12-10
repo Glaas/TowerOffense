@@ -25,8 +25,10 @@ public class PauseMenuButtons : MonoBehaviour
         feedbackFormParent = GameObject.Find("FeedbackForm");
         GetComponent<FeedbackFormHandler>().AssignReferences();
         feedbackFormParent.SetActive(false);
+        SetUpResolution();
+        Screen.SetResolution(1280, 720, false);
 
-        //TODO remake awake function and assign everything correctly
+
 
         if (fullscreenToggle == null)
         {
@@ -40,8 +42,7 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void Start()
     {
-        SetUpResolution();
-        Screen.SetResolution(1280, 720, false);
+
         pauseMenuParent.SetActive(false);
 
     }
