@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.EventSystems;
+
 
 public class FeedbackFormHandler : MonoBehaviour
 {
@@ -11,20 +13,44 @@ public class FeedbackFormHandler : MonoBehaviour
     public TMP_InputField writtenFeedbackInputField;
     public GameObject feedbackForm;
 
- 
+
     public void ToggleFeedbackForm()
     {
         if (!feedbackForm.activeSelf)
         {
             feedbackForm.SetActive(true);
             feedbackForm.transform.localScale = Vector3.zero;
-            feedbackForm.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+            feedbackForm.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+
+            Time.timeScale = 0;
+
+            foreach (Button button in GameObject.Find("GameButtons").GetComponentsInChildren<Button>())
+            {
+                button.interactable = false;
+                if (button.GetComponent<EventTrigger>())
+                {
+                    button.GetComponent<EventTrigger>().enabled = false;
+                }
+
+            }
         }
         else
         {
-            feedbackForm.transform.DOScale(0, 0.5f).SetEase(Ease.InBack).OnComplete(() => feedbackForm.SetActive(false));
+            feedbackForm.transform.DOScale(0, 0.5f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() => feedbackForm.SetActive(false));
+            Time.timeScale = 1;
+
+            foreach (Button button in GameObject.Find("GameButtons").GetComponentsInChildren<Button>())
+            {
+                button.interactable = true;
+                if (button.GetComponent<EventTrigger>())
+                {
+                    button.GetComponent<EventTrigger>().enabled = true;
+                }
+
+            }
         }
-       
+
+
     }
 
     public void SendFeedbackForm()
