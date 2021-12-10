@@ -7714,7 +7714,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1177019810}
         m_TargetAssemblyTypeName: PauseMenuButtons, Assembly-CSharp
         m_MethodName: SetFullscreen
         m_Mode: 1

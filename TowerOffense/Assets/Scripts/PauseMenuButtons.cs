@@ -27,10 +27,10 @@ public class PauseMenuButtons : MonoBehaviour
 
         //TODO remake awake function and assign everything correctly
 
-        // if (fullscreenToggle == null)
-        // {
-        //     fullscreenToggle = GameObject.Find("ToggleFullscreen").GetComponent<Toggle>();
-        // }
+        if (fullscreenToggle == null)
+        {
+            fullscreenToggle = GameObject.Find("ToggleFullscreen").GetComponent<Toggle>();
+        }
 
         // connectionActiveSprite = GameObject.Find("ConnectionActive");
 
@@ -78,6 +78,7 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void RestartScene()
     {
+        TogglePauseMenu();
         SceneManager.UnloadSceneAsync("UIScene");
 
         //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
@@ -117,6 +118,7 @@ public class PauseMenuButtons : MonoBehaviour
     public void SetFullscreen()
     {
         Screen.fullScreen = fullscreenToggle.isOn;
+        print("Value sent to fullscreen is " + fullscreenToggle.isOn);
         print("full screen is now " + Screen.fullScreen);
     }
 
