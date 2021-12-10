@@ -98,7 +98,7 @@ public class PauseMenuButtons : MonoBehaviour
         feedbackFormParent.SetActive(true);
     }
 
-    void TogglePauseMenu()
+    public void TogglePauseMenu()
     {
         pauseMenuParent.SetActive(!pauseMenuParent.activeSelf);
 
