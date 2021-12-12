@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PauseMenuButtons : MonoBehaviour
 {
-    public GameObject feedbackCanvas;
-    public GameObject pauseMenu;
-    public Canvas pauseMenuCanvas;
+    public GameObject feedbackFormParent;
+    public GameObject pauseMenuParent;
     public GameObject connectionActiveSprite;
     public Toggle fullscreenToggle;
 
@@ -21,23 +22,33 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void Awake()
     {
-        feedbackCanvas = GameObject.Find("FeedbackCanvas");
-        feedbackCanvas.SetActive(false);
+        feedbackFormParent = GameObject.Find("FeedbackForm");
+        GetComponent<FeedbackFormHandler>().AssignReferences();
+        feedbackFormParent.SetActive(false);
+        SetUpResolution();
+        Screen.SetResolution(1280, 720, false);
+
+
 
         if (fullscreenToggle == null)
         {
             fullscreenToggle = GameObject.Find("ToggleFullscreen").GetComponent<Toggle>();
         }
 
-        connectionActiveSprite = GameObject.Find("ConnectionActive");
-        
-        //pauseMenuCanvas = UIHandlerScript.PauseMenuCanvas;
-        pauseMenu = GameObject.Find("PauseMenuCanvas");
-        pauseMenuCanvas = pauseMenu.GetComponent<Canvas>();
+        // connectionActiveSprite = GameObject.Find("ConnectionActive");
+
+        pauseMenuParent = GameObject.Find("PauseMenuParent");
     }
 
     public void Start()
     {
+
+        pauseMenuParent.SetActive(false);
+
+    }
+    public void SetUpResolution()
+    {
+
         resolutionDropdown = GetComponentInChildren<TMP_Dropdown>();
 
         _resolutions = Screen.resolutions;
@@ -47,7 +58,7 @@ public class PauseMenuButtons : MonoBehaviour
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
-        
+
         for (int i = 0; i < _resolutions.Length; i++)
         {
             string option = _resolutions[i].width + " x " + _resolutions[i].height;
@@ -60,52 +71,72 @@ public class PauseMenuButtons : MonoBehaviour
             }
         }
 
-        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.AddOptions(options.ToList());
 
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
+    public void SetResolution()
+    {
+        int choice = resolutionDropdown.value;
+        Resolution resolution = _resolutions[choice];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        print("Resolution set to: " + resolution.width + " x " + resolution.height);
+    }
 
     public void RestartScene()
     {
-        ClosePauseMenu();
-
+        TogglePauseMenu();
         SceneManager.UnloadSceneAsync("UIScene");
-        
-        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
-    public void Quit()
+    public void QuitGame()
     {
         Application.Quit();
+        print("Quit");
     }
 
     public void FeedbackButton()
     {
-        feedbackCanvas.SetActive(true);
+        feedbackFormParent.SetActive(true);
     }
 
-    public void ClosePauseMenu()
+    public void TogglePauseMenu()
     {
-        //timescale back to normal (from cached timescale in pausebutton)
-        //Time.fixedDeltaTime = PauseButtonScript.fixedDeltaTime;
-        //Time.timeScale = PauseButtonScript.cachedTime;
-        Time.timeScale = 1f;
+        pauseMenuParent.SetActive(!pauseMenuParent.activeSelf);
 
-        //print($"current timescale is {Time.timeScale}");
-        //print($"current deltatime is {Time.deltaTime} and current fixed delta is {Time.fixedDeltaTime}");
-        
-        pauseMenuCanvas.enabled = false;
+        foreach (Button button in GameObject.Find("GameButtons").GetComponentsInChildren<Button>())
+        {
+            button.interactable = !pauseMenuParent.activeSelf;
+            if (button.GetComponent<EventTrigger>())
+            {
+                button.GetComponent<EventTrigger>().enabled = !pauseMenuParent.activeSelf;
+            }
+
+        }
+        Time.timeScale = Time.timeScale == 0 ? 1f : 0f;
     }
 
     public void SetFullscreen()
     {
-        Screen.fullScreen = fullscreenToggle.isOn;
+        if (fullscreenToggle.isOn)
+        {
+            Screen.fullScreen = fullscreenToggle.isOn;
+            Resolution storedResolution = _resolutions[_resolutions.Length];
+
+            Screen.SetResolution(Screen.width, Screen.height, fullscreenToggle.isOn);
+        }
+        else if (!fullscreenToggle.isOn)
+        {
+            Resolution storedResolution = _resolutions[resolutionDropdown.value];
+            Screen.fullScreen = fullscreenToggle.isOn;
+
+            Screen.SetResolution(storedResolution.width, storedResolution.height, fullscreenToggle.isOn);
+        }
+        print("Value sent to fullscreen is " + fullscreenToggle.isOn);
         print("full screen is now " + Screen.fullScreen);
+
     }
 
     public void CheckConnection()
@@ -113,14 +144,18 @@ public class PauseMenuButtons : MonoBehaviour
         //check the connection to the spreadsheet
         //if the spreadsheet has been successfully accessed within the last 10 seconds, connection is active
         //so the script that fetches from the connection needs to send something to this script
-        
+
         //if connection is inactive, disable ConnectionActive sprite
-        
+
     }
 
-    public void SetResolution(int resolutionIndex)
+
+
+    private void Update()
     {
-        Resolution resolution = _resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu();
+        }
     }
 }

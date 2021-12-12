@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.EventSystems;
+
 
 public class FeedbackFormHandler : MonoBehaviour
 {
@@ -11,15 +13,6 @@ public class FeedbackFormHandler : MonoBehaviour
     public TMP_InputField writtenFeedbackInputField;
     public GameObject feedbackForm;
 
-    private void Start()
-    {
-        if (feedbackForm == null)
-        {
-            feedbackForm = GameObject.Find("FeedbackForm");
-        }
-        feedbackForm.SetActive(false);
-
-    }
 
     public void ToggleFeedbackForm()
     {
@@ -27,14 +20,37 @@ public class FeedbackFormHandler : MonoBehaviour
         {
             feedbackForm.SetActive(true);
             feedbackForm.transform.localScale = Vector3.zero;
-            feedbackForm.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+            feedbackForm.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+
+            Time.timeScale = 0;
+
+            foreach (Button button in GameObject.Find("GameButtons").GetComponentsInChildren<Button>())
+            {
+                button.interactable = false;
+                if (button.GetComponent<EventTrigger>())
+                {
+                    button.GetComponent<EventTrigger>().enabled = false;
+                }
+
+            }
         }
         else
         {
-            feedbackForm.transform.DOScale(0, 0.5f).SetEase(Ease.InBack).OnComplete(() => feedbackForm.SetActive(false));
+            feedbackForm.transform.DOScale(0, 0.5f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() => feedbackForm.SetActive(false));
+            Time.timeScale = 1;
 
+            foreach (Button button in GameObject.Find("GameButtons").GetComponentsInChildren<Button>())
+            {
+                button.interactable = true;
+                if (button.GetComponent<EventTrigger>())
+                {
+                    button.GetComponent<EventTrigger>().enabled = true;
+                }
+
+            }
         }
-       
+
+
     }
 
     public void SendFeedbackForm()
@@ -52,8 +68,6 @@ public class FeedbackFormHandler : MonoBehaviour
         feedbackForm.TowerHealth = GameObject.Find("Tower").GetComponent<BuildingStats>().currentHealth;
 
         FindObjectOfType<DBLink>().SendFeedbackForm(feedbackForm);
-
-
     }
 
     private void OnGUI()
@@ -93,7 +107,7 @@ public class FeedbackFormHandler : MonoBehaviour
                 throw new ArgumentException("No form type picked");
         }
     }
-    private void Awake()
+    public void AssignReferences()
     {
         if (moodToggleGroup == null)
         {
@@ -107,11 +121,6 @@ public class FeedbackFormHandler : MonoBehaviour
         {
             writtenFeedbackInputField = GameObject.Find("WrittenFeedbackPanel").GetComponentInChildren<TMP_InputField>();
         }
-
-
-
-
-
     }
 }
 

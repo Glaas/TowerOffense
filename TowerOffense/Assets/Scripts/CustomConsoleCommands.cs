@@ -13,6 +13,7 @@ public class CustomConsoleCommands : MonoBehaviour
         DebugLogConsole.AddCommand("exit", "exit the game", ExitGame);
         DebugLogConsole.AddCommand<string>("fetch", "fetch the cell", ReadCell);
         DebugLogConsole.AddCommand("spreadsheet", "open the spreadsheet controlling the game", OpenSpreadsheet);
+        DebugLogConsole.AddCommand("wiki", "open the wiki of the game on Bitbucket", OpenWiki);
 
     }
     public static void AddMoney(int amount)
@@ -47,6 +48,7 @@ public class CustomConsoleCommands : MonoBehaviour
         Debug.Log("cell is " + fetchCache);
     }
     static void OpenSpreadsheet() => Application.OpenURL("http://gd-ue.de:8000/pcwrsc9ifu1o");
+    static void OpenWiki() => Application.OpenURL("https://bitbucket.org/btkgamedesign/remotecontrolledgamesebmarie/wiki/Home");
 
 
 
