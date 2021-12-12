@@ -5909,7 +5909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.967, y: 0.00007567189}
+  m_AnchoredPosition: {x: 8.967, y: 0.00014278729}
   m_SizeDelta: {x: 17.933, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &608227210
@@ -6265,7 +6265,7 @@ GameObject:
   - component: {fileID: 679898538}
   - component: {fileID: 679898537}
   m_Layer: 5
-  m_Name: ButtonHighlight
+  m_Name: PauseButtonHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6911,7 +6911,7 @@ GameObject:
   - component: {fileID: 791912876}
   - component: {fileID: 791912875}
   m_Layer: 5
-  m_Name: StartWaveButton
+  m_Name: PauseGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7911,7 +7911,7 @@ GameObject:
   - component: {fileID: 933844899}
   - component: {fileID: 933844898}
   m_Layer: 5
-  m_Name: StartWaveText
+  m_Name: PauseButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
