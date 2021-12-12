@@ -832,14 +832,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd34636d450b3134d87662f5c6002883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: http://pouchdb.gd-ue.de/ddpg_shadowsquid/65a2cef3-5b88-4e46-adcd-e5451080bc17
-  argument: favouriteFruit
-  textReturned: 
-  node: 
-  GETREQUEST: http://pouchdb.gd-ue.de/ddpg_shadowsquid
-  playerName: Alber
-  score: 666
-  randomId: 1999
+  gameDataDB: http://pouchdb.gd-ue.de/rmtctl_shadowsquid_gamedata
+  gameValuesDoc: /gamevalues
+  keyToRetrieve: 
+  feedbackFormsDB: http://pouchdb.gd-ue.de/rmtctl_shadowsquid_feedbackforms
 --- !u!1 &197684174
 GameObject:
   m_ObjectHideFlags: 0
