@@ -17,7 +17,7 @@ public class DBLink : MonoBehaviour
     public string gameValuesDoc = "/gamevalues";
     public string keyToRetrieve;
     public JSONNode gameValues;
-    public string feedbackFormsDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_feedbackforms/";
+    public string feedbackFormsDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_feedbackforms";
 
     #region GET
     [Button("Make request")]
@@ -56,31 +56,25 @@ public class DBLink : MonoBehaviour
     #endregion
     #region POSTFEEDBACK
 
-    public void SendFeedbackForm(FeedbackForm form)
-    {
-        StartCoroutine(SendFeedbackFormCorout(form));
-
-    }
-
     IEnumerator SendFeedbackFormCorout(FeedbackForm form)
     {
         var postRequest = CreateRequest(feedbackFormsDB, RequestType.POST, form);
 
         yield return postRequest.SendWebRequest();
 
-        if (postRequest.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log(postRequest.error);
-            PrintResponse(postRequest);
-        }
+        if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
         else
         {
             Debug.Log("Form upload complete!");
-            //TODO fix the returned message
-            //TODO broadcast an event
-            //var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
-            // print("Deserialized data = " + deserializedPostData.success);
+
+            var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
+            print("Deserialized data = " + deserializedPostData.success);
         }
+    }
+    public void SendFeedbackForm(FeedbackForm form)
+    {
+        StartCoroutine(SendFeedbackFormCorout(form));
+
     }
 
     #endregion
@@ -119,6 +113,10 @@ public class DBLink : MonoBehaviour
         //print body of request
         Debug.Log("Data : " + Encoding.UTF8.GetString(request.uploadHandler.data));
     }
+}
+public class PostResult
+{
+    public string success { get; set; }
 }
 #endregion
 
