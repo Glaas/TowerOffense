@@ -1,3 +1,5 @@
+using System.Data.Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,37 +10,42 @@ public class GlobalDataRetriever : MonoBehaviour
     public static GlobalDataRetriever instance;
     public JSONNode spreadsheetData;
 
-    const string ENEMY_HEALTH_AMOUNT = "B3";
+    const string ENEMY_HEALTH_AMOUNT = "enemymaxhealth";
     public int enemyHealthAmount;
-    const string TOWER_MAX_HEALTH_AMOUNT = "B4";
+    const string TOWER_MAX_HEALTH_AMOUNT = "towermaximumhealth";
     public int towerMaxHealthAmount;
-    const string TURRET_MAX_DURABILITY = "B5";
+    const string TURRET_MAX_DURABILITY = "turretdurability";
     public int turretMaxDurability;
-    const string COIN_VALUE = "B6";
+    const string COIN_VALUE = "coinvalue";
     public int coinValue;
-    const string ENEMY_SPEED = "B7";
+    const string ENEMY_SPEED = "enemyspeed";
     public float enemySpeed;
 
     public void UpdateValues()
     {
-        spreadsheetData = FindObjectOfType<GetDataFromEthercalc>().spreadsheetRetrieved;
+        spreadsheetData = GetComponent<DBLink>().gameValues;
 
-        enemyHealthAmount = spreadsheetData[ENEMY_HEALTH_AMOUNT]["datavalue"].AsInt;
-        towerMaxHealthAmount = spreadsheetData[TOWER_MAX_HEALTH_AMOUNT]["datavalue"].AsInt;
-        turretMaxDurability = spreadsheetData[TURRET_MAX_DURABILITY]["datavalue"].AsInt;
-        coinValue = spreadsheetData[COIN_VALUE]["datavalue"].AsInt;
-        enemySpeed = spreadsheetData[ENEMY_SPEED]["datavalue"].AsFloat;
+        enemyHealthAmount = spreadsheetData[ENEMY_HEALTH_AMOUNT].AsInt;
+        towerMaxHealthAmount = spreadsheetData[TOWER_MAX_HEALTH_AMOUNT].AsInt;
+        turretMaxDurability = spreadsheetData[TURRET_MAX_DURABILITY].AsInt;
+        coinValue = spreadsheetData[COIN_VALUE].AsInt;
+        enemySpeed = spreadsheetData[ENEMY_SPEED].AsFloat;
 
 
 
     }
     private void OnEnable()
     {
-        GetDataFromEthercalc.OnSpreadsheetFetch += UpdateValues;
+        DBLink.OnRequestComplete += Handler;
     }
     private void OnDisable()
     {
-        GetDataFromEthercalc.OnSpreadsheetFetch -= UpdateValues;
+        DBLink.OnRequestComplete -= Handler;
+    }
+
+    void Handler(object s, bool res)
+    {
+        if (res) UpdateValues();
     }
     void Awake()
     {
@@ -51,5 +58,19 @@ public class GlobalDataRetriever : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    private void Start()
+    {
+        StartUpdateValueLoop();
+    }
+    void StartUpdateValueLoop()
+    {
+        if (!IsInvoking("MakeRequest"))
+        {
+            InvokeRepeating("MakeRequest", 0, 60);
+        }
+    }
+    void MakeRequest()
+    {
+        GetComponent<DBLink>().MakeRequest();
+    }
 }

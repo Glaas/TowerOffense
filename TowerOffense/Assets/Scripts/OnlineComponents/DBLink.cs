@@ -11,15 +11,17 @@ public class DBLink : MonoBehaviour
 {
     public enum RequestType { GET = 0, POST = 1, PUT = 2 };
 
+    public static event EventHandler<bool> OnRequestComplete;
+
     public string gameDataDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_gamedata";
     public string gameValuesDoc = "/gamevalues";
     public string keyToRetrieve;
-
+    public JSONNode gameValues;
     public string feedbackFormsDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_feedbackforms/";
 
     #region GET
     [Button("Make request")]
-    void MakeRequest()
+    public void MakeRequest()
     {
         StartCoroutine(GetGameValues());
     }
@@ -37,12 +39,14 @@ public class DBLink : MonoBehaviour
             if (webRequest.result == UnityWebRequest.Result.ConnectionError)
             {
                 Debug.Log(pages[page] + ": Error: " + webRequest.error);
+                OnRequestComplete(this, false);
             }
             else
             {
                 // Show results as text
                 string textReturned = pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
                 print(textReturned);
+                OnRequestComplete(this, true);
 
                 // Create a JSON object from received string data
                 JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
