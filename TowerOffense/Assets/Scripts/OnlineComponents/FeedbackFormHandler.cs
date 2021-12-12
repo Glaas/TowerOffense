@@ -31,7 +31,6 @@ public class FeedbackFormHandler : MonoBehaviour
                 {
                     button.GetComponent<EventTrigger>().enabled = false;
                 }
-
             }
         }
         else
@@ -46,11 +45,8 @@ public class FeedbackFormHandler : MonoBehaviour
                 {
                     button.GetComponent<EventTrigger>().enabled = true;
                 }
-
             }
         }
-
-
     }
 
     public void SendFeedbackForm()
