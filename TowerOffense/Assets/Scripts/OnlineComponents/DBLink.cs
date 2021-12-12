@@ -17,6 +17,7 @@ public class DBLink : MonoBehaviour
 
     public string feedbackFormsDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_feedbackforms/";
 
+    #region GET
     [Button("Make request")]
     void MakeRequest()
     {
@@ -49,46 +50,15 @@ public class DBLink : MonoBehaviour
             }
         }
     }
+    #endregion
+    #region POSTFEEDBACK
 
-
-
-    public void PostDocument()
+    public void SendFeedbackForm(FeedbackForm form)
     {
-        StartCoroutine(PostDocumentCoroutine());
+        StartCoroutine(SendFeedbackFormCorout(form));
+
     }
-    IEnumerator PostDocumentCoroutine()
-    {
-        yield return new WaitForSeconds(1);
-        //var postRequest = CreateRequest(GETREQUEST, RequestType.POST, playerData);
 
-        //yield return postRequest.SendWebRequest();
-
-        // if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
-        //  else
-        // {
-        // Debug.Log("Form upload complete!");
-        //TODO fix the returned message
-        //TODO broadcast an event
-        //var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
-        // print("Deserialized data = " + deserializedPostData.success);
-        //  }
-    }
-    private UnityWebRequest CreateRequest(string path, RequestType type = RequestType.GET, object data = null, bool printResults = false)
-    {
-        var request = new UnityWebRequest(path, type.ToString());
-
-        if (data != null)
-        {
-            var bodyRaw = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(data));
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        }
-
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-
-        return request;
-    }
-    
     IEnumerator SendFeedbackFormCorout(FeedbackForm form)
     {
         var postRequest = CreateRequest(feedbackFormsDB, RequestType.POST, form);
@@ -105,10 +75,24 @@ public class DBLink : MonoBehaviour
             // print("Deserialized data = " + deserializedPostData.success);
         }
     }
-    public void SendFeedbackForm(FeedbackForm form)
-    {
-        StartCoroutine(SendFeedbackFormCorout(form));
 
+    #endregion
+
+    #region helpers
+    private UnityWebRequest CreateRequest(string path, RequestType type = RequestType.GET, object data = null, bool printResults = false)
+    {
+        var request = new UnityWebRequest(path, type.ToString());
+
+        if (data != null)
+        {
+            var bodyRaw = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(data));
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        }
+
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        return request;
     }
 
     void PrintResponse(UnityWebRequest request)
@@ -129,4 +113,5 @@ public class DBLink : MonoBehaviour
         Debug.Log("Data : " + Encoding.UTF8.GetString(request.uploadHandler.data));
     }
 }
+#endregion
 
