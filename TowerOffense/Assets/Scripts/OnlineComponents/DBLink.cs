@@ -49,7 +49,6 @@ public class DBLink : MonoBehaviour
 
                 // Create a JSON object from received string data
                 gameValues = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
-                print(gameValues[keyToRetrieve]);
                 OnRequestComplete(this, true);
             }
         }
@@ -69,7 +68,11 @@ public class DBLink : MonoBehaviour
 
         yield return postRequest.SendWebRequest();
 
-        if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
+        if (postRequest.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(postRequest.error);
+            PrintResponse(postRequest);
+        }
         else
         {
             Debug.Log("Form upload complete!");
