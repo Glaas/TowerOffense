@@ -582,7 +582,7 @@ namespace IngameDebugConsole
 			// no further input is captured
 			if( toggleWithKey )
 			{
-				if( Input.GetKeyDown( toggleKey ) )
+				if( Input.GetKeyDown( toggleKey ) || Input.GetKeyDown(KeyCode.Alpha1) )
 				{
 					if( isLogWindowVisible )
 						HideLogWindow();
