@@ -66,7 +66,7 @@ public class GlobalDataRetriever : MonoBehaviour
     {
         if (!IsInvoking("MakeRequest"))
         {
-            InvokeRepeating("MakeRequest", 0, 60);
+            InvokeRepeating("MakeRequest", 0, .5f);
         }
     }
     void MakeRequest()

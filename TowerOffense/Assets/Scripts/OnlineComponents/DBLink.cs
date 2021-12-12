@@ -46,11 +46,11 @@ public class DBLink : MonoBehaviour
                 // Show results as text
                 string textReturned = pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
                 print(textReturned);
-                OnRequestComplete(this, true);
 
                 // Create a JSON object from received string data
-                JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
-                print(jsonNode[keyToRetrieve]);
+                gameValues = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
+                print(gameValues[keyToRetrieve]);
+                OnRequestComplete(this, true);
             }
         }
     }
