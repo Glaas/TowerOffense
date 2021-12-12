@@ -11,19 +11,20 @@ public class DBLink : MonoBehaviour
 {
     public enum RequestType { GET = 0, POST = 1, PUT = 2 };
 
-    public string URL;
-    public string argument;
-    [TextArea]
-    public string textReturned;
-    [TextArea]
-    public string node;
+    public string gameDataDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_gamedata";
+    public string gameValuesDoc = "/gamevalues";
+    public string keyToRetrieve;
+
+    public string feedbackFormsDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_feedbackforms/";
+
     [Button("Make request")]
     void MakeRequest()
     {
-        StartCoroutine(GetDocument());
+        StartCoroutine(GetGameValues());
     }
-    public IEnumerator GetDocument()
+    public IEnumerator GetGameValues()
     {
+        string URL = gameDataDB + gameValuesDoc;
         using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
         {
             // Request and wait for the desired page.
@@ -39,50 +40,38 @@ public class DBLink : MonoBehaviour
             else
             {
                 // Show results as text
-                textReturned = pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
+                string textReturned = pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
                 print(textReturned);
 
                 // Create a JSON object from received string data
                 JSONNode jsonNode = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
-                node = jsonNode[argument];
+                print(jsonNode[keyToRetrieve]);
             }
         }
     }
-    [Button("Clear")]
-    void Clear()
-    {
-        textReturned = "";
-        node = "";
-    }
 
-    public string GETREQUEST;
-    public string playerName;
-    public int score;
 
-    public int randomId;
-    [Button("Post document")]
+
     public void PostDocument()
     {
         StartCoroutine(PostDocumentCoroutine());
     }
     IEnumerator PostDocumentCoroutine()
     {
-        PlayerData playerData = new PlayerData() { _id = UnityEngine.Random.Range(0, 1000).ToString(), name = playerName, score = score, tags = new string[] { "tag1", "tag2" }, comments = new string[][] { new string[] { "comment1", "comment2" }, new string[] { "comment1", "comment2" } } };
-        playerData.comments = new string[][] { new string[] { "comment1", "comment2" }, new string[] { "comment1", "comment2" } };
+        yield return new WaitForSeconds(1);
+        //var postRequest = CreateRequest(GETREQUEST, RequestType.POST, playerData);
 
+        //yield return postRequest.SendWebRequest();
 
-        var postRequest = CreateRequest(GETREQUEST, RequestType.POST, playerData);
-
-        yield return postRequest.SendWebRequest();
-
-        if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
-        else
-        {
-            Debug.Log("Form upload complete!");
-
-            var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
-            print("Deserialized data = " + deserializedPostData.success);
-        }
+        // if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
+        //  else
+        // {
+        // Debug.Log("Form upload complete!");
+        //TODO fix the returned message
+        //TODO broadcast an event
+        //var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
+        // print("Deserialized data = " + deserializedPostData.success);
+        //  }
     }
     private UnityWebRequest CreateRequest(string path, RequestType type = RequestType.GET, object data = null, bool printResults = false)
     {
@@ -99,9 +88,31 @@ public class DBLink : MonoBehaviour
 
         return request;
     }
+    
+    IEnumerator SendFeedbackFormCorout(FeedbackForm form)
+    {
+        var postRequest = CreateRequest(feedbackFormsDB, RequestType.POST, form);
+
+        yield return postRequest.SendWebRequest();
+
+        if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
+        else
+        {
+            Debug.Log("Form upload complete!");
+            //TODO fix the returned message
+            //TODO broadcast an event
+            //var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
+            // print("Deserialized data = " + deserializedPostData.success);
+        }
+    }
+    public void SendFeedbackForm(FeedbackForm form)
+    {
+        StartCoroutine(SendFeedbackFormCorout(form));
+
+    }
+
     void PrintResponse(UnityWebRequest request)
     {
-
         StringBuilder sb = new StringBuilder();
         foreach (System.Collections.Generic.KeyValuePair<string, string> dict in request.GetResponseHeaders())
         {
@@ -116,40 +127,6 @@ public class DBLink : MonoBehaviour
 
         //print body of request
         Debug.Log("Data : " + Encoding.UTF8.GetString(request.uploadHandler.data));
-    }
-    IEnumerator SendFeedbackFormCorout(FeedbackForm form)
-    {
-        var postRequest = CreateRequest(GETREQUEST, RequestType.POST, form);
-
-        yield return postRequest.SendWebRequest();
-
-        if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
-        else
-        {
-            Debug.Log("Form upload complete!");
-
-            var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
-            print("Deserialized data = " + deserializedPostData.success);
-        }
-    }
-    public void SendFeedbackForm(FeedbackForm form)
-    {
-        StartCoroutine(SendFeedbackFormCorout(form));
-
-    }
-
-    [Serializable]
-    public class PlayerData
-    {
-        public string _id = "mydoc";
-        public string name;
-        public int score;
-        public string[] tags;
-        public string[][] comments;
-    }
-    public class PostResult
-    {
-        public string success { get; set; }
     }
 }
 

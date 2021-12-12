@@ -70,13 +70,6 @@ public class FeedbackFormHandler : MonoBehaviour
         FindObjectOfType<DBLink>().SendFeedbackForm(feedbackForm);
     }
 
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 100, 60), "Toggle form"))
-        {
-            ToggleFeedbackForm();
-        }
-    }
     string ReturnMoodPicked()
     {
         switch (moodToggleGroup.GetFirstActiveToggle().name.ToLower())
