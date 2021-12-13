@@ -20,6 +20,12 @@ public class GlobalDataRetriever : MonoBehaviour
     public int coinValue;
     const string ENEMY_SPEED = "enemyspeed";
     public float enemySpeed;
+    const string ACTION_PRICE = "actionsprice";
+    const string BASE_TURRET = "baseturret";
+    const string MODIFIED_TURRET = "modifiedTurret";
+    public int baseTurretPrice;
+    public int modifiedTurretPrice;
+
 
     public void UpdateValues()
     {
@@ -30,6 +36,8 @@ public class GlobalDataRetriever : MonoBehaviour
         turretMaxDurability = spreadsheetData[TURRET_MAX_DURABILITY].AsInt;
         coinValue = spreadsheetData[COIN_VALUE].AsInt;
         enemySpeed = spreadsheetData[ENEMY_SPEED].AsFloat;
+        baseTurretPrice = spreadsheetData[ACTION_PRICE][BASE_TURRET].AsInt;
+        modifiedTurretPrice = spreadsheetData[ACTION_PRICE][MODIFIED_TURRET].AsInt;
 
 
 
