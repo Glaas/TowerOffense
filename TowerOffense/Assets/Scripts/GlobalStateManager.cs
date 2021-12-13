@@ -11,7 +11,7 @@ public class GlobalStateManager : MonoBehaviour
 
     public GameObject winScreen;
 
-    private void Awake() //IMPORTANT entry point of the program
+    private void Awake() 
     {
         Instance = this;
 
@@ -56,7 +56,6 @@ public class GlobalStateManager : MonoBehaviour
                 AdjustDirLight(.80f, 2f);
                 break;
             case GameState.WAVE:
-                //TODO dim the directional light
                 AdjustDirLight(.20f, 2f);
                 print("Entering Wave");
                 UiHandler.instance.SetInfo("Wave incoming !");

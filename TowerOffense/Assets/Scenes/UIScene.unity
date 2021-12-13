@@ -9543,10 +9543,10 @@ GameObject:
   - component: {fileID: 1177019807}
   - component: {fileID: 1177019806}
   - component: {fileID: 1177019805}
-  - component: {fileID: 1632288755514378927}
   - component: {fileID: 2142247164}
   - component: {fileID: 1177019810}
   - component: {fileID: 1177019809}
+  - component: {fileID: 1177019811}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -9673,6 +9673,26 @@ MonoBehaviour:
   PauseButtonScript: {fileID: 0}
   UIHandlerScript: {fileID: 0}
   resolutionDropdown: {fileID: 0}
+--- !u!114 &1177019811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177019804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a0dfd3bda79824e95fd46435777cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeTurretButton: {fileID: 5681516972854751218}
+  placeWallButton: {fileID: 587991413686051814}
+  startWaveButton: {fileID: 1739236622796902358}
+  moneyText: {fileID: 1179555531}
+  wavesText: {fileID: 1273839193}
+  infoText: {fileID: 7669572158731172570}
+  PauseMenuUI: {fileID: 0}
+  PauseMenuCanvas: {fileID: 0}
 --- !u!1 &1179555529
 GameObject:
   m_ObjectHideFlags: 0
@@ -17314,7 +17334,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1632288755514378927}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UiHandler, Assembly-CSharp
         m_MethodName: WasCalled
         m_Mode: 1
@@ -17823,26 +17843,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1632288755514378927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177019804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f603fc2d04fe3874684401d998b46503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placeTurretButton: {fileID: 5681516972854751218}
-  placeWallButton: {fileID: 587991413686051814}
-  startWaveButton: {fileID: 1739236622796902358}
-  moneyText: {fileID: 1179555531}
-  wavesText: {fileID: 1273839193}
-  infoText: {fileID: 7669572158731172570}
-  PauseMenuUI: {fileID: 0}
-  PauseMenuCanvas: {fileID: 0}
 --- !u!114 &1666419528918887073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17956,7 +17956,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1632288755514378927}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UiHandler, Assembly-CSharp
         m_MethodName: WasCalled
         m_Mode: 1

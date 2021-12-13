@@ -31,7 +31,6 @@ public class FeedbackFormHandler : MonoBehaviour
                 {
                     button.GetComponent<EventTrigger>().enabled = false;
                 }
-
             }
         }
         else
@@ -46,11 +45,8 @@ public class FeedbackFormHandler : MonoBehaviour
                 {
                     button.GetComponent<EventTrigger>().enabled = true;
                 }
-
             }
         }
-
-
     }
 
     public void SendFeedbackForm()
@@ -70,13 +66,6 @@ public class FeedbackFormHandler : MonoBehaviour
         FindObjectOfType<DBLink>().SendFeedbackForm(feedbackForm);
     }
 
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 100, 60), "Toggle form"))
-        {
-            ToggleFeedbackForm();
-        }
-    }
     string ReturnMoodPicked()
     {
         switch (moodToggleGroup.GetFirstActiveToggle().name.ToLower())

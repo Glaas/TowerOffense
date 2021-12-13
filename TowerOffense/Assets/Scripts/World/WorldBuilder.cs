@@ -53,6 +53,13 @@ public class WorldBuilder : MonoBehaviour
                 grid.nodeGrid[x, z] = block;
                 block.transform.localPosition = new Vector3(x, 20, z);
                 block.transform.DOLocalMoveY(0, Random.Range(1f, 1.5f));
+                //Deactivate cubes on right edge of grid to prevent player from placing turrets there (overlaps with spawn point)
+                if (x == worldWidth - 1)
+                {
+                    block.GetComponentInChildren<Node>().canBeOutlined = false;
+                    var col = block.GetComponentsInChildren<Collider>();
+                    foreach (var item in col) Destroy(item);
+                }
             }
         }
         yield return new WaitForSeconds(2);
