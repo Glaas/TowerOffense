@@ -9,7 +9,9 @@ using UnityEngine.EventSystems;
 public class UiHandler : MonoBehaviour
 {
     public Button baseTurretButton;
+    public BuildingData baseTurretData;
     public Button modifTurretButton;
+    public BuildingData modifTurretData;
     public Button startWaveButton;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI wavesText;
@@ -31,6 +33,10 @@ public class UiHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
+
+    }
+    private void Start()
+    {
         gameButtonsParent.Clear();
         gameButtonsParent.Add(baseTurretButton);
         gameButtonsParent.Add(modifTurretButton);
@@ -39,15 +45,14 @@ public class UiHandler : MonoBehaviour
         {
             button.onClick.AddListener(() =>
             {
-                if (GlobalDataHandler.instance.currentPlayerCoins < button.GetComponent<ActionData>().cost)
+                if (GlobalDataHandler.instance.currentPlayerCoins < button.GetComponent<BuildingTypeHolder>().buildingData.cost)
                 {
                     SetInfo("Not enough money");
                     EventSystem.current.SetSelectedGameObject(null);
                     GlobalSoundManager.instance.PlayError();
                     return;
                 }
-                SelectionDataBuffer.costOfNextAction = baseTurretButton.GetComponent<ActionData>().cost;
-                SelectionDataBuffer.buildingToBuild = button.GetComponent<ActionData>().buildingToBuild;
+                SelectionDataBuffer.selectedBuildingData = button.GetComponent<BuildingTypeHolder>().buildingData;
                 FindObjectOfType<Selection>().EnterPlacingTurret();
             });
         }

@@ -8,7 +8,7 @@ using System.Collections;
 using TowerOffense;
 using NaughtyAttributes;
 
-public class Node : MonoBehaviour, ISelectable
+public class Node : MonoBehaviour
 {
     public Outlinable outline;
     public PlayGrid playgrid;
@@ -19,7 +19,6 @@ public class Node : MonoBehaviour, ISelectable
     [ColorUsage(false, true)]
     public Color offSetColor;
 
-    public Buildings[] buildings;
     public GameObject currentBuilding;
     public Transform buildingLocation;
 
@@ -44,7 +43,7 @@ public class Node : MonoBehaviour, ISelectable
         }
     }
 
-    public void OnSelect()
+    public void OnSelect(BuildingData buildingData)
     {
         switch (selection.toolType)
         {
@@ -65,7 +64,7 @@ public class Node : MonoBehaviour, ISelectable
                         return;
                     }
                 }
-                BuildBuilding(SelectionDataBuffer.buildingToBuild);
+                BuildBuilding(buildingData);
                 break;
             default: throw new NotImplementedException();
         }
@@ -89,23 +88,12 @@ public class Node : MonoBehaviour, ISelectable
 
     }
 
-    void BuildBuilding(BuildingType building)
+    void BuildBuilding(BuildingData buildingData)
     {
-        GameObject buildingPrefab = null;
-        foreach (Buildings b in buildings)
-        {
-            if (building == b.building)
-            {
-                buildingPrefab = b.prefab;
-            }
-        }
-        if (buildingPrefab == null) Debug.LogError("Building not found !!");
-
-        currentBuilding = Instantiate(buildingPrefab, buildingLocation.position, buildingPrefab.transform.rotation, transform);
+        currentBuilding = Instantiate(buildingData.buildingPrefab, buildingLocation.position, buildingData.buildingPrefab.transform.rotation, transform);
         ExcludeItselfFromNavmesh(true);
 
     }
-
     void ExcludeItselfFromNavmesh(bool becomeObstacle)
     {
         if (becomeObstacle)
@@ -116,8 +104,5 @@ public class Node : MonoBehaviour, ISelectable
             GetComponent<NavMeshObstacle>().size = Vector3.one * 1.5f;
         }
         else Destroy(gameObject.GetComponent<NavMeshObstacle>());
-
     }
-
-
 }

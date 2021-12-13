@@ -4,7 +4,6 @@ using UnityEngine;
 
 public static class SelectionDataBuffer
 {
-    public static int costOfNextAction = 0;
-    public static BuildingType buildingToBuild = BuildingType.BaseTurret;
+    public static BuildingData selectedBuildingData;
 
 }

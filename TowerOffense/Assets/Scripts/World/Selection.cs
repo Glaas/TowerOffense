@@ -141,8 +141,8 @@ namespace TowerOffense
                         {
                             case SELECT_MODE.SINGLE:
                                 if (nodeSelected == null) return;
-                                if (!nodeSelected.isSelected) nodeSelected.OnSelect();
-                                GlobalDataHandler.instance.SubtractMoney(SelectionDataBuffer.costOfNextAction);
+                                if (!nodeSelected.isSelected) nodeSelected.OnSelect(SelectionDataBuffer.selectedBuildingData);
+                                GlobalDataHandler.instance.SubtractMoney(SelectionDataBuffer.selectedBuildingData.cost);
                                 UiHandler.instance.UpdateCoins();
                                 UiHandler.instance.SetInfo("Structure was built successfully");
                                 GameObject.Find("PlaceTurretSFX").GetComponent<AudioSource>().Play();
