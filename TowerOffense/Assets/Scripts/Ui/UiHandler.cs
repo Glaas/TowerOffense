@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,6 +16,7 @@ public class UiHandler : MonoBehaviour
     public TextMeshProUGUI infoText;
     public GameObject PauseMenuUI;
     public Canvas PauseMenuCanvas;
+    public List<Button> gameButtonsParent;
 
     public static UiHandler instance;
 
@@ -29,6 +31,13 @@ public class UiHandler : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        gameButtonsParent.Clear();
+
+       // foreach (Button child in GameObject.Find("GameButtonsParent").GetComponentsInChildren<Button>())
+        {
+        //    gameButtonsParent.Add(child);
         }
     }
 
