@@ -27,11 +27,6 @@ public class BuildingStats : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //TODO make this building
-        //TODO keep track of durability of building
-
-
-
     }
 
     private void Start()
