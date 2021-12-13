@@ -71,15 +71,7 @@ public class GetDataFromWebSpreadsheet : MonoBehaviour
         }
 
     }
-    //TODO put that in an editor script duh
-    // public static void WriteAsFile(JSONNode node, string nodeName = "")
-    // {
-    //     var myDate = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-    //     var path = UnityEditor.AssetDatabase.GenerateUniqueAssetPath("Assets/SavedFiles/" + nodeName + myDate + ".json");
-
-    //     File.WriteAllText(path, node.ToString());
-    //     print("Saved to: " + path + myDate + ".json");
-    // }
+   
 }
 [System.Serializable]
 public class MySpreadsheetData
