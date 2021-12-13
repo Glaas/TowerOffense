@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 
 public class UiHandler : MonoBehaviour
 {
-    public Button placeTurretButton;
-    public Button placeWallButton;
+    public Button baseTurretButton;
+    public Button modifTurretButton;
     public Button startWaveButton;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI wavesText;
@@ -19,8 +19,6 @@ public class UiHandler : MonoBehaviour
     public List<Button> gameButtonsParent;
 
     public static UiHandler instance;
-
-    public int costOfNextAction;
 
     private void Awake()
     {
@@ -34,31 +32,26 @@ public class UiHandler : MonoBehaviour
         }
 
         gameButtonsParent.Clear();
+        gameButtonsParent.Add(baseTurretButton);
+        gameButtonsParent.Add(modifTurretButton);
 
-       // foreach (Button child in GameObject.Find("GameButtonsParent").GetComponentsInChildren<Button>())
+        foreach (Button button in gameButtonsParent)
         {
-        //    gameButtonsParent.Add(child);
-        }
-    }
-
-
-    private void Start()
-    {
-        placeTurretButton.onClick.AddListener(() =>
-        {
-
-            if (GlobalDataHandler.instance.currentPlayerCoins < placeTurretButton.GetComponent<ActionData>().cost)
+            button.onClick.AddListener(() =>
             {
-                SetInfo("Not enough money");
-                GlobalSoundManager.instance.PlayError();
-                return;
-            }
-            costOfNextAction = placeTurretButton.GetComponent<ActionData>().cost;
-            FindObjectOfType<Selection>().EnterPlacingTurret();
-        });
+                if (GlobalDataHandler.instance.currentPlayerCoins < button.GetComponent<ActionData>().cost)
+                {
+                    SetInfo("Not enough money");
+                    EventSystem.current.SetSelectedGameObject(null);
+                    GlobalSoundManager.instance.PlayError();
+                    return;
+                }
+                SelectionDataBuffer.costOfNextAction = baseTurretButton.GetComponent<ActionData>().cost;
+                SelectionDataBuffer.buildingToBuild = button.GetComponent<ActionData>().buildingToBuild;
+                FindObjectOfType<Selection>().EnterPlacingTurret();
+            });
+        }
         startWaveButton.onClick.AddListener(() => { GlobalStateManager.Instance.NextWave(); });
-        SetInfo("Start your preparation, and click \"Next wave\" when you are ready");
-
     }
 
 
@@ -74,10 +67,4 @@ public class UiHandler : MonoBehaviour
     {
         moneyText.text = "Money: " + GlobalDataHandler.instance.currentPlayerCoins;
     }
-
-
-
-
-
-
 }

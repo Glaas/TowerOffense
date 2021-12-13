@@ -142,7 +142,7 @@ namespace TowerOffense
                             case SELECT_MODE.SINGLE:
                                 if (nodeSelected == null) return;
                                 if (!nodeSelected.isSelected) nodeSelected.OnSelect();
-                                GlobalDataHandler.instance.SubtractMoney(FindObjectOfType<UiHandler>().costOfNextAction);
+                                GlobalDataHandler.instance.SubtractMoney(SelectionDataBuffer.costOfNextAction);
                                 UiHandler.instance.UpdateCoins();
                                 UiHandler.instance.SetInfo("Structure was built successfully");
                                 GameObject.Find("PlaceTurretSFX").GetComponent<AudioSource>().Play();

@@ -19,7 +19,7 @@ public class Node : MonoBehaviour, ISelectable
     [ColorUsage(false, true)]
     public Color offSetColor;
 
-    public List<GameObject> possibleBuildings;
+    public Buildings[] buildings;
     public GameObject currentBuilding;
     public Transform buildingLocation;
 
@@ -65,7 +65,7 @@ public class Node : MonoBehaviour, ISelectable
                         return;
                     }
                 }
-                BuildBuilding();
+                BuildBuilding(SelectionDataBuffer.buildingToBuild);
                 break;
             default: throw new NotImplementedException();
         }
@@ -89,10 +89,19 @@ public class Node : MonoBehaviour, ISelectable
 
     }
 
-    [Button("Build building")]
-    void BuildBuilding()
+    void BuildBuilding(BuildingType building)
     {
-        currentBuilding = Instantiate(possibleBuildings[0], buildingLocation.position, possibleBuildings[0].transform.rotation, transform);
+        GameObject buildingPrefab = null;
+        foreach (Buildings b in buildings)
+        {
+            if (building == b.building)
+            {
+                buildingPrefab = b.prefab;
+            }
+        }
+        if (buildingPrefab == null) Debug.LogError("Building not found !!");
+
+        currentBuilding = Instantiate(buildingPrefab, buildingLocation.position, buildingPrefab.transform.rotation, transform);
         ExcludeItselfFromNavmesh(true);
 
     }
