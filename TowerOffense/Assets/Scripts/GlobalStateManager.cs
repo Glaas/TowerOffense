@@ -11,7 +11,7 @@ public class GlobalStateManager : MonoBehaviour
 
     public GameObject winScreen;
 
-    private void Awake() //IMPORTANT entry point of the program
+    private void Awake() 
     {
         Instance = this;
 
