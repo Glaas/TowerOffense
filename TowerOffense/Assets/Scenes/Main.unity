@@ -347,12 +347,12 @@ MonoBehaviour:
   primaryBufferSizeMode: 0
   primaryRendererScale: 0.75
   primarySizeReference: 800
-  blurShift: 1
-  dilateShift: 1
-  dilateIterations: 1
+  blurShift: 0.2
+  dilateShift: 1.83
+  dilateIterations: 2
   dilateQuality: 0
   blurIterations: 1
-  blurType: 1
+  blurType: 3
 --- !u!114 &58259959
 MonoBehaviour:
   m_ObjectHideFlags: 0
