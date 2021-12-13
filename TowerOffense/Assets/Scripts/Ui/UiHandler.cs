@@ -9,9 +9,7 @@ using UnityEngine.EventSystems;
 public class UiHandler : MonoBehaviour
 {
     public Button baseTurretButton;
-    public BuildingData baseTurretData;
     public Button modifTurretButton;
-    public BuildingData modifTurretData;
     public Button startWaveButton;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI wavesText;
@@ -33,14 +31,14 @@ public class UiHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
-
+        gameButtonsParent.Clear();
+        foreach (Button button in GameObject.Find("GameButtonsParent").GetComponentsInChildren<Button>())
+        {
+            gameButtonsParent.Add(button);
+        }
     }
     private void Start()
     {
-        gameButtonsParent.Clear();
-        gameButtonsParent.Add(baseTurretButton);
-        gameButtonsParent.Add(modifTurretButton);
-
         foreach (Button button in gameButtonsParent)
         {
             button.onClick.AddListener(() =>
