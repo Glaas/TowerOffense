@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using TowerOffense;
 using Febucci.UI;
+using UnityEngine.EventSystems;
 
 public class UiHandler : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class UiHandler : MonoBehaviour
     public Canvas PauseMenuCanvas;
 
     public static UiHandler instance;
-//todo display wave nummer
+
+    public int costOfNextAction;
 
     private void Awake()
     {
@@ -33,7 +35,18 @@ public class UiHandler : MonoBehaviour
 
     private void Start()
     {
-        placeTurretButton.onClick.AddListener(() => { FindObjectOfType<Selection>().EnterPlacingTurret(); });
+        placeTurretButton.onClick.AddListener(() =>
+        {
+
+            if (GlobalDataHandler.instance.currentPlayerCoins < placeTurretButton.GetComponent<ActionData>().cost)
+            {
+                SetInfo("Not enough money");
+                GlobalSoundManager.instance.PlayError();
+                return;
+            }
+            costOfNextAction = placeTurretButton.GetComponent<ActionData>().cost;
+            FindObjectOfType<Selection>().EnterPlacingTurret();
+        });
         startWaveButton.onClick.AddListener(() => { GlobalStateManager.Instance.NextWave(); });
         SetInfo("Start your preparation, and click \"Next wave\" when you are ready");
 
@@ -52,10 +65,10 @@ public class UiHandler : MonoBehaviour
     {
         moneyText.text = "Money: " + GlobalDataHandler.instance.currentPlayerCoins;
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }

@@ -9487,8 +9487,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 852276681}
   m_HandleRect: {fileID: 852276680}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99987674
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17398,6 +17398,7 @@ GameObject:
   - component: {fileID: 5681516972854751218}
   - component: {fileID: 2358085479431454762}
   - component: {fileID: 1450280202673583653}
+  - component: {fileID: 796042189336298363}
   m_Layer: 5
   m_Name: TurretButton
   m_TagString: Untagged
@@ -17405,6 +17406,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &796042189336298363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796042189336298362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95df83fdc3f7abc44a57ff6257901507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Turret
+  cost: 55
+  description: A normal turret
 --- !u!1 &842773615876137085
 GameObject:
   m_ObjectHideFlags: 0

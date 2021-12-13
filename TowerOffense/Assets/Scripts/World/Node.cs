@@ -23,8 +23,6 @@ public class Node : MonoBehaviour, ISelectable
     public GameObject currentBuilding;
     public Transform buildingLocation;
 
-    public int buildingPrice = 30; //FIXME: This should be a variable in the building itself. and more modular for more buildings
-
     public (int, int) pos;
     public bool canBeOutlined = true;
     public bool isSelected { get; set; }
@@ -67,17 +65,7 @@ public class Node : MonoBehaviour, ISelectable
                         return;
                     }
                 }
-                if (GlobalDataHandler.instance.currentPlayerCoins < buildingPrice)
-                {
-                    UiHandler.instance.SetInfo("You can't afford that");
-                    GlobalSoundManager.instance.PlayError();
-                    return;
-                }
                 BuildBuilding();
-                GlobalDataHandler.instance.SubtractMoney(buildingPrice);
-                UiHandler.instance.UpdateCoins();
-                UiHandler.instance.SetInfo("Structure was built successfully");
-                GameObject.Find("PlaceTurretSFX").GetComponent<AudioSource>().Play();
                 break;
             default: throw new NotImplementedException();
         }

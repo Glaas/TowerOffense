@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using System.Collections.Generic;
 using System.Collections;
 using System;
@@ -141,6 +142,10 @@ namespace TowerOffense
                             case SELECT_MODE.SINGLE:
                                 if (nodeSelected == null) return;
                                 if (!nodeSelected.isSelected) nodeSelected.OnSelect();
+                                GlobalDataHandler.instance.SubtractMoney(FindObjectOfType<UiHandler>().costOfNextAction);
+                                UiHandler.instance.UpdateCoins();
+                                UiHandler.instance.SetInfo("Structure was built successfully");
+                                GameObject.Find("PlaceTurretSFX").GetComponent<AudioSource>().Play();
                                 ExitPlacingTurret();
                                 break;
                             case SELECT_MODE.MULTIPLE:
