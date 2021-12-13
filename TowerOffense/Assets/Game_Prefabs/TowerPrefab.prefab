@@ -5052,7 +5052,7 @@ GameObject:
   - component: {fileID: 6508010040441972352}
   m_Layer: 0
   m_Name: TowerPrefab
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5087,6 +5087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f6e8691bb0a714c8b46f59405c5e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionOnDeathParticleSystemPrefab: {fileID: 0}
   maxHealth: 50
   currentHealth: 0
   enemiesDestroyed: 0

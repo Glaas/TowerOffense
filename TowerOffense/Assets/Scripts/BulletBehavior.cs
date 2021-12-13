@@ -44,6 +44,12 @@ public class BulletBehavior : MonoBehaviour
         var targetPos = target.GetComponentInChildren<Collider>().bounds.center;
         distanceToTarget = Vector3.Distance(transform.position, targetPos);
         transform.Translate(Vector3.Normalize(targetPos - transform.position) * speed * Time.deltaTime);
+        
+        //Self destruct if shooter code is not running
+        if (distanceToTarget < 0.5f)
+        {
+            Destroy(gameObject);
+        }
 
     }
 }

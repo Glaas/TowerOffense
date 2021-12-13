@@ -806,6 +806,8 @@ MonoBehaviour:
   turretMaxDurability: 0
   coinValue: 0
   enemySpeed: 0
+  baseTurretPrice: 0
+  modifiedTurretPrice: 0
 --- !u!114 &157678579
 MonoBehaviour:
   m_ObjectHideFlags: 0

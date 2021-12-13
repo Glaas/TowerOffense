@@ -50,13 +50,14 @@ public class TurretAttack : MonoBehaviour
         {
             currentTarget = chosenEnemy.gameObject;
             DOTween.Kill(this);
-            GetComponentInChildren<Light>().DOColor(Color.red, .4f);
+            if (GetComponentInChildren<Light>()) GetComponentInChildren<Light>().DOColor(Color.red, .4f); //null check to make DoTween happy
         }
         else
         {
             DOTween.Kill(this);
             currentTarget = null;
-            GetComponentInChildren<Light>().DOColor(Color.white, .4f);
+            if (GetComponentInChildren<Light>()) GetComponentInChildren<Light>().DOColor(Color.white, .4f);
+
         }
     }
     private void Update()
@@ -73,13 +74,13 @@ public class TurretAttack : MonoBehaviour
         PlayShootAnim();
         GetComponent<AudioSource>().Play();
         GameObject bulletInstantiated = GameObject.Instantiate(bulletPrefab, transform.position + (Vector3.up * 4.5f), Quaternion.identity);
-        Destroy(bulletInstantiated,2);
+        Destroy(bulletInstantiated, 1);
         if (bulletInstantiated == null) yield break;
         BulletBehavior bulletBehaviour = bulletInstantiated.GetComponent<BulletBehavior>();
-        GetComponent<BuildingStats>().TakeDamage(1);
         bulletBehaviour.InitTarget(currentTarget);
         yield return new WaitUntil(() => bulletBehaviour.distanceToTarget <= 1.2f);
         if (bulletInstantiated == null) yield break;
+        GetComponent<BuildingStats>().TakeDamage(1);
         var explosionInstance = Instantiate(destructionPrefab, bulletInstantiated.transform.position, Quaternion.identity);
         Destroy(explosionInstance.gameObject, 4f);
         Destroy(bulletInstantiated);
