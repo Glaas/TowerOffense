@@ -101,7 +101,6 @@ namespace TowerOffense
             return returnedArr;
         }
 
-        [NaughtyAttributes.Button("Switch cursor State")]
         public void CycleCursorState()
         {
             if (cursorState == CURSOR_STATE.NEUTRAL)
