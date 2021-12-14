@@ -134,9 +134,6 @@
                   </e>
                 </e>
               </e>
-              <e p="Integrations" t="Include">
-                <e p="Integrations.txt" t="Include" />
-              </e>
               <e p="Scripts" t="Include">
                 <e p="Editor" t="Include">
                   <e p="Attributes" t="Include">
@@ -542,19 +539,29 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="BuildingBase.cs" t="Include" />
-          <e p="BuildingStats.cs" t="Include" />
+          <e p="BuildingData.cs" t="Include" />
+          <e p="Buildings" t="Include">
+            <e p="BuildingStats.cs" t="Include" />
+            <e p="TurretAttack.cs" t="Include" />
+            <e p="TurretRotation.cs" t="Include" />
+          </e>
+          <e p="BuildingTypeHolder.cs" t="Include" />
           <e p="BulletBehavior.cs" t="Include" />
           <e p="CoinPickUp.cs" t="Include" />
           <e p="Controller.cs" t="Include" />
-          <e p="CustomConsoleCommands.cs" t="Include" />
-          <e p="DBLink.cs" t="Include" />
-          <e p="DebugDisplay.cs" t="Include" />
           <e p="Deprecated" t="Include">
             <e p="BreadthFirst.cs" t="Include" />
+            <e p="BuildingBase.cs" t="Include" />
+            <e p="DebugDisplay.cs" t="Include" />
             <e p="DisplayInfo.cs" t="Include" />
+            <e p="GUIDisplayer.cs" t="Include" />
             <e p="IDamageable.cs" t="Include" />
             <e p="InfoBox.cs" t="Include" />
+          </e>
+          <e p="DevTools" t="Include">
+            <e p="CommandConsole" t="Include">
+              <e p="CustomConsoleCommands.cs" t="Include" />
+            </e>
           </e>
           <e p="Editor" t="Include">
             <e p="PS1StyleSetup.cs" t="Include" />
@@ -562,31 +569,39 @@
           </e>
           <e p="EnemySpawner.cs" t="Include" />
           <e p="EnemyStats.cs" t="Include" />
-          <e p="FeedbackFormHandler.cs" t="Include" />
-          <e p="GetDataFromEthercalc.cs" t="Include" />
-          <e p="GetDataFromWebSpreadsheet.cs" t="Include" />
-          <e p="GlobalDataHandler.cs" t="Include" />
-          <e p="GlobalDataRetriever.cs" t="Include" />
           <e p="GlobalSoundManager.cs" t="Include" />
           <e p="GlobalStateManager.cs" t="Include" />
-          <e p="GUIDisplayer.cs" t="Include" />
           <e p="ISelectable.cs" t="Include" />
           <e p="ItemAnimator.cs" t="Include" />
-          <e p="JsonCreator.cs" t="Include" />
+          <e p="Lib" t="Include">
+            <e p="SimpleJSON.cs" t="Include" />
+          </e>
+          <e p="ManualShooting" t="Include">
+            <e p="ManualShooting.cs" t="Include" />
+          </e>
           <e p="NavMeshHelperClass.cs" t="Include" />
-          <e p="PauseButton.cs" t="Include" />
-          <e p="PauseMenuButtons.cs" t="Include" />
-          <e p="PostPlayerData.cs" t="Include" />
-          <e p="SimpleJSON.cs" t="Include" />
-          <e p="TurretAttack.cs" t="Include" />
-          <e p="TurretRotation.cs" t="Include" />
-          <e p="UiHandler.cs" t="Include" />
-          <e p="UILoader.cs" t="Include" />
-          <e p="VolumeSlider.cs" t="Include" />
-          <e p="WaveCreator.cs" t="Include" />
-          <e p="WaveManager.cs" t="Include" />
-          <e p="WaveSO.cs" t="Include" />
-          <e p="WavesSO.cs" t="Include" />
+          <e p="OnlineComponents" t="Include">
+            <e p="DBLink.cs" t="Include" />
+            <e p="FeedbackFormHandler.cs" t="Include" />
+            <e p="GetDataFromEthercalc.cs" t="Include" />
+            <e p="GetDataFromWebSpreadsheet.cs" t="Include" />
+            <e p="GlobalDataHandler.cs" t="Include" />
+            <e p="GlobalDataRetriever.cs" t="Include" />
+          </e>
+          <e p="SelectionDataBuffer.cs" t="Include" />
+          <e p="Ui" t="Include">
+            <e p="PauseButton.cs" t="Include" />
+            <e p="PauseMenuButtons.cs" t="Include" />
+            <e p="UiHandler.cs" t="Include" />
+            <e p="UILoader.cs" t="Include" />
+            <e p="VolumeSlider.cs" t="Include" />
+          </e>
+          <e p="Waves" t="Include">
+            <e p="WaveCreator.cs" t="Include" />
+            <e p="WaveManager.cs" t="Include" />
+            <e p="WaveSO.cs" t="Include" />
+            <e p="WavesSO.cs" t="Include" />
+          </e>
           <e p="World" t="Include">
             <e p="Node.cs" t="Include" />
             <e p="PlayGrid.cs" t="Include" />
