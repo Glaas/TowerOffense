@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteMe : MonoBehaviour
+public class SelectEnemy : MonoBehaviour
 {
-    public Camera camera;
+    public Camera sceneCamera;
     public ManualShooting manualShooting;
 
     void Start()
     {
-        camera = FindObjectOfType<Camera>();
+        sceneCamera = FindObjectOfType<Camera>();
         manualShooting = FindObjectOfType<ManualShooting>();
     }
     private void Update()
@@ -18,7 +18,7 @@ public class DeleteMe : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = sceneCamera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
@@ -32,6 +32,7 @@ public class DeleteMe : MonoBehaviour
 
     public void PrintName(GameObject go)
     {
+        print("killing enemy");
         manualShooting.KillEnemy();
         Destroy(go);
     }

@@ -26,8 +26,9 @@ public class ShootingUI : MonoBehaviour
         {
             if (GUI.Button(new Rect(10, 30, 150, 100), "Activate Targeting"))
             {
-                print("Targeting activated!");
+                print("activating targeting");
                 manualShooting.TargetingMode();
+                print("Targeting activated!");
             }
         }
     }
