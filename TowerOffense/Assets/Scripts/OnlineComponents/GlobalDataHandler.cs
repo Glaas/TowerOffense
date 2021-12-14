@@ -11,6 +11,7 @@ public class GlobalDataHandler : MonoBehaviour
     public int enemiesKilled = 0;
     public int enemiesSpawned = 0;
     public int amountOfBuildingsPlaced = 0;
+    public int turretsDestroyed = 0;
 
 
     //make singleton
@@ -34,6 +35,7 @@ public class GlobalDataHandler : MonoBehaviour
 
     void InitData()
     {
+        turretsDestroyed = 0;
         enemiesKilled = 0;
         currentPlayerCoins = playerStartingCoins;
     }

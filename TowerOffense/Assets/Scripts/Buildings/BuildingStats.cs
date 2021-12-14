@@ -27,6 +27,11 @@ public class BuildingStats : MonoBehaviour
         currentHealth--;
         if (currentHealth <= 0)
         {
+            if (CompareTag("Turret"))
+            {
+                GlobalDataHandler.instance.turretsDestroyed++;
+            }
+
             DOTween.Kill(this);
             var obj = Instantiate(explosionOnDeathParticleSystemPrefab, transform.position, Quaternion.identity);
             Destroy(obj, 2f);

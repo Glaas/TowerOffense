@@ -578,6 +578,7 @@
           </e>
           <e p="ManualShooting" t="Include">
             <e p="ManualShooting.cs" t="Include" />
+            <e p="ShootingUI.cs" t="Include" />
           </e>
           <e p="NavMeshHelperClass.cs" t="Include" />
           <e p="OnlineComponents" t="Include">

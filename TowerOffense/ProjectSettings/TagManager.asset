@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Healthbar
   - Tower
+  - Turret
   layers:
   - Default
   - TransparentFX
