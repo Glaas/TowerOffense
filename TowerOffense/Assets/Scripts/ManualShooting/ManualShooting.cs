@@ -42,7 +42,7 @@ public class ManualShooting : MonoBehaviour
         
         
         //during coroutine:
-        timeRemaining = 10;
+        timeRemaining = 1000;
         timerIsRunning = true;
         //change cursor to kill enemies
         //some sort of cue that the thing has started
@@ -52,18 +52,22 @@ public class ManualShooting : MonoBehaviour
         //reset turretsdespawned counter (only locally) to 0
     }
     
-    private void OnMouseDown()
+    public void KillEnemy()
     {
-        if (targetingMode && CompareTag("Enemy"))
+        if (targetingMode)
         {
             print("Enemy targeted");
 
             //GameObject.Find("CoinSFX").GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
             //GameObject.Find("CoinSFX").GetComponent<AudioSource>().Play();
+            
+            
+            /*
             var obj = Instantiate(enemyShotEffect, transform.position, Quaternion.identity);
             Destroy(obj, 1.2f);
 
             Destroy(gameObject);
+            */
         }
     }
 }

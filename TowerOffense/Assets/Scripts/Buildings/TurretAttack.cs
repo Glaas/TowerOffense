@@ -85,7 +85,7 @@ public class TurretAttack : MonoBehaviour
         Destroy(explosionInstance.gameObject, 4f);
         Destroy(bulletInstantiated);
         currentTarget.GetComponent<EnemyStats>().TakeDamage(1);
-
+        
         GlobalDataHandler.instance.enemiesKilled++;
         enemiesKilled++;
 
