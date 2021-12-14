@@ -25,6 +25,7 @@ public class BuildingStats : MonoBehaviour
             }
         }
         currentHealth--;
+
         if (currentHealth <= 0)
         {
             if (CompareTag("Turret"))
@@ -43,6 +44,7 @@ public class BuildingStats : MonoBehaviour
                 SendMessage("CancelInvoke", child);
                 DOTween.Kill(child);
             }
+
             Destroy(gameObject);
         }
     }
@@ -51,6 +53,7 @@ public class BuildingStats : MonoBehaviour
     {
         InitHealth();
     }
+    
     void InitHealth()
     {
         if (CompareTag("Tower"))

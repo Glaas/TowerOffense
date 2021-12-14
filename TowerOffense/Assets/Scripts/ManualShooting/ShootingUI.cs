@@ -10,10 +10,12 @@ public class ShootingUI : MonoBehaviour
     //button should only be pressable once the bar reaches 10
 
     public GlobalDataHandler globalDataHandler;
+    public ManualShooting manualShooting;
 
     private void Start()
     {
         globalDataHandler = FindObjectOfType<GlobalDataHandler>();
+        manualShooting = FindObjectOfType<ManualShooting>();
     }
 
     void OnGUI()
@@ -25,22 +27,8 @@ public class ShootingUI : MonoBehaviour
             if (GUI.Button(new Rect(10, 30, 150, 100), "Activate Targeting"))
             {
                 print("Targeting activated!");
-                TargetingMode();
+                manualShooting.TargetingMode();
             }
         }
-    }
-
-    private void TargetingMode()
-    {
-        //start coroutine 10 seconds
-        //during coroutine:
-        //activate kill enemies
-        //change cursor to kill enemies
-        //some sort of cue that the thing has started
-        //deactivate kill enemies otherwise
-        
-        //after coroutine:
-        //reset turretsdespawned counter (only locally) to 0
-        //deactivate kill enemies
     }
 }
