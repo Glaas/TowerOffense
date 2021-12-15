@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ManualShooting : MonoBehaviour
 {
-    public GameObject enemyShotEffect;
     public bool targetingMode;
 
     public float timeRemaining = 0;
@@ -45,7 +44,6 @@ public class ManualShooting : MonoBehaviour
         //todo during coroutine:
         //change cursor to kill enemies
         //some sort of cue that the thing has started
-        //deactivate kill enemies otherwise
 
         //todo after coroutine:
         //cache number of turrets that are now despawned

@@ -15,6 +15,7 @@ public class SelectEnemy : MonoBehaviour
         manualShooting = FindObjectOfType<ManualShooting>();
     }
     
+    
     public void Update()
     {
         if (Input.GetMouseButtonDown(0) && manualShooting.targetingMode)
@@ -58,4 +59,4 @@ public class SelectEnemy : MonoBehaviour
         Destroy(gameObject);
         */
     }
-}
+} 
