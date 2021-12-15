@@ -13,27 +13,52 @@ public class SelectEnemy : MonoBehaviour
         sceneCamera = FindObjectOfType<Camera>();
         manualShooting = FindObjectOfType<ManualShooting>();
     }
-    private void Update()
+    
+    public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray ray = sceneCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, 100.0f))
+        if (Input.GetMouseButtonDown(0) && manualShooting.targetingMode)
             {
-                if (hit.transform && CompareTag("Enemy")) //if something is hit 
+                RaycastHit hit;
+                Ray ray = sceneCamera.ScreenPointToRay(Input.mousePosition);
+
+                print("raycasting");
+                print($"scene camera is " + sceneCamera.name);
+                
+                if (Physics.Raycast(ray, out hit, 100.0f)) 
                 {
-                    PrintName(hit.transform.gameObject);
+                    if (hit.transform) //if something is hit //todo  && CompareTag("Enemy")
+                    {
+                        TargetEnemy(hit.transform.gameObject);
+                        print($"raycast hit " + hit.transform.gameObject);
+                    }
                 }
             }
-        }
     }
 
-    public void PrintName(GameObject go)
+    public void TargetEnemy(GameObject go)
     {
-        print("killing enemy");
-        manualShooting.KillEnemy();
-        Destroy(go);
+        KillEnemy();
+        go.GetComponent<EnemyStats>().currentHealth -= 100;
+        if (go.GetComponent<EnemyStats>().currentHealth < 0)
+        {
+            go.GetComponent<EnemyStats>().currentHealth = 0;
+        }
+        print($"enemy health is now " + go.GetComponent<EnemyStats>().currentHealth);
+    }
+
+    public void KillEnemy()
+    {
+        print("uh oh enemy dead");
+        
+        //GameObject.Find("CoinSFX").GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
+        //GameObject.Find("CoinSFX").GetComponent<AudioSource>().Play();
+            
+        // 500 points damage to enemy, which will undoubtedly kill it
+        /*
+        var obj = Instantiate(enemyShotEffect, transform.position, Quaternion.identity);
+        Destroy(obj, 1.2f);
+
+        Destroy(gameObject);
+        */
     }
 }

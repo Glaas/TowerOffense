@@ -17,25 +17,7 @@ public class ManualShooting : MonoBehaviour
         timeRemaining = 0;
         timerIsRunning = false;
     }
-
-    private void Update()
-    {
-        if (timerIsRunning)
-        {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                targetingMode = true;
-            }
-            else
-            {
-                targetingMode = false;
-                timeRemaining = 0;
-                timerIsRunning = false;
-            }
-        }
-    }
-
+    
     public void TargetingMode()
     {
         //start coroutine 10 seconds
@@ -44,30 +26,30 @@ public class ManualShooting : MonoBehaviour
         //during coroutine:
         timeRemaining = 1000;
         timerIsRunning = true;
-        //change cursor to kill enemies
-        //some sort of cue that the thing has started
-        //deactivate kill enemies otherwise
+        //TODO change cursor to kill enemies
+        //TODO some sort of cue that the thing has started
+        //TODO deactivate kill enemies otherwise
 
         //after coroutine:
         //reset turretsdespawned counter (only locally) to 0
     }
-    
-    public void KillEnemy()
+
+    public void Update()
     {
-        if (targetingMode)
+        if (timerIsRunning)
         {
-            print("Enemy targeted");
-
-            //GameObject.Find("CoinSFX").GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
-            //GameObject.Find("CoinSFX").GetComponent<AudioSource>().Play();
-            
-            
-            /*
-            var obj = Instantiate(enemyShotEffect, transform.position, Quaternion.identity);
-            Destroy(obj, 1.2f);
-
-            Destroy(gameObject);
-            */
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                targetingMode = true;
+                print($"targetingMode is " + targetingMode);
+            }
+            else
+            {
+                targetingMode = false;
+                timeRemaining = 0;
+                timerIsRunning = false;
+            }
         }
     }
 }
