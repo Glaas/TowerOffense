@@ -1987,7 +1987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf53aa2e4e3dce438b61f926a69a769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyShotEffect: {fileID: 0}
   targetingMode: 0
   timeRemaining: 0
   timerIsRunning: 0
@@ -2003,6 +2002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bd19ac2cff0a342bd99bb3b8973984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneCamera: {fileID: 0}
+  manualShooting: {fileID: 0}
 --- !u!1 &1134944749
 GameObject:
   m_ObjectHideFlags: 0
