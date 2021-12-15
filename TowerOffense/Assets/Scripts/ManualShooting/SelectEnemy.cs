@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SplineMesh;
 using UnityEngine;
 
 public class SelectEnemy : MonoBehaviour
@@ -21,12 +22,9 @@ public class SelectEnemy : MonoBehaviour
                 RaycastHit hit;
                 Ray ray = sceneCamera.ScreenPointToRay(Input.mousePosition);
 
-                print("raycasting");
-                print($"scene camera is " + sceneCamera.name);
-                
                 if (Physics.Raycast(ray, out hit, 100.0f)) 
                 {
-                    if (hit.transform) //if something is hit //todo  && CompareTag("Enemy")
+                    if (hit.transform && hit.transform.CompareTag("Enemy")) //if something is hit
                     {
                         TargetEnemy(hit.transform.gameObject);
                         print($"raycast hit " + hit.transform.gameObject);
@@ -48,7 +46,6 @@ public class SelectEnemy : MonoBehaviour
 
     public void KillEnemy()
     {
-        print("uh oh enemy dead");
         
         //GameObject.Find("CoinSFX").GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
         //GameObject.Find("CoinSFX").GetComponent<AudioSource>().Play();

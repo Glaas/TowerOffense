@@ -18,23 +18,7 @@ public class ManualShooting : MonoBehaviour
         timerIsRunning = false;
     }
     
-    public void TargetingMode()
-    {
-        //start coroutine 10 seconds
-        
-        
-        //during coroutine:
-        timeRemaining = 1000;
-        timerIsRunning = true;
-        //TODO change cursor to kill enemies
-        //TODO some sort of cue that the thing has started
-        //TODO deactivate kill enemies otherwise
-
-        //after coroutine:
-        //reset turretsdespawned counter (only locally) to 0
-    }
-
-    public void Update()
+    private void Update()
     {
         if (timerIsRunning)
         {
@@ -42,7 +26,6 @@ public class ManualShooting : MonoBehaviour
             {
                 timeRemaining -= Time.deltaTime;
                 targetingMode = true;
-                print($"targetingMode is " + targetingMode);
             }
             else
             {
@@ -51,5 +34,21 @@ public class ManualShooting : MonoBehaviour
                 timerIsRunning = false;
             }
         }
+    }
+    
+    public void TargetingMode()
+    {
+        //start coroutine
+        timeRemaining = 1000;
+        timerIsRunning = true;
+  
+        //todo during coroutine:
+        //change cursor to kill enemies
+        //some sort of cue that the thing has started
+        //deactivate kill enemies otherwise
+
+        //todo after coroutine:
+        //cache number of turrets that are now despawned
+        //once that number + 10 happens, activate button again
     }
 }
