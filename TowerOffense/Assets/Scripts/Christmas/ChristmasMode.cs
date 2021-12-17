@@ -39,10 +39,8 @@ public class ChristmasMode : MonoBehaviour
         }
     }
 
-
- 
-        /* - script checks every few seconds if a number in the database is 1 or 0
-            - 1 = christmas mode
-        - function called when it detects a change
-        - that takes a bool as a parameter/argument */
+    /*public void ToggleChristmasMode(bool xmasmode)
+    {
+        sceneCamera.cullingMask = sceneCamera.cullingMask ^ (1 << 12);
+    }*/
 }
