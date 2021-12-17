@@ -36,13 +36,11 @@ public class SelectEnemy : MonoBehaviour
 
     public void TargetEnemy(GameObject go)
     {
+        //take damage in enemystats!!!! instead of the following stuff
+        
         KillEnemy();
-        go.GetComponent<EnemyStats>().currentHealth -= 100;
-        if (go.GetComponent<EnemyStats>().currentHealth < 0)
-        {
-            go.GetComponent<EnemyStats>().currentHealth = 0;
-        }
-        print($"enemy health is now " + go.GetComponent<EnemyStats>().currentHealth);
+        go.GetComponent<EnemyStats>().TakeDamage(100);
+      
     }
 
     public void KillEnemy()
