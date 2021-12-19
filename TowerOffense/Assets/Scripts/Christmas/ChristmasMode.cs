@@ -15,13 +15,7 @@ public class ChristmasMode : MonoBehaviour
         sceneCamera.cullingMask = sceneCamera.cullingMask =~ (1 << 12);
     }
 
-    //todo find a good way to subscribe to the event of the 1/0 changing
-    private void Update()
-    {
-        
-    }
-
-    public void ToggleChristmasMode(bool xmasmode)
+    public void ToggleChristmasMode(bool xmasmode) //todo this should take the bool from the spreadsheet
     {
         if (xmasmode)
         {
@@ -35,12 +29,7 @@ public class ChristmasMode : MonoBehaviour
         }
         else
         {
-            print("the grinch has arrived. there is no christmas mode.");
+            print("there is no christmas mode.");
         }
     }
-
-    /*public void ToggleChristmasMode(bool xmasmode)
-    {
-        sceneCamera.cullingMask = sceneCamera.cullingMask ^ (1 << 12);
-    }*/
 }
