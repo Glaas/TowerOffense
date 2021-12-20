@@ -21,10 +21,8 @@ public class GlobalDataRetriever : MonoBehaviour
     const string ENEMY_SPEED = "enemyspeed";
     public float enemySpeed;
     const string ACTION_PRICE = "actionsprice";
-    const string BASE_TURRET = "baseturret";
-    const string MODIFIED_TURRET = "modifiedTurret";
-    public int baseTurretPrice;
-    public int modifiedTurretPrice;
+    const string IS_CHRISTMAS_MODE_ON_KEY = "christmasmode";
+    public bool isChristmasModeOn;
 
 
     public void UpdateValues()
@@ -36,10 +34,7 @@ public class GlobalDataRetriever : MonoBehaviour
         turretMaxDurability = spreadsheetData[TURRET_MAX_DURABILITY].AsInt;
         coinValue = spreadsheetData[COIN_VALUE].AsInt;
         enemySpeed = spreadsheetData[ENEMY_SPEED].AsFloat;
-        baseTurretPrice = spreadsheetData[ACTION_PRICE][BASE_TURRET].AsInt;
-        modifiedTurretPrice = spreadsheetData[ACTION_PRICE][MODIFIED_TURRET].AsInt;
-
-
+        isChristmasModeOn = spreadsheetData[IS_CHRISTMAS_MODE_ON_KEY].AsBool;
 
     }
     private void OnEnable()

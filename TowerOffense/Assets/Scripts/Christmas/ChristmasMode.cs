@@ -15,6 +15,14 @@ public class ChristmasMode : MonoBehaviour
         //christmas layer invisible to main camera
         sceneCamera.cullingMask = sceneCamera.cullingMask = ~(1 << 12);
     }
+    private void Update()
+    {
+        if (ShowChristmasMode != FindObjectOfType<GlobalDataRetriever>().isChristmasModeOn)
+        {
+            ShowChristmasMode = FindObjectOfType<GlobalDataRetriever>().isChristmasModeOn;
+            ToggleChristmasMode(ShowChristmasMode);
+        }
+    }
 
     void OnGUI()
     {
@@ -38,7 +46,6 @@ public class ChristmasMode : MonoBehaviour
     {
         if (xmasmode)
         {
-
             //turn christmas layer on
             sceneCamera.cullingMask = sceneCamera.cullingMask |= (1 << 12);
         }
@@ -52,4 +59,5 @@ public class ChristmasMode : MonoBehaviour
             print("there is no christmas mode.");
         }
     }
+
 }
