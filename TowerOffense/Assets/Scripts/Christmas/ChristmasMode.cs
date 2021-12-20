@@ -15,6 +15,20 @@ public class ChristmasMode : MonoBehaviour
         sceneCamera.cullingMask = sceneCamera.cullingMask =~ (1 << 12);
     }
 
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 120, 150, 100), "Activate Xmas Mode"))
+            {
+                //turn christmas layer on
+                sceneCamera.cullingMask = sceneCamera.cullingMask |= (1 << 12);
+            }
+        if (GUI.Button(new Rect(10, 220, 150, 100), "Deactivate Xmas Mode"))
+        {
+            //turn christmas layer off
+            sceneCamera.cullingMask = sceneCamera.cullingMask =~ (1 << 12);
+        }
+    }
+
     public void ToggleChristmasMode(bool xmasmode) //todo this should take the bool from the spreadsheet
     {
         if (xmasmode)
