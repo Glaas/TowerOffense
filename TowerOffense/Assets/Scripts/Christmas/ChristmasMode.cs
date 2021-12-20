@@ -9,7 +9,7 @@ public class ChristmasMode : MonoBehaviour
     
     private void Start()
     {
-        sceneCamera = FindObjectOfType<Camera>();
+        sceneCamera = FindObjectOfType<Camera>(); //todo Camera.main
         
         //christmas layer invisible to main camera
         sceneCamera.cullingMask = sceneCamera.cullingMask =~ (1 << 12);
@@ -19,6 +19,7 @@ public class ChristmasMode : MonoBehaviour
     {
         if (xmasmode)
         {
+            
             //turn christmas layer on
             sceneCamera.cullingMask = sceneCamera.cullingMask |= (1 << 12);
         }
