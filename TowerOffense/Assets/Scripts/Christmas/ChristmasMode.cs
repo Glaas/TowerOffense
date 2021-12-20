@@ -7,6 +7,7 @@ public class ChristmasMode : MonoBehaviour
 {
     private Camera sceneCamera;
     public bool ShowChristmasMode = false;
+    public bool showDebugChristmasMode = false;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class ChristmasMode : MonoBehaviour
 
     void OnGUI()
     {
-        if (ShowChristmasMode)
+        if (showDebugChristmasMode)
         {
 
             if (GUI.Button(new Rect(10, 120, 150, 100), "Activate Xmas Mode"))
