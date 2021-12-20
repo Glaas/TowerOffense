@@ -8,6 +8,8 @@ public class ShootingUI : MonoBehaviour
     public GlobalDataHandler globalDataHandler;
     public ManualShooting manualShooting;
 
+    public bool showShootingUI;
+
     private void Start()
     {
         globalDataHandler = FindObjectOfType<GlobalDataHandler>();
@@ -16,13 +18,16 @@ public class ShootingUI : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 300, 50), "Turrets destroyed: " + globalDataHandler.turretsDestroyed.ToString());
-
-        //if (globalDataHandler.turretsDestroyed >= 10) //todo reinstate this line
+        if (showShootingUI)
         {
-            if (GUI.Button(new Rect(10, 30, 150, 100), "Activate Targeting"))
+            GUI.Label(new Rect(10, 10, 300, 50), "Turrets destroyed: " + globalDataHandler.turretsDestroyed.ToString());
+
+            //if (globalDataHandler.turretsDestroyed >= 10) //todo reinstate this line
             {
-                manualShooting.TargetingMode();
+                if (GUI.Button(new Rect(10, 30, 150, 100), "Activate Targeting"))
+                {
+                    manualShooting.TargetingMode();
+                }
             }
         }
     }
