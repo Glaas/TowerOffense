@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 58259961}
   m_Layer: 0
   m_Name: MainCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 2800000, guid: 1ac7afacbe76f174f875887c9ce60ddd, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4410,6 +4410,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowChristmasMode: 0
   showDebugChristmasMode: 0
+  defaultLayerMask:
+    serializedVersion: 2
+    m_Bits: 2359
+  christmasLayerMask:
+    serializedVersion: 2
+    m_Bits: 6455
 --- !u!1 &1675124354
 GameObject:
   m_ObjectHideFlags: 0
