@@ -6170,7 +6170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.967, y: -0.000002314891}
+  m_AnchoredPosition: {x: 8.967, y: 0.000018060251}
   m_SizeDelta: {x: 17.933, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &608227210
@@ -9825,7 +9825,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 40 P
+  m_text: 33 P
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eeabe2963150eda46aa6c5bb8b17001d, type: 2}
   m_sharedMaterial: {fileID: -2722790565671352911, guid: eeabe2963150eda46aa6c5bb8b17001d, type: 2}
@@ -10135,7 +10135,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 852276680}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99863464
+  m_Size: 0.99781567
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
