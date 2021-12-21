@@ -15,10 +15,10 @@ public class DBLink : MonoBehaviour
 
     [SerializeField]
     [ReadOnly]
-     string gameDataDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_gamedata";
+    string gameDataDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_gamedata";
     [SerializeField]
     [ReadOnly]
-     string gameValuesDoc = "/gamevalues";
+    string gameValuesDoc = "/gamevalues";
     public string keyToRetrieve;
     public JSONNode gameValues;
     [SerializeField]

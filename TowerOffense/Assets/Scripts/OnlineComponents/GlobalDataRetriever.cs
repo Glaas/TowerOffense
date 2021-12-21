@@ -63,17 +63,14 @@ public class GlobalDataRetriever : MonoBehaviour
     }
     private void Start()
     {
-        StartUpdateValueLoop();
+        StartCoroutine(MakeRequest());
     }
-    void StartUpdateValueLoop()
-    {
-        if (!IsInvoking("MakeRequest"))
-        {
-            InvokeRepeating("MakeRequest", 0, .5f);
-        }
-    }
-    void MakeRequest()
+
+
+    IEnumerator MakeRequest()
     {
         GetComponent<DBLink>().MakeRequest();
+        yield return new WaitForSecondsRealtime(.5f);
+        StartCoroutine(MakeRequest());
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,7 +12,7 @@ public class PauseMenuButtons : MonoBehaviour
 {
     public GameObject feedbackFormParent;
     public GameObject pauseMenuParent;
-    public GameObject connectionActiveSprite;
+    public GameObject connectionStatusParent;
     public Toggle fullscreenToggle;
 
     public PauseButton PauseButtonScript;
@@ -35,17 +36,16 @@ public class PauseMenuButtons : MonoBehaviour
             fullscreenToggle = GameObject.Find("ToggleFullscreen").GetComponent<Toggle>();
         }
 
-        // connectionActiveSprite = GameObject.Find("ConnectionActive");
+        if (connectionStatusParent == null)
+        {
+            connectionStatusParent = GameObject.Find("ConnectionStatusGroup");
+        }
 
         pauseMenuParent = GameObject.Find("PauseMenuParent");
     }
 
-    public void Start()
-    {
+    public void Start() => pauseMenuParent.SetActive(false);
 
-        pauseMenuParent.SetActive(false);
-
-    }
     public void SetUpResolution()
     {
 
@@ -139,13 +139,16 @@ public class PauseMenuButtons : MonoBehaviour
 
     }
 
-    public void CheckConnection()
+    public void CheckConnection(object e, bool connectionStatus)
     {
-        //check the connection to the spreadsheet
-        //if the spreadsheet has been successfully accessed within the last 10 seconds, connection is active
-        //so the script that fetches from the connection needs to send something to this script
-
-        //if connection is inactive, disable ConnectionActive sprite
+        if (connectionStatus)
+        {
+            connectionStatusParent.GetComponentInChildren<Image>().color = Color.green;
+        }
+        else
+        {
+            connectionStatusParent.GetComponentInChildren<Image>().color = Color.red;
+        }
 
     }
 
@@ -157,5 +160,10 @@ public class PauseMenuButtons : MonoBehaviour
         {
             TogglePauseMenu();
         }
+    }
+
+    private void OnEnable()
+    {
+        DBLink.OnRequestComplete += CheckConnection;
     }
 }
