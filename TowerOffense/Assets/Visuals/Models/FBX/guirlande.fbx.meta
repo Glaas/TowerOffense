@@ -3,7 +3,42 @@ guid: 332d787804623cc4a8136e5d7c8104ee
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Guirlande
+    second: {fileID: 2100000, guid: 56fe1ea5e729c3642ba00ee22841a509, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat1
+    second: {fileID: 2100000, guid: 3094044624e23fa45bdf8b93c6723ca5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat2
+    second: {fileID: 2100000, guid: dddc9ef7b0d14eb4987f38209f5b88a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat3
+    second: {fileID: 2100000, guid: bf5693f5ae27adf43ac2ffe00f9aa5d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat4
+    second: {fileID: 2100000, guid: d04efe6fa10548448adb74d88217b541, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat5
+    second: {fileID: 2100000, guid: 109550ac5eee22645963cfb946fba832, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat6
+    second: {fileID: 2100000, guid: 2549d5b52406c054c9ac5c23aa83ddd7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -63,7 +98,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
