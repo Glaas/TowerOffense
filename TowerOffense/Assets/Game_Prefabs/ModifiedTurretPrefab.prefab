@@ -498,7 +498,7 @@ PrefabInstance:
     - target: {fileID: -4157524182732408741, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100014, guid: bbbd76db8c4f3984f9d3c945f53bd14e, type: 3}
+      objectReference: {fileID: 2100000, guid: 8de5c33f54ba6a840a2c14ad442bbb43, type: 2}
     - target: {fileID: 919132149155446097, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
       propertyPath: m_Name
       value: SM_turret_fina;
@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 4531912228224351498, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100014, guid: bbbd76db8c4f3984f9d3c945f53bd14e, type: 3}
+      objectReference: {fileID: 2100000, guid: 8de5c33f54ba6a840a2c14ad442bbb43, type: 2}
     - target: {fileID: 7876023681238672744, guid: 5ec6cd96c66f33640a16b98d05a6aec7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
