@@ -19,7 +19,6 @@ public class ChristmasMode : MonoBehaviour
         sceneCamera = Camera.main;
         globalDataRetriever = FindObjectOfType<GlobalDataRetriever>();
         ShowChristmasMode = globalDataRetriever.isChristmasModeOn;
-
     }
     private void Update()
     {
@@ -34,7 +33,6 @@ public class ChristmasMode : MonoBehaviour
     {
         if (showDebugChristmasMode)
         {
-
             if (GUI.Button(new Rect(10, 120, 150, 100), "Activate Xmas Mode"))
             {
                 ToggleChristmasMode(true);
@@ -49,13 +47,12 @@ public class ChristmasMode : MonoBehaviour
             {
                 Debug.Log("culling mask: " + sceneCamera.cullingMask);
             }
-
         }
     }
 
     public void ToggleChristmasMode(bool xmasmode) //todo this should take the bool from the spreadsheet
     {
-        if (xmasmode)
+        if (xmasmode) //DEPRECATED CODE, kept here to have a trace of some bitwise operations
         {
             //turn christmas layer on
             //sceneCamera.cullingMask = sceneCamera.cullingMask |= (1 << 12);
@@ -78,11 +75,7 @@ public class ChristmasMode : MonoBehaviour
                 sceneCamera.cullingMask = defaultLayerMask;
                 break;
             default:
-                print("there is no christmas mode.");
-                break;
-
+                throw new NotImplementedException();
         }
-
     }
-
 }

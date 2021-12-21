@@ -51,7 +51,6 @@ public class DBLink : MonoBehaviour
             {
                 // Show results as text
                 string textReturned = pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
-                print(textReturned);
 
                 // Create a JSON object from received string data
                 gameValues = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
@@ -77,7 +76,6 @@ public class DBLink : MonoBehaviour
     public void SendFeedbackForm(FeedbackForm form)
     {
         StartCoroutine(SendFeedbackFormCorout(form));
-
     }
 
     #endregion
