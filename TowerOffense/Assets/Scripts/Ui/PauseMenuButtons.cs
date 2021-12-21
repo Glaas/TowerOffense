@@ -117,6 +117,9 @@ public class PauseMenuButtons : MonoBehaviour
             Resolution storedResolution = _resolutions[_resolutions.Length - 1];
 
             Screen.SetResolution(_resolutions[_resolutions.Length - 1].width, _resolutions[_resolutions.Length - 1].height, fullscreenToggle.isOn);
+
+            resolutionDropdown.value = _resolutions.Length - 1;
+            resolutionDropdown.RefreshShownValue();
         }
         else if (!fullscreenToggle.isOn)
         {
@@ -124,6 +127,7 @@ public class PauseMenuButtons : MonoBehaviour
             Screen.fullScreen = fullscreenToggle.isOn;
 
             Screen.SetResolution(storedResolution.width, storedResolution.height, fullscreenToggle.isOn);
+            resolutionDropdown.RefreshShownValue();
         }
         print("Value sent to fullscreen is " + fullscreenToggle.isOn);
         print("full screen is now " + Screen.fullScreen);
