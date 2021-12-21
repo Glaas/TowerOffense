@@ -26,10 +26,7 @@ public class PauseMenuButtons : MonoBehaviour
         feedbackFormParent = GameObject.Find("FeedbackForm");
         GetComponent<FeedbackFormHandler>().AssignReferences();
         feedbackFormParent.SetActive(false);
-        SetUpResolution();
-        Screen.SetResolution(1280, 720, false);
-
-
+        SetupAvailableResolutionsList();
 
         if (fullscreenToggle == null)
         {
@@ -46,35 +43,29 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void Start() => pauseMenuParent.SetActive(false);
 
-    public void SetUpResolution()
+    public void SetupAvailableResolutionsList()
     {
-
         resolutionDropdown = GetComponentInChildren<TMP_Dropdown>();
 
-        _resolutions = Screen.resolutions;
+        //FIXME - fetching resolutions from all screens instead of main one.
+        _resolutions = Screen.resolutions.Distinct().ToArray();
 
         resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
 
-        int currentResolutionIndex = 0;
-
         for (int i = 0; i < _resolutions.Length; i++)
         {
             string option = _resolutions[i].width + " x " + _resolutions[i].height;
             options.Add(option);
-
-            if (_resolutions[i].width == Screen.currentResolution.width &&
-                _resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
         }
 
         resolutionDropdown.AddOptions(options.ToList());
-
-        resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+        print("Current resolution is " + Screen.currentResolution.width + " x " + Screen.currentResolution.height);
+        print("Scaled Game resolution is " + Camera.main.scaledPixelHeight + " x " + Camera.main.scaledPixelWidth);
+        print("Unscaled Game resolution is " + Camera.main.pixelHeight + " x " + Camera.main.pixelWidth);
+        print("Camera rect is " + Camera.main.rect);
     }
     public void SetResolution()
     {
@@ -123,9 +114,9 @@ public class PauseMenuButtons : MonoBehaviour
         if (fullscreenToggle.isOn)
         {
             Screen.fullScreen = fullscreenToggle.isOn;
-            Resolution storedResolution = _resolutions[_resolutions.Length];
+            Resolution storedResolution = _resolutions[_resolutions.Length - 1];
 
-            Screen.SetResolution(Screen.width, Screen.height, fullscreenToggle.isOn);
+            Screen.SetResolution(_resolutions[_resolutions.Length - 1].width, _resolutions[_resolutions.Length - 1].height, fullscreenToggle.isOn);
         }
         else if (!fullscreenToggle.isOn)
         {
@@ -136,6 +127,7 @@ public class PauseMenuButtons : MonoBehaviour
         }
         print("Value sent to fullscreen is " + fullscreenToggle.isOn);
         print("full screen is now " + Screen.fullScreen);
+        print("game resolution is now " + Screen.currentResolution.width + " x " + Screen.currentResolution.height);
 
     }
 
@@ -151,10 +143,7 @@ public class PauseMenuButtons : MonoBehaviour
             connectionStatusParent.GetComponentInChildren<Image>().color = Color.red;
             connectionStatusParent.GetComponentInChildren<TextMeshProUGUI>().text = "Connection status: Offline";
         }
-
     }
-
-
 
     private void Update()
     {
@@ -167,5 +156,9 @@ public class PauseMenuButtons : MonoBehaviour
     private void OnEnable()
     {
         DBLink.OnRequestComplete += CheckConnection;
+    }
+    void OnDisable()
+    {
+        DBLink.OnRequestComplete -= CheckConnection;
     }
 }

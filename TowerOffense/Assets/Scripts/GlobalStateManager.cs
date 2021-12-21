@@ -11,9 +11,10 @@ public class GlobalStateManager : MonoBehaviour
 
     public GameObject winScreen;
 
-    private void Awake() 
+    private void Awake()
     {
         Instance = this;
+        PlayerPrefs.DeleteAll();
 
     }
     private void Start()
@@ -80,6 +81,11 @@ public class GlobalStateManager : MonoBehaviour
     public void AdjustDirLight(float intensity, float duration)
     {
         GameObject.Find("DirLight").GetComponent<Light>().DOIntensity(intensity, duration);
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();
+
     }
 }
 
