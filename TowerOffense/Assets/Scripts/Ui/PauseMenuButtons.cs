@@ -144,10 +144,12 @@ public class PauseMenuButtons : MonoBehaviour
         if (connectionStatus)
         {
             connectionStatusParent.GetComponentInChildren<Image>().color = Color.green;
+            connectionStatusParent.GetComponentInChildren<TextMeshProUGUI>().text = "Connection status: Online";
         }
         else
         {
             connectionStatusParent.GetComponentInChildren<Image>().color = Color.red;
+            connectionStatusParent.GetComponentInChildren<TextMeshProUGUI>().text = "Connection status: Offline";
         }
 
     }
