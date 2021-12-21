@@ -6,21 +6,26 @@ using UnityEngine;
 public class ChristmasMode : MonoBehaviour
 {
     private Camera sceneCamera;
+
     public bool ShowChristmasMode = false;
     public bool showDebugChristmasMode = false;
+    GlobalDataRetriever globalDataRetriever;
 
-    private void Start()
+    public LayerMask defaultLayerMask;
+    public LayerMask christmasLayerMask;
+
+    private void Awake()
     {
-        sceneCamera = FindObjectOfType<Camera>(); //todo Camera.main
+        sceneCamera = Camera.main;
+        globalDataRetriever = FindObjectOfType<GlobalDataRetriever>();
+        ShowChristmasMode = globalDataRetriever.isChristmasModeOn;
 
-        //christmas layer invisible to main camera
-        sceneCamera.cullingMask = sceneCamera.cullingMask = ~(1 << 12);
     }
     private void Update()
     {
-        if (ShowChristmasMode != FindObjectOfType<GlobalDataRetriever>().isChristmasModeOn)
+        if (ShowChristmasMode != globalDataRetriever.isChristmasModeOn)
         {
-            ShowChristmasMode = FindObjectOfType<GlobalDataRetriever>().isChristmasModeOn;
+            ShowChristmasMode = globalDataRetriever.isChristmasModeOn;
             ToggleChristmasMode(ShowChristmasMode);
         }
     }
@@ -32,14 +37,19 @@ public class ChristmasMode : MonoBehaviour
 
             if (GUI.Button(new Rect(10, 120, 150, 100), "Activate Xmas Mode"))
             {
-                //turn christmas layer on
-                sceneCamera.cullingMask = sceneCamera.cullingMask |= (1 << 12);
+                ToggleChristmasMode(true);
+
             }
             if (GUI.Button(new Rect(10, 220, 150, 100), "Deactivate Xmas Mode"))
             {
-                //turn christmas layer off
-                sceneCamera.cullingMask = sceneCamera.cullingMask = ~(1 << 12);
+                ToggleChristmasMode(false);
             }
+
+            if (GUI.Button(new Rect(10, 320, 150, 100), "print culling mask"))
+            {
+                Debug.Log("culling mask: " + sceneCamera.cullingMask);
+            }
+
         }
     }
 
@@ -48,17 +58,31 @@ public class ChristmasMode : MonoBehaviour
         if (xmasmode)
         {
             //turn christmas layer on
-            sceneCamera.cullingMask = sceneCamera.cullingMask |= (1 << 12);
+            //sceneCamera.cullingMask = sceneCamera.cullingMask |= (1 << 12);
         }
         if (!xmasmode)
         {
             //turn christmas layer off
-            sceneCamera.cullingMask = sceneCamera.cullingMask = ~(1 << 12);
+            //sceneCamera.cullingMask = sceneCamera.cullingMask = ~(1 << 12);
         }
-        else
+
+        switch (xmasmode)
         {
-            print("there is no christmas mode.");
+            case true:
+                print("christmas mode is on");
+                sceneCamera.cullingMask = christmasLayerMask;
+
+                break;
+            case false:
+                print("christmas mode is off");
+                sceneCamera.cullingMask = defaultLayerMask;
+                break;
+            default:
+                print("there is no christmas mode.");
+                break;
+
         }
+
     }
 
 }
