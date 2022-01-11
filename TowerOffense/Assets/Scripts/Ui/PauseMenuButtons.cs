@@ -62,17 +62,13 @@ public class PauseMenuButtons : MonoBehaviour
 
         resolutionDropdown.AddOptions(options.ToList());
         resolutionDropdown.RefreshShownValue();
-        print("Current resolution is " + Screen.currentResolution.width + " x " + Screen.currentResolution.height);
-        print("Scaled Game resolution is " + Camera.main.scaledPixelHeight + " x " + Camera.main.scaledPixelWidth);
-        print("Unscaled Game resolution is " + Camera.main.pixelHeight + " x " + Camera.main.pixelWidth);
-        print("Camera rect is " + Camera.main.rect);
+
     }
     public void SetResolution()
     {
         int choice = resolutionDropdown.value;
         Resolution resolution = _resolutions[choice];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        print("Resolution set to: " + resolution.width + " x " + resolution.height);
     }
 
     public void RestartScene()

@@ -162,7 +162,6 @@ namespace TowerOffense
         {
             if (!target.GetComponent<Outlinable>())
             {
-                Debug.Log(target.name + " is not outlinable");
                 return;
             }
             var outlinable = target.GetComponent<Outlinable>();

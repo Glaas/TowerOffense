@@ -84,6 +84,7 @@ public class WaveManager : MonoBehaviour
         print("Finished ! Switching to player preparation");
         GlobalStateManager.Instance.gameState = GlobalStateManager.GameState.PLAYER_PREPARATION;
         GlobalStateManager.Instance.IterateGameState();
+        FindObjectOfType<AutomatedFeedback>().SendCurrentState();
     }
 
     public string fileName = "Save current Waves to file";
