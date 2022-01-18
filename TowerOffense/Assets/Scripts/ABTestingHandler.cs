@@ -1,39 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using NaughtyAttributes;
 using SimpleJSON;
+using System.Collections;
+using System.Text;
+using System;
 
-public enum RequestType { GET = 0, POST = 1, PUT = 2 };
-public class DBLink : MonoBehaviour
+
+public class ABTestingHandler : MonoBehaviour
 {
-
-    public static event EventHandler<bool> OnRequestComplete;
-
-    [SerializeField]
-    [ReadOnly]
+    public string PlayerGroup;
     string gameDataDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_gamedata";
-    [SerializeField]
-    [ReadOnly]
-    string gameValuesDoc = "/gamevalues";
-    public string keyToRetrieve;
-    public JSONNode gameValues;
-    [SerializeField]
-    [ReadOnly]
-    string feedbackFormsDB = "http://pouchdb.gd-ue.de/rmtctl_shadowsquid_feedbackforms";
+    string onlineStatusDoc = "/onlinestatus";
+    JSONNode status;
+    OnlineStatus onlineStatus;
+    string rev;
 
-    #region GET
-    [Button("Make request")]
-    public void MakeRequest()
+#if UNITY_STANDALONE_WIN
+    public void Awake()
     {
-        StartCoroutine(GetGameValues());
+        //random player group A or B
+        PlayerGroup = UnityEngine.Random.Range(0, 2) == 0 ? "a" : "b";
+        Debug.Log("Player group: " + PlayerGroup);
+        StartCoroutine(GetOnlineStatus());
     }
-    public IEnumerator GetGameValues()
+#endif
+    public IEnumerator GetOnlineStatus()
     {
-        string URL = gameDataDB + gameValuesDoc;
+        string URL = gameDataDB + onlineStatusDoc;
         using (UnityWebRequest webRequest = UnityWebRequest.Get(URL))
         {
             // Request and wait for the desired page.
@@ -45,7 +38,7 @@ public class DBLink : MonoBehaviour
             if (webRequest.result == UnityWebRequest.Result.ConnectionError)
             {
                 Debug.Log(pages[page] + ": Error: " + webRequest.error);
-                OnRequestComplete(this, false);
+                PrintResponse(webRequest);
             }
             else
             {
@@ -53,34 +46,35 @@ public class DBLink : MonoBehaviour
                 string textReturned = pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
 
                 // Create a JSON object from received string data
-                gameValues = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
-                OnRequestComplete(this, true);
+                status = SimpleJSON.JSON.Parse(webRequest.downloadHandler.text);
+                status[PlayerGroup]++;
+
+                onlineStatus = new OnlineStatus();
+                onlineStatus._rev = status["_rev"];
+                onlineStatus.a = status["a"];
+                onlineStatus.b = status["b"];
+                print(JsonUtility.ToJson(onlineStatus));
+                StartCoroutine(UpdateOnlineStatus());
+
             }
         }
     }
-    #endregion
-    #region POSTFEEDBACK
-
-    IEnumerator SendFeedbackFormCorout(FeedbackForm form)
+    IEnumerator UpdateOnlineStatus()
     {
-        var postRequest = CreateRequest(feedbackFormsDB, RequestType.POST, form);
+        var postRequest = CreateRequest(gameDataDB + onlineStatusDoc, RequestType.PUT, onlineStatus);
 
         yield return postRequest.SendWebRequest();
 
-        if (postRequest.result != UnityWebRequest.Result.Success) Debug.Log(postRequest.error);
+        if (postRequest.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(postRequest.error);
+            PrintResponse(postRequest);
+        }
         else
         {
             Debug.Log("Feedback sent successfully !");
         }
     }
-    public void SendFeedbackForm(FeedbackForm form)
-    {
-        StartCoroutine(SendFeedbackFormCorout(form));
-    }
-
-    #endregion
-
-    #region helpers
     private UnityWebRequest CreateRequest(string path, RequestType type = RequestType.GET, object data = null, bool printResults = false)
     {
         var request = new UnityWebRequest(path, type.ToString());
@@ -96,7 +90,6 @@ public class DBLink : MonoBehaviour
 
         return request;
     }
-
     void PrintResponse(UnityWebRequest request)
     {
         StringBuilder sb = new StringBuilder();
@@ -115,5 +108,10 @@ public class DBLink : MonoBehaviour
         Debug.Log("Data : " + Encoding.UTF8.GetString(request.uploadHandler.data));
     }
 }
-#endregion
-
+[Serializable]
+public class OnlineStatus
+{
+    public string _rev = "";
+    public string a = "0";
+    public string b = "0";
+}
